@@ -1,4 +1,4 @@
-package com.petcenter.laboratorio.dao.mappers;
+package com.petcenter.laboratorio.dao.spec;
 
 import java.util.List;
 
