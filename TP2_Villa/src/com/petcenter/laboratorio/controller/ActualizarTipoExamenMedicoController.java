@@ -20,6 +20,7 @@ public class ActualizarTipoExamenMedicoController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String inicio(){
+		
 		List<EspecialidadDTO> listaEspecialidades = actualizaTipoExamenMedicoService.listarEspecialidades();
 		List<EstadoDTO> listaEstados =  actualizaTipoExamenMedicoService.listarEstados();
 		return "laboratorio/actualizarTipoExamen";

@@ -44,5 +44,14 @@ public class EspecialidadDTO {
 	public void setDescripcionEspecialidad(String descripcionEspecialidad) {
 		this.descripcionEspecialidad = descripcionEspecialidad;
 	}
+
+	public Integer getIdEstado() {
+		return idEstado;
+	}
+
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
+	}
+	
 	
 }
