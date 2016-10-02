@@ -6,16 +6,18 @@ public class EspecialidadDTO {
 	private String codigoEspecialidad;
 	private String nombreEspecialidad;
 	private String descripcionEspecialidad;
+	private Integer idEstado;
 	
 	public EspecialidadDTO(){}
 	
 	public EspecialidadDTO(Integer idEspecialidad,String codigoEspecialidad,String nombreEspecialidad,
-			String descripcionEspecialidad){
+			String descripcionEspecialidad,Integer idEstado){
 		super();
 		this.idEspecialidad = idEspecialidad;
 		this.codigoEspecialidad = codigoEspecialidad;
 		this.nombreEspecialidad = nombreEspecialidad;
 		this.descripcionEspecialidad = descripcionEspecialidad;
+		this.idEstado =  idEstado;
 	}
 	
 	public Integer getIdEspecialidad() {

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.petcenter.laboratorio.dto.EspecialidadDTO;
+import com.petcenter.laboratorio.dto.EstadoDTO;
 import com.petcenter.laboratorio.service.ActualizarTipoExamenMedicoService;
 
 @Controller
@@ -19,7 +20,8 @@ public class ActualizarTipoExamenMedicoController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String inicio(){
-		List<EspecialidadDTO> lista = actualizaTipoExamenMedicoService.listarEspecialidades(); 
+		List<EspecialidadDTO> listaEspecialidades = actualizaTipoExamenMedicoService.listarEspecialidades();
+		List<EstadoDTO> listaEstados =  actualizaTipoExamenMedicoService.listarEstados();
 		return "laboratorio/actualizarTipoExamen";
 	}
 
