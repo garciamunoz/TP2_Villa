@@ -6,8 +6,8 @@
 <div class="container">
     <div class="row" >
         <div class="span6 offset3">
-            <h2 class="alert-heading">Pet Center</h2>
-            <p><spring:message code="mensaje.prueba"/></p>
+            <h2 class="alert-heading"><spring:message code="index.msj.vet"/></h2>
+            <p></p>
             <br/>
         </div>
     </div>

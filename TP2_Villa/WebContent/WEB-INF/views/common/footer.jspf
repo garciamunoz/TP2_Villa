@@ -1,8 +1,9 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <footer>
     <div class="container">
         <div class="row well">
             <div align="center">
-            <p>TP2 VILLA</p>
+            <p><spring:message code="footer.msj.global"/></p>
         </div>
     </div>
     </div>
