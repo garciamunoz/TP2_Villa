@@ -26,8 +26,8 @@ public class ActualizarTipoExamenMedicoController {
 	    ModelAndView modelAndView = new ModelAndView(LaboratorioConstantes.VISTA_ACTUALIZA_TIPO_EXAMEN);
 		List<EspecialidadDTO> listaEspecialidades = actualizaTipoExamenMedicoService.listarEspecialidades();
 		List<EstadoDTO> listaEstados =  actualizaTipoExamenMedicoService.listarEstados();
-		modelAndView.addObject("listaEspecialidades", listaEspecialidades);
-		modelAndView.addObject("listaEstados", listaEstados);
+		modelAndView.addObject(LaboratorioConstantes.NOMBRE_LISTA_ESPECIALIDADES, listaEspecialidades);
+		modelAndView.addObject(LaboratorioConstantes.NOMBRE_LISTA_ESTADOS, listaEstados);
 
 		return modelAndView;
 	}

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../common/header.jspf"%>
 <%--content--%>
 
@@ -26,7 +27,9 @@
         <label class="control-label col-xs-3">Estado:</label>
         <div class="col-xs-9">
             <select class="form-control">
-                <option>Dia</option>
+            	<c:forEach items="${listaEstados}" var="est">
+			   		<option value="${est.idEstado}">${est.nombreEstado}</option>
+			    </c:forEach>
             </select>
         </div>
     </div>
@@ -34,7 +37,9 @@
         <label class="control-label col-xs-3">Especialidad:</label>
         <div class="col-xs-9">
             <select class="form-control">
-                <option>Dia</option>
+            	<c:forEach items="${listaEspecialidades}" var="esp">
+               		 <option value="${esp.idEspecialidad}">${esp.nombreEspecialidad}</option>
+               	 </c:forEach>	 
             </select>
         </div>
     </div>          
