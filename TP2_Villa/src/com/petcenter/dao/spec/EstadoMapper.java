@@ -1,8 +1,8 @@
-package com.petcenter.laboratorio.dao.spec;
+package com.petcenter.dao.spec;
 
 import java.util.List;
 
-import com.petcenter.laboratorio.dto.EstadoDTO;
+import com.petcenter.dto.EstadoDTO;
 
 public interface EstadoMapper {
 	

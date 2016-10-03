@@ -1,4 +1,4 @@
-package com.petcenter.laboratorio.dto;
+package com.petcenter.dto;
 
 public class EstadoDTO {
 

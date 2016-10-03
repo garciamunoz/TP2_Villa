@@ -1,4 +1,4 @@
-package com.petcenter.laboratorio.util;
+package com.petcenter.util;
 
 public class LaboratorioConstantes {
 	

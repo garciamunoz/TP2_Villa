@@ -1,4 +1,4 @@
-package com.petcenter.laboratorio.controller;
+package com.petcenter.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +24,7 @@ public class AdministrarHistoriaClinica {
 	
 	@RequestMapping("/detalle")
 	public ModelAndView cargarDetalle(){
-		ModelAndView mav = new ModelAndView("medica/HClistar");
+		ModelAndView mav = new ModelAndView("medica/HCdetalle");
 		
 		return mav;
 	}

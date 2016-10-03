@@ -26,8 +26,8 @@
 
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource" />
-    <property name="typeAliasesPackage" value="com.petcenter.laboratorio.dto" />
-    <property name="mapperLocations" value="classpath*:com/petcenter/laboratorio/dao/mappers/*.xml" />
+    <property name="typeAliasesPackage" value="com.petcenter.dto" />
+    <property name="mapperLocations" value="classpath*:com/petcenter/dao/mappers/*.xml" />
   </bean>
 
   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
@@ -35,13 +35,13 @@
   </bean>
 
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <property name="basePackage" value="com.petcenter.laboratorio.dao.spec" />
+    <property name="basePackage" value="com.petcenter.dao.spec" />
   </bean>
 
 <bean id="messageSource"
      class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
      <property name="basename" value="WEB-INF/messages/global"/>
 </bean>
-  <context:component-scan base-package="com.petcenter.laboratorio.service" />
+  <context:component-scan base-package="com.petcenter.service" />
 	
 </beans>

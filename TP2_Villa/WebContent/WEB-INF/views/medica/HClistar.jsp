@@ -62,7 +62,7 @@ function eliminar(id){
             		<td style="text-align: center;">01</td>
             		<td style="text-align: center;">02</td>
             		<td style="text-align: center;">
-            			<a href="#" onclick="detalle(1)">Ver Detalle</a>
+            			<a href="#" onclick="detalle(1);">Ver Detalle</a>
             		</td>
             		<td style="text-align: center;">
             			<a href="#" onclick="eliminar('YES');">Eliminar</a>

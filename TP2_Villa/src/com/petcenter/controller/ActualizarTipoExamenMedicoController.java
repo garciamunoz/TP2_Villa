@@ -1,4 +1,4 @@
-package com.petcenter.laboratorio.controller;
+package com.petcenter.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.petcenter.laboratorio.service.ActualizarTipoExamenMedicoService;
-import com.petcenter.laboratorio.util.LaboratorioConstantes;
+import com.petcenter.service.ActualizarTipoExamenMedicoService;
+import com.petcenter.util.LaboratorioConstantes;
 
 @Controller
 @RequestMapping("/actualizarTipoExamen")

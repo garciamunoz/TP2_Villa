@@ -1,8 +1,8 @@
-package com.petcenter.laboratorio.dao.spec;
+package com.petcenter.dao.spec;
 
 import java.util.List;
 
-import com.petcenter.laboratorio.dto.EspecialidadDTO;
+import com.petcenter.dto.EspecialidadDTO;
 
 public interface EspecialidadMapper {
 	
