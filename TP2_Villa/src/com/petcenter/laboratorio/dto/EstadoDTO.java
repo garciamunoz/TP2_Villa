@@ -10,6 +10,7 @@ public class EstadoDTO {
 	public EstadoDTO(){}
 	
 	public EstadoDTO(Integer idEstado,String codigoEstado,String nombreEstado,String descripcionEstado){
+		super();
 		this.idEstado = idEstado;
 		this.codigoEstado = codigoEstado;
 		this.nombreEstado = nombreEstado;

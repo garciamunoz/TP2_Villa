@@ -12,7 +12,7 @@
 <form class="form-horizontal">
 
     <div class="form-group">
-        <label class="control-label col-xs-3"><spring:message code="uc.first.lbl.name"/></label>
+        <label class="control-label col-xs-3" ><spring:message code="uc.first.lbl.name"/></label>
         <div class="col-xs-9">
             <input type="text" class="form-control" placeholder="<spring:message code="uc.first.lbl.name"/>">
         </div>
@@ -44,6 +44,22 @@
             </select>
         </div>
     </div>          
+    
+   <div class="table-responsive">
+        		<table class="table table-striped table-bordered table-hover">
+              <thead>
+                  <tr>
+                      <th><spring:message code="uc.first.tb.header.code"/></th>
+                      <th><spring:message code="uc.first.tb.header.nombre"/></th>
+                      <th><spring:message code="uc.first.tb.header.descripcion"/></th>
+                      <th><spring:message code="uc.first.tb.header.especialidad"/></th>
+                  </tr>
+              </thead>
+              <tbody id="tbDetalleOrdenCompra">
+              <tr class="odd gradeX"><td>coca-cola</td><td>und</td><td>50</td><td>11</td></tr>
+              </tbody>
+          </table>
+      </div>
 
     <br>
     <div class="form-group">
