@@ -6,7 +6,7 @@
 
 <script type="text/javascript">
 
-function Regresar(){
+function regresar(){
 	$('#formDHC').attr('action',"/TP2_Villa/HC/listar");
 	$('#formDHC').submit();
 }
@@ -86,7 +86,7 @@ function Regresar(){
     <br>
     <div class="form-group">
         <div class="col-sm-3" align="center">
-        	<input type="button" class="btn btn-default" value="REGRESAR" onclick="Regresar();"/>
+        	<input type="button" class="btn btn-primary" value="REGRESAR" onclick="regresar();"/>
         </div>
     </div>
 </form>

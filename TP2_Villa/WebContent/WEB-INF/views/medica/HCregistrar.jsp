@@ -80,10 +80,10 @@ function Regresar(){
     <br>
     <div class="form-group">
         <div class="col-sm-3" align="left">
-        	<input type="button" class="btn btn-default" value="REGRESAR" onclick="Regresar();"/>
+        	<input type="button" class="btn btn-primary" value="REGRESAR" onclick="Regresar();"/>
 	    </div>
         <div class="col-sm-3" align="center">
-        	<input type="button" class="btn btn-default" value="GRABAR"/>
+        	<input type="button" class="btn btn-success" value="GRABAR"/>
         </div>
     </div>
 </form>

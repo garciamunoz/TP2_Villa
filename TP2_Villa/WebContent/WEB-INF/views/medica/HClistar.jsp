@@ -6,6 +6,25 @@
 
 <script type="text/javascript">
 
+$( function() {
+    $('#dialog-confirm').dialog({
+      autoOpen: false,
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      buttons: {
+        "Cancelar": function() {
+          $( this ).dialog( "close" );
+        },
+        "Eliminar": function() {
+        	$('#formHC').attr('action',"/TP2_Villa/HC/eliminar");
+        	$('#formHC').submit();
+        }
+      }
+    });
+  } );
+
 function registrar(){
 	$('#formHC').attr('action',"/TP2_Villa/HC/cargarRegistrar");
 	$('#formHC').submit();
@@ -22,7 +41,11 @@ function detalle(id){
 }
 
 function eliminar(id){
-	$('#formHC').attr('action',"/TP2_Villa/HC/eliminar");
+	$('#dialog-confirm').dialog('open');
+}
+
+function buscar(){
+	$('#formHC').attr('action',"/TP2_Villa/HC/cargarBuscar");
 	$('#formHC').submit();
 }
 
@@ -37,8 +60,8 @@ function eliminar(id){
 	<form class="form-horizontal" action="" id="formHC" method="POST">
 
     <div class="form-group">
-        <input type="button" class="btn btn-default" value="BUSCAR"/>
-        <input type="button" class="btn btn-default" value="REGISTRAR" onclick="registrar();"/>
+        <input type="button" class="btn btn-default" value="BUSCAR" onclick="buscar();"/>
+        <input type="button" class="btn btn-success" value="REGISTRAR" onclick="registrar();"/>
     </div>
     
     <br>
@@ -75,14 +98,19 @@ function eliminar(id){
     <div class="form-group">
         <div class="col-sm-12" align="left">
 	        <div class="col-sm-6" align="left">
-	        	<input type="button" class="btn btn-default" value="LIMPIAR" onclick="limpiar();"/>
+	        	<input type="button" class="btn btn-info" value="LIMPIAR" onclick="limpiar();"/>
 	        </div>
 	        <div class="col-sm-6" align="right">
-	        	<input type="button" class="btn btn-default" value="REGRESAR"/>
+	        	<input type="button" class="btn btn-primary" value="REGRESAR"/>
 	        </div>
 	    </div>
     </div>
 </form>
+
+<div id="dialog-confirm" title="Mensaje" style="display: none;">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>¿Está seguro de eliminar la Historia Clínica con código <span id="spnHC">999</span>?</p>
+</div>
+
 </div>
 
 <%--end content--%>

@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/HC")
-public class AdministrarHistoriaClinica {
+public class GestionarHistoriaClinica {
 
 	@RequestMapping("/listar")
 	public ModelAndView listar(){
@@ -22,8 +22,29 @@ public class AdministrarHistoriaClinica {
 		return mav;
 	}
 	
+	@RequestMapping("/cargarBuscar")
+	public ModelAndView cargarBuscar(){
+		ModelAndView mav = new ModelAndView("medica/HCbuscar");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/registrar")
+	public ModelAndView registrar(){
+		ModelAndView mav = new ModelAndView("medica/HClistar");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/buscar")
+	public ModelAndView buscar(){
+		ModelAndView mav = new ModelAndView("medica/HClistar");
+		
+		return mav;
+	}
+	
 	@RequestMapping("/detalle")
-	public ModelAndView cargarDetalle(){
+	public ModelAndView detalle(){
 		ModelAndView mav = new ModelAndView("medica/HCdetalle");
 		
 		return mav;
