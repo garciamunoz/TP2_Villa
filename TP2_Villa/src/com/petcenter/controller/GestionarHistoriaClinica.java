@@ -1,13 +1,19 @@
 package com.petcenter.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.petcenter.service.CommonService;
 
 @Controller
 @RequestMapping("/HC")
 public class GestionarHistoriaClinica {
 
+	@Autowired
+	private CommonService commonService;
+	
 	@RequestMapping("/listar")
 	public ModelAndView listar(){
 		ModelAndView mav = new ModelAndView("medica/HClistar");
@@ -18,7 +24,7 @@ public class GestionarHistoriaClinica {
 	@RequestMapping("/cargarRegistrar")
 	public ModelAndView cargarRegistrar(){
 		ModelAndView mav = new ModelAndView("medica/HCregistrar");
-		
+		mav.addObject("listaTipoDoc", commonService.listaTipoDoc());
 		return mav;
 	}
 	

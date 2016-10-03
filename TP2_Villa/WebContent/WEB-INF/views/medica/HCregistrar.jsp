@@ -26,7 +26,11 @@ function Regresar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtTIPODOC">TIPO DOCUMENTO:</label>
 		        <div class="col-xs-5">
-		            <select id="txtTIPODOC" class="form-control"></select>
+		            <select id="txtTIPODOC" class="form-control">
+		            <c:forEach items="${listaTipoDoc}" var="doc">
+			            <option value="${doc.id}">${doc.desc}</option>		            
+		            </c:forEach>		            	
+		            </select>
 		        </div>
 		    </div>
     		<div class="form-group">
