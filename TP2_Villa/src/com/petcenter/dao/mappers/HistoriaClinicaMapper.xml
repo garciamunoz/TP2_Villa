@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petcenter.dao.spec.HistoriaClinicaMapper">
+
+  <select id="listaClienteMascota" parameterType="java.util.HashMap" resultType="DatosClienteMascota">
+    SELECT cli.idCliente as 'idCliente', concat(nomCliente,' ',apePaternoCliente,' ',apeMaternoCliente) as 'datosCliente',
+		idMascota,nomMascota as 'datosMascota', fotoMascota,
+        ra.descripcionRaza, esp.descripcionEspecie, genma.descripcionGenMascota
+	FROM tb_cliente cli left join tb_mascota ma
+		on cli.idCliente=ma.idCliente and ma.estadoMascota=1 left join tb_raza ra
+        on ma.idRaza=ra.idRaza left join tb_especie esp
+        on ra.idEspecie=esp.idEspecie left join tb_generomascota genma
+        on ma.idGeneroMascota=genma.idGeneroMascota
+	WHERE cli.estadoCliente=1
+		and cli.idTipoDocumento=#{tipoDoc}
+        and cli.nroDocumento=#{numDoc}
+  </select>
+  
+</mapper>

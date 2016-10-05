@@ -59,19 +59,41 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!-- slf4j -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.7</version>
-        </dependency>	
-        
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!-- log4j -->
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.17</version>
+		</dependency>
+<!--         <dependency> -->
+<!-- 		    <groupId>org.apache.logging.log4j</groupId> -->
+<!-- 		    <artifactId>log4j-core</artifactId> -->
+<!-- 		    <version>2.6.2</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.apache.logging.log4j</groupId> -->
+<!-- 		    <artifactId>log4j-api</artifactId> -->
+<!-- 		    <version>2.6.2</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.apache.logging.log4j</groupId> -->
+<!-- 		    <artifactId>log4j-web</artifactId> -->
+<!-- 		    <version>2.6.2</version> -->
+<!-- 		</dependency> -->
+	
+	
+		<dependency>
+		    <groupId>xml-apis</groupId>
+		    <artifactId>xml-apis</artifactId>
+		    <version>2.0.2</version>
+		</dependency>
+	
 		<!-- MyBatis con Spring -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -91,6 +113,18 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.6</version>
+		</dependency>
+
+		<!-- JSON -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.8.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.8.3</version>
 		</dependency>
 
   </dependencies>

@@ -11,6 +11,7 @@
   <script src="/TP2_Villa/static/js/jquery-1.10.2.min.js"></script>
   <script src="/TP2_Villa/static/js/jquery-ui.min.js"></script>
   <script src="/TP2_Villa/static/js/bootstrap.min.js"></script>
+  <script src="/TP2_Villa/static/js/common.js"></script>
   <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 </head>

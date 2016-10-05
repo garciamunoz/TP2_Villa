@@ -6,9 +6,63 @@
 
 <script type="text/javascript">
 
-function Regresar(){
+var listaDatos;
+
+function regresar(){
 	$('#formRHC').attr('action',"/TP2_Villa/HC/listar");
 	$('#formRHC').submit();
+}
+
+function validar(){
+	$('#hdnIDCLIENTE').val('');
+	$('#txtCLIENTE').val('');
+	$('#txtMASCOTA').empty().append($('<option>', { 
+        value: "-1",
+        text : "Seleccione" 
+    }));
+	
+	$.ajax({
+		type:'GET',
+		url: '/TP2_Villa/HC/validar',
+		data: {
+			tipoDoc: $('#txtTIPODOC').val(),
+			numDoc: $('#txtNUMDOC').val()
+		},
+		success: function(data){
+			listaDatos = data;
+			if(data.length > 0){
+				datos = data[0];
+				$('#hdnIDCLIENTE').val(datos.idCliente);
+				$('#txtCLIENTE').val(datos.datosCliente);
+				$.each(data,function( index, element ) {
+					if(element.idMascota){
+						$('#txtMASCOTA').append($('<option>', { 
+					        value: element.idMascota,
+					        text : element.datosMascota 
+					    }));
+					}
+				});
+			}else{
+				mensajeModal("Cliente no encontrado.");
+			}
+		},
+		error: function(e){
+			console.log("error: " + e);
+		}
+	});
+}
+
+function mascota(id){
+	$('#txtESPECIE').val('');
+	$('#txtRAZA').val('');
+	
+	$.each(listaDatos,function( index, element ) {
+		if(element.idMascota == id){
+			$('#txtESPECIE').val(element.descripcionEspecie);
+			$('#txtRAZA').val(element.descripcionRaza);
+			return;
+		}
+	});
 }
 
 </script>
@@ -20,6 +74,7 @@ function Regresar(){
     </div>
 
 	<form class="form-horizontal" action="" id="formRHC" method="POST">
+	<input type="hidden" id="txtIDCLIENTE" value=""/>
 
     <div class="col-sm-12">
     	<div class="col-sm-8">
@@ -34,9 +89,10 @@ function Regresar(){
 		        </div>
 		    </div>
     		<div class="form-group">
-		        <label class="control-label col-xs-3" for="txtNUMDOC">NÚMERO:</label>
-		        <div class="col-xs-5">
-		            <input type="text" id="txtNUMDOC" class="form-control" placeholder="1234567"/>
+		        <label class="control-label col-xs-3" for="txtNUMDOC">NÚMERO DOCUMENTO:</label>
+		        <div class="col-xs-5" align="right">
+		            <input type="text" id="txtNUMDOC" class="form-control" value="10233775"/>
+		            <input type="button" id="btnVALIDAR" value="VALIDAR" class="btn btn-info" onclick="validar();"/>
 		        </div>
 		    </div>
     		<div class="form-group">
@@ -48,7 +104,9 @@ function Regresar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtMASCOTA">MASCOTA:</label>
 		        <div class="col-xs-5">
-		            <select type="text" id="txtMASCOTA" class="form-control"></select>
+		            <select type="text" id="txtMASCOTA" class="form-control" onchange="mascota(this.value);">
+		            	<option value="-1">Seleccione</option>
+		            </select>
 		        </div>
 	        </div>
     		<div class="form-group">
@@ -84,7 +142,7 @@ function Regresar(){
     <br>
     <div class="form-group">
         <div class="col-sm-3" align="left">
-        	<input type="button" class="btn btn-primary" value="REGRESAR" onclick="Regresar();"/>
+        	<input type="button" class="btn btn-primary" value="REGRESAR" onclick="regresar();"/>
 	    </div>
         <div class="col-sm-3" align="center">
         	<input type="button" class="btn btn-success" value="GRABAR"/>
