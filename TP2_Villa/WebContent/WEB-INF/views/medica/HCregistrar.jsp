@@ -55,14 +55,27 @@ function validar(){
 function mascota(id){
 	$('#txtESPECIE').val('');
 	$('#txtRAZA').val('');
+	$('#txtGENERO').val('');
 	
 	$.each(listaDatos,function( index, element ) {
 		if(element.idMascota == id){
 			$('#txtESPECIE').val(element.descripcionEspecie);
 			$('#txtRAZA').val(element.descripcionRaza);
+			$('#txtGENERO').val(element.descripcionGenMascota);
 			return;
 		}
 	});
+}
+
+function registrar(){
+	var idMascota = $('#txtMASCOTA').val();
+	
+	if(idMascota == "-1"){
+		mensajeModal("Seleccione alguna Mascota.");return false;
+	}
+	
+	$('#formRHC').attr('action',"/TP2_Villa/HC/registrar");
+	$('#formRHC').submit();	
 }
 
 </script>
@@ -74,7 +87,7 @@ function mascota(id){
     </div>
 
 	<form class="form-horizontal" action="" id="formRHC" method="POST">
-	<input type="hidden" id="txtIDCLIENTE" value=""/>
+	<input type="hidden" id="hdnIDCLIENTE" name="hdnIDCLIENTE" value=""/>
 
     <div class="col-sm-12">
     	<div class="col-sm-8">
@@ -91,7 +104,7 @@ function mascota(id){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtNUMDOC">NÚMERO DOCUMENTO:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="txtNUMDOC" class="form-control" value="10233775"/>
+		            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" value="10233775"/>
 		            <input type="button" id="btnVALIDAR" value="VALIDAR" class="btn btn-info" onclick="validar();"/>
 		        </div>
 		    </div>
@@ -104,7 +117,7 @@ function mascota(id){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtMASCOTA">MASCOTA:</label>
 		        <div class="col-xs-5">
-		            <select type="text" id="txtMASCOTA" class="form-control" onchange="mascota(this.value);">
+		            <select type="text" id="txtMASCOTA" name="txtMASCOTA" class="form-control" onchange="mascota(this.value);">
 		            	<option value="-1">Seleccione</option>
 		            </select>
 		        </div>
@@ -121,16 +134,22 @@ function mascota(id){
 		            <input type="text" id="txtRAZA" class="form-control" disabled="disabled"/>
 		        </div>
 	        </div>
+	        <div class="form-group">
+		        <label class="control-label col-xs-3" for="txtGENERO">GÉNERO:</label>
+		        <div class="col-xs-5">
+		            <input type="text" id="txtGENERO" class="form-control" disabled="disabled"/>
+		        </div>
+	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtEDAD">EDAD:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtEDAD" class="form-control"/>
+		            <input type="text" id="txtEDAD" name="txtEDAD" class="form-control" maxlength="3"/>
 		        </div>
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtOBS">OBSERVACIÓN:</label>
 		        <div class="col-xs-5">
-		        	<textarea class="form-control" id="txtOBS" rows="3" cols="100" maxlength="255"></textarea>
+		        	<textarea class="form-control" id="txtOBS" name="txtOBS" rows="3" cols="100" maxlength="255"></textarea>
 		        </div>
 	        </div>
 	    </div>
@@ -145,7 +164,7 @@ function mascota(id){
         	<input type="button" class="btn btn-primary" value="REGRESAR" onclick="regresar();"/>
 	    </div>
         <div class="col-sm-3" align="center">
-        	<input type="button" class="btn btn-success" value="GRABAR"/>
+        	<input type="button" class="btn btn-success" value="GRABAR" onclick="registrar();"/>
         </div>
     </div>
 </form>

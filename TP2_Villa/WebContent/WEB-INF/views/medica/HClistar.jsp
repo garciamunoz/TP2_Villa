@@ -6,7 +6,7 @@
 
 <script type="text/javascript">
 
-$( function() {
+$(function() {
     $('#dialog-confirm').dialog({
       autoOpen: false,
       resizable: false,
@@ -23,7 +23,8 @@ $( function() {
         }
       }
     });
-  } );
+    
+ });
 
 function registrar(){
 	$('#formHC').attr('action',"/TP2_Villa/HC/cargarRegistrar");
@@ -36,11 +37,14 @@ function limpiar(){
 }
 
 function detalle(id){
+	$('#idHC').val(id);
 	$('#formHC').attr('action',"/TP2_Villa/HC/detalle");
 	$('#formHC').submit();
 }
 
 function eliminar(id){
+	$('#idHC').val(id);
+	$('#spnHC').text(id);
 	$('#dialog-confirm').dialog('open');
 }
 
@@ -58,6 +62,7 @@ function buscar(){
     </div>
 
 	<form class="form-horizontal" action="" id="formHC" method="POST">
+	<input type="hidden" id="idHC" name="idHC" value="" />
 
     <div class="form-group">
         <input type="button" class="btn btn-default" value="BUSCAR" onclick="buscar();"/>
@@ -69,7 +74,7 @@ function buscar(){
 		<table class="table table-hover table-bordered" border="1">
         	<thead style="background-color: #bce8f1;">
             	<tr>
-                	<th style="text-align: center;">CÓDIGO</th>
+                	<th style="text-align: center;">CÓDIGO HC</th>
                 	<th style="text-align: center;">CLIENTE</th>
                 	<th style="text-align: center;">MASCOTA</th>
                 	<th style="text-align: center;">REGISTRADO</th>
@@ -78,18 +83,26 @@ function buscar(){
                 </tr>
             </thead>
             <tbody>
-            	<tr>
-            		<td style="text-align: center;">1</td>
-            		<td style="text-align: center;">yo</td>
-            		<td style="text-align: center;">pet</td>
-            		<td style="text-align: center;">01</td>
-            		<td style="text-align: center;">02</td>
-            		<td style="text-align: center;">
-            			<a href="#" onclick="detalle(1);">Ver Detalle</a>
-            		</td>
-            		<td style="text-align: center;">
-            			<a href="#" onclick="eliminar('YES');">Eliminar</a>
-            		</td>
+            	<c:forEach var="hc" items="${listaHC}">
+	            	<tr>
+	            		<td style="text-align: center;">${hc.idHC}</td>
+	            		<td style="text-align: center;">${hc.datosCliente}</td>
+	            		<td style="text-align: center;">${hc.datosMascota}</td>
+	            		<td style="text-align: center;">${hc.registrado}</td>
+	            		<td style="text-align: center;">${hc.actualizado}</td>
+	            		<td style="text-align: center;">
+	            			<a href="#" onclick="detalle(${hc.idHC});">Ver Detalle</a>
+	            		</td>
+	            		<td style="text-align: center;">
+	            			<a href="javascript:void(0);" onclick="eliminar(${hc.idHC});">Eliminar</a>
+	            		</td>
+	            	</tr>
+            	</c:forEach>
+            	<c:if test="${empty listaHC}">
+            		<tr><td colspan="7" style="text-align: center;">
+            			No hay datos para mostrar.
+            		</td></tr>
+            	</c:if>
             </tbody>
         </table>
     </div>

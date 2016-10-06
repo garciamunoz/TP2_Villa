@@ -30,13 +30,13 @@ function regresar(){
    		<div class="form-group">
 	        <label class="control-label col-sm-3 col-xs-3" for="txtHC">CÓDIGO HC:</label>
 	        <div class="col-sm-3 col-xs-3">
-	        	<input type="text" id="txtHC" class="form-control"/>
+	        	<input type="text" id="txtHC" name="txtHC" class="form-control"/>
 	        </div>
 	    </div>
     	<div class="form-group">
 	        <label class="control-label col-sm-3 col-xs-3" for="txtNUMDOC">NÚMERO DOCUMENTO:</label>
 	        <div class="col-sm-3 col-xs-3">
-	            <input type="text" id="txtNUMDOC" class="form-control"/>
+	            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control"/>
 	        </div>
 	    </div>
     </div>

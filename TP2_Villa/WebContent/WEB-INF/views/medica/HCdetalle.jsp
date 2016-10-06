@@ -24,57 +24,63 @@ function regresar(){
     <div class="col-sm-12">
     	<div class="col-sm-8">
     		<div class="form-group">
-		        <label class="control-label col-xs-3" for="txtHC">CÓDIGO HC:</label>
+		        <label class="control-label col-sm-3 col-xs-3" for="txtHC">CÓDIGO HC:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtHC" class="form-control" disabled="disabled"></select>
+		            <input type="text" id="txtHC" value="${hc.idHC}" class="form-control" disabled="disabled"></select>
 		        </div>
 		    </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtTIPODOC">TIPO DOCUMENTO:</label>
 		        <div class="col-xs-5">
-		        	<input type="text" id="txtTIPODOC" class="form-control" disabled="disabled"/>
+		        	<input type="text" id="txtTIPODOC" value="${hc.descDoc}" class="form-control" disabled="disabled"/>
 		        </div>
 		    </div>
     		<div class="form-group">
-		        <label class="control-label col-xs-3" for="txtNUMDOC">NÚMERO:</label>
+		        <label class="control-label col-xs-3" for="txtNUMDOC">NÚMERO DOCUMENTO:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtNUMDOC" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtNUMDOC" value="${hc.numDoc}" class="form-control" disabled="disabled"/>
 		        </div>
 		    </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtCLIENTE">CLIENTE:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtCLIENTE" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtCLIENTE" value="${hc.datosCliente}" class="form-control" disabled="disabled"/>
 		        </div>
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtPACIENTE">PACIENTE:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtPACIENTE" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtPACIENTE" value="${hc.datosMascota}" class="form-control" disabled="disabled"/>
 		        </div>
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtESPECIE">ESPECIE:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtESPECIE" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtESPECIE" value="${hc.descripcionEspecie}" class="form-control" disabled="disabled"/>
 		        </div>
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtRAZA">RAZA:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtRAZA" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtRAZA" value="${hc.descripcionRaza}" class="form-control" disabled="disabled"/>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="control-label col-xs-3" for="txtGENERO">GENERO:</label>
+		        <div class="col-xs-5">
+		            <input type="text" id="txtGENERO" value="${hc.descripcionGenMascota}" class="form-control" disabled="disabled"/>
 		        </div>
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtEDAD">EDAD:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtEDAD" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtEDAD" value="${hc.edad}" class="form-control" disabled="disabled"/>
 		        </div>
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtOBS">OBSERVACIÓN:</label>
 		        <div class="col-xs-5">
-		        	<textarea class="form-control" id="txtOBS" rows="3" cols="100" maxlength="255" disabled="disabled"></textarea>
+		        	<textarea class="form-control" id="txtOBS" rows="3" cols="100" maxlength="255" disabled="disabled">${hc.observaciones}</textarea>
 		        </div>
 	        </div>
 	    </div>

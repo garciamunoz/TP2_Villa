@@ -25,6 +25,17 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
+	<!-- 	FILEUPLOAD -->
+	<bean id="multipartResolver"  
+	    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+	    <property name="maxUploadSize">  
+	        <value>10000000</value>  
+	    </property>  
+	    <property name="maxInMemorySize">  
+	        <value>100000000</value>  
+	    </property>      
+	</bean>	
+	
 	<mvc:resources mapping="/static/**" location="/static/" />
 
 	<context:component-scan base-package="com.petcenter" />

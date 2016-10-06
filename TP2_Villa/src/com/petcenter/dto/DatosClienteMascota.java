@@ -1,8 +1,13 @@
 package com.petcenter.dto;
 
+import java.util.Arrays;
+
 public class DatosClienteMascota {
 
+	private int idHC;
 	private int idCliente; 
+	private String descDoc;
+	private String numDoc;
 	private String datosCliente;
 	private int idMascota;
 	private String datosMascota; 
@@ -11,7 +16,39 @@ public class DatosClienteMascota {
     private String descripcionRaza;
     private String descripcionEspecie;
     private String descripcionGenMascota;
+    private int edad;
+    private String observaciones;
     
+	public int getIdHC() {
+		return idHC;
+	}
+	public void setIdHC(int idHC) {
+		this.idHC = idHC;
+	}
+	public String getDescDoc() {
+		return descDoc;
+	}
+	public void setDescDoc(String descDoc) {
+		this.descDoc = descDoc;
+	}
+	public String getNumDoc() {
+		return numDoc;
+	}
+	public void setNumDoc(String numDoc) {
+		this.numDoc = numDoc;
+	}
+	public int getEdad() {
+		return edad;
+	}
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+	public String getObservaciones() {
+		return observaciones;
+	}
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
 	public int getIdCliente() {
 		return idCliente;
 	}
@@ -72,6 +109,16 @@ public class DatosClienteMascota {
 	}
 	public void setFotoString(String fotoString) {
 		this.fotoString = fotoString;
+	}
+	
+	@Override
+	public String toString() {
+		return "DatosClienteMascota [idHC=" + idHC + ", idCliente=" + idCliente + ", descDoc=" + descDoc + ", numDoc="
+				+ numDoc + ", datosCliente=" + datosCliente + ", idMascota=" + idMascota + ", datosMascota="
+				+ datosMascota + ", fotoMascota=" + Arrays.toString(fotoMascota) + ", fotoString=" + fotoString
+				+ ", descripcionRaza=" + descripcionRaza + ", descripcionEspecie=" + descripcionEspecie
+				+ ", descripcionGenMascota=" + descripcionGenMascota + ", edad=" + edad + ", observaciones="
+				+ observaciones + "]";
 	}
 	
 }
