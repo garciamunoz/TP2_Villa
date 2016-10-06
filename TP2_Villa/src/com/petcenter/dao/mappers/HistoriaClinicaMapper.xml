@@ -73,7 +73,8 @@
   
   <update id="eliminarHC" parameterType="int">
   	UPDATE tb_historia_clinica
-  	SET estadoHC=0
+  	SET estadoHC=0,
+  		actualizado=SYSDATE()
   	WHERE idHC=#{idHC}
   </update>
   

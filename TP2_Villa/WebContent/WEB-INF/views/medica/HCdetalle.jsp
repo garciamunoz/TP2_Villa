@@ -48,7 +48,7 @@ function regresar(){
 		        </div>
 	        </div>
     		<div class="form-group">
-		        <label class="control-label col-xs-3" for="txtPACIENTE">PACIENTE:</label>
+		        <label class="control-label col-xs-3" for="txtPACIENTE">MASCOTA:</label>
 		        <div class="col-xs-5">
 		            <input type="text" id="txtPACIENTE" value="${hc.datosMascota}" class="form-control" disabled="disabled"/>
 		        </div>
