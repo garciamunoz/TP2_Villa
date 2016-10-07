@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.petcenter.dao.spec.EspecialidadMapper;
 import com.petcenter.dao.spec.EstadoMapper;
+import com.petcenter.dao.spec.EstandarMapper;
 import com.petcenter.dao.spec.NormativaMapper;
 import com.petcenter.dao.spec.TipoExamenMedicoMapper;
 import com.petcenter.dto.EspecialidadDTO;
 import com.petcenter.dto.EstadoDTO;
+import com.petcenter.dto.EstandarDTO;
 import com.petcenter.dto.NormativaDTO;
 import com.petcenter.dto.TipoExamenDTO;
 
@@ -25,6 +27,8 @@ public class ActualizarTipoExamenMedicoService {
 	private TipoExamenMedicoMapper tipoExamenMedicoMapper;
 	@Autowired
 	private NormativaMapper normativaMapper;
+	@Autowired
+	private EstandarMapper estandarMapper;
 	
 	public List<EspecialidadDTO> listarEspecialidades(){
 		return especialidadMapper.listarEspecialidades();
@@ -37,5 +41,9 @@ public class ActualizarTipoExamenMedicoService {
 	}
 	public List<NormativaDTO> listarNormativa(){
 		return normativaMapper.listarNormativa();
+	}
+	public List<EstandarDTO> listaEstandares(){
+		return estandarMapper.listaEstandares();
+				
 	}
 }

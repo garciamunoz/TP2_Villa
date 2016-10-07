@@ -29,6 +29,9 @@
         <div class="col-xs-9">
             <select id="idEsp" class="form-control">
             	<option value="0"><spring:message code="uc.first.tb.dwon.choose"/></option>
+            	<c:forEach items="${listaEspecialidades}" var="esp">
+               		 <option value="${esp.idEspecialidad}">${esp.nombreEspecialidad}</option>
+               	 </c:forEach>	
             </select>
         </div>
     </div>
@@ -37,9 +40,23 @@
         <div class="col-xs-9">
             <select id="idNorm" class="form-control">
             	<option value="0"><spring:message code="uc.first.tb.dwon.choose"/></option>
+            	    <c:forEach items="${listaNormativas}" var="nor">
+               		 <option value="${nor.idNormativa}">${nor.descripcionNormativa}</option>
+               	 </c:forEach>	
             </select>
         </div>
     </div>
+     <div class="form-group">
+        <label class="control-label col-xs-3"><spring:message code="uc.first.title.tipo.examen.lbl.estandar"/></label>
+        <div class="col-xs-9">
+            <select id="idNorm" class="form-control">
+            	<option value="0"><spring:message code="uc.first.tb.dwon.choose"/></option>
+            	    <c:forEach items="${listaEstandares}" var="estan">
+               		 <option value="${estan.idEstandar}">${estan.nombreEstandar}</option>
+               	 </c:forEach>	
+            </select>
+        </div>
+    </div>    
     <div class="form-group">
         <label class="control-label col-xs-3" ><spring:message code="uc.first.title.tipo.examen.lbl.precio"/></label>
         <div class="col-xs-9">

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petcenter.dto.EspecialidadDTO;
 import com.petcenter.dto.EstadoDTO;
+import com.petcenter.dto.EstandarDTO;
+import com.petcenter.dto.NormativaDTO;
 import com.petcenter.dto.TipoExamenDTO;
 import com.petcenter.service.ActualizarTipoExamenMedicoService;
 import com.petcenter.util.LaboratorioConstantes;
@@ -57,7 +59,11 @@ public class ActualizarTipoExamenMedicoController {
 	public String cargarNuevoTipoExamen(Model model){
 		
 		List<EspecialidadDTO> listaEspecialidades = actualizaTipoExamenMedicoService.listarEspecialidades();
+		List<NormativaDTO> listaNormativas = actualizaTipoExamenMedicoService.listarNormativa();
+		List<EstandarDTO> listaEstandares = actualizaTipoExamenMedicoService.listaEstandares();
 		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_ESPECIALIDADES, listaEspecialidades);
+		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_NORMATIVAS, listaNormativas);
+		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_ESTANDARES, listaEstandares);
 		return LaboratorioConstantes.VISTA_NUEVO_TIPO_EXAMEN;
 	}
 
