@@ -4,22 +4,12 @@ $(function(){
 
 function funcionesgenerales(){
 	$('#btnBuscar').click(function(){
-		function clearFormulario(){
-			$("#bod").html("");
-		}
+		
 		var nomb=$("#nombre").val();
 		var descrip=$("#descripcion").val();
 		var idEsta=$("#idEst").val();
 		var idEspe=$("#idEsp").val();
 		
-		/*$.get("actualizarTipoExamen/buscar",{
-			nombre: nomb,
-			descripcion: descrip,
-			idEst: idEsta,
-			idEsp: idEspe
-		},function(respuesta){
-			crearFormulario(respuesta);
-		});*/
 		$.ajax({
 			
 			url: "actualizarTipoExamen/buscar",
@@ -37,8 +27,19 @@ function funcionesgenerales(){
 		});
 	});
 	
+	$('#btnNuevo').click(function(){
+		window.location="actualizarTipoExamen/nuevoTipoExamen";
+	});
+	
 }
 
 function crearFormulario(respuesta) {
-	$("#bod").html(respuesta);
+	var contenido="";
+	for(var i=0;i<respuesta.listaTiposExamenesMedicos.length;i++){
+		contenido=contenido+"<tr class=\"odd gradeX\"><td>"+respuesta.listaTiposExamenesMedicos[i].codigoTipoExamen+"</td><td>"+respuesta.listaTiposExamenesMedicos[i].nombreTipoExamen+"</td><td>"+respuesta.listaTiposExamenesMedicos[i].descripcionExamen+"</td><td>"+respuesta.listaTiposExamenesMedicos[i].nombreEspecialidad+"</td></tr>";
+		
+	}
+	$('#tbDetalleOrdenCompra').html("");
+	$('#tbDetalleOrdenCompra').html(contenido);
+	
 }

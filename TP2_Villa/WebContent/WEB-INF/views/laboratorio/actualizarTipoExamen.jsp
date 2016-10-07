@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../common/header.jspf"%>
-  <script src="static/js/actualizarTipoExamen.js"></script>
+  <script src="/TP2_Villa/static/js/actualizarTipoExamen.js"></script>
 <%--content--%>
 
 <div class="container" id="for">
@@ -14,7 +14,7 @@
     <div class="form-group">
         <label class="control-label col-xs-3" ><spring:message code="uc.first.lbl.name"/></label>
         <div class="col-xs-9">
-            <input id="nombre" type="text" class="form-control" placeholder="<spring:message code="uc.first.lbl.name"/>">
+            <input name="nombre" id="nombre" type="text" class="form-control" placeholder="<spring:message code="uc.first.lbl.name"/>">
         </div>
     </div>
     <div class="form-group">
@@ -58,9 +58,6 @@
                   </tr>
               </thead>
               <tbody id="tbDetalleOrdenCompra">
-              	<c:forEach items="${listaTiposExamenesMedicos}" var="tip">
-              		<tr class="odd gradeX"><td>${tip.codigoTipoExamen}</td><td>${tip.nombreTipoExamen}</td><td>${tip.descripcionExamen}</td><td>${tip.nombreEspecialidad}</td></tr>
-               </c:forEach>
               </tbody>
           </table>
       </div>
@@ -69,7 +66,7 @@
     <div class="form-group">
         <div class="col-xs-offset-3 col-xs-9">
             <input id="btnBuscar" type="button" class="btn btn-primary" value="<spring:message code="uc.first.btn.search"/>">
-            <input type="submit" class="btn btn-primary" value="<spring:message code="uc.first.btn.new"/>">
+            <input id="btnNuevo" type="button" class="btn btn-primary" value="<spring:message code="uc.first.btn.new"/>">
             <input type="reset" class="btn btn-primary" value="<spring:message code="uc.first.btn.upd"/>">
             <input type="submit" class="btn btn-primary" value="<spring:message code="uc.first.btn.exit"/>">
         </div>

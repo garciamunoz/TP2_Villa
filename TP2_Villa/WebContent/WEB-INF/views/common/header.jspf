@@ -1,6 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 
   <title><spring:message code="header.msj.title"/></title>
@@ -14,7 +14,7 @@
   <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 </head>
-	<img align="middle" src="/TP2_Villa/static/img/logo-petcenter.png" width="240" height="140"> 
+	<img src="/TP2_Villa/static/img/logo-petcenter.png" width="240" height="140"> 
 <body>
 
 <%@ include file="navigationbar.jspf"%>
