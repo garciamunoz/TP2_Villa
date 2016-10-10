@@ -63,7 +63,7 @@ public class ActualizarTipoExamenMedicoController {
 		List<EstandarDTO> listaEstandares = actualizaTipoExamenMedicoService.listaEstandares();
 		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_ESPECIALIDADES, listaEspecialidades);
 		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_NORMATIVAS, listaNormativas);
-		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_ESTANDARES, listaEstandares);
+		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_ESTANDARES,listaEstandares   );
 		return LaboratorioConstantes.VISTA_NUEVO_TIPO_EXAMEN;
 	}
 
