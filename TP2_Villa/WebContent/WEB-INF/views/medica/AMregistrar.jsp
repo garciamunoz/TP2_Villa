@@ -9,12 +9,13 @@
 var listaDatos;
 
 function regresar(){
-	$('#formRHC').attr('action',"/TP2_Villa/HC/listar");
-	$('#formRHC').submit();
+	$('#formRAM').attr('action',"/TP2_Villa/AM/listar");
+	$('#formRAM').submit();
 }
 
 function validar(){
-	$('#hdnIDCLIENTE').val('');
+	$('#hdnIDHC').val('');
+	$('#txtHC').val('');
 	$('#txtCLIENTE').val('');
 	$('#txtMASCOTA').empty().append($('<option>', { 
         value: "-1",
@@ -23,7 +24,7 @@ function validar(){
 	
 	$.ajax({
 		type:'GET',
-		url: '/TP2_Villa/HC/validar',
+		url: '/TP2_Villa/AM/validar',
 		data: {
 			tipoDoc: $('#txtTIPODOC').val(),
 			numDoc: $('#txtNUMDOC').val()
@@ -32,8 +33,8 @@ function validar(){
 			listaDatos = data;
 			if(data.length > 0){
 				datos = data[0];
-				$('#hdnIDCLIENTE').val(datos.idCliente);
 				$('#txtCLIENTE').val(datos.datosCliente);
+				
 				$.each(data,function( index, element ) {
 					if(element.idHC != 0 && element.idMascota != 0){
 						$('#txtMASCOTA').append($('<option>', { 
@@ -53,15 +54,13 @@ function validar(){
 }
 
 function mascota(id){
-	$('#txtESPECIE').val('');
-	$('#txtRAZA').val('');
-	$('#txtGENERO').val('');
+	$('#hdnIDHC').val('');
+	$('#txtHC').val('');
 	
 	$.each(listaDatos,function( index, element ) {
 		if(element.idMascota == id){
-			$('#txtESPECIE').val(element.descripcionEspecie);
-			$('#txtRAZA').val(element.descripcionRaza);
-			$('#txtGENERO').val(element.descripcionGenMascota);
+			$('#hdnIDHC').val(element.idHC);
+			$('#txtHC').val(element.idHC);
 			return;
 		}
 	});
@@ -74,8 +73,8 @@ function registrar(){
 		mensajeModal("Seleccione alguna Mascota.");return false;
 	}
 	
-	$('#formRHC').attr('action',"/TP2_Villa/HC/registrar");
-	$('#formRHC').submit();	
+	$('#formRAM').attr('action',"/TP2_Villa/AM/registrar");
+	$('#formRAM').submit();	
 }
 
 </script>
@@ -83,14 +82,14 @@ function registrar(){
 
 <div class="container">
 	<div class="page-header" align="center">
-       <h1>Registrar Historia Clínica</h1>
+       <h1>Registrar Atención Médica</h1>
     </div>
 
-	<form class="form-horizontal" action="" id="formRHC" method="POST">
-	<input type="hidden" id="hdnIDCLIENTE" name="hdnIDCLIENTE" value=""/>
+	<form class="form-horizontal" action="" id="formRAM" method="POST">
+	<input type="hidden" id="hdnIDHC" name="hdnIDHC" value=""/>
+	<input type="hidden" id="txtMEDICO" name="txtMEDICO" value="${datosMedico}"/>
 
     <div class="col-sm-12">
-    	<div class="col-sm-8">
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtTIPODOC">TIPO DOCUMENTO:</label>
 		        <div class="col-xs-5">
@@ -117,45 +116,79 @@ function registrar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtMASCOTA">MASCOTA:</label>
 		        <div class="col-xs-5">
-		            <select type="text" id="txtMASCOTA" name="txtMASCOTA" class="form-control" onchange="mascota(this.value);">
+		            <select id="txtMASCOTA" name="txtMASCOTA" class="form-control" onchange="mascota(this.value);">
 		            	<option value="-1">Seleccione</option>
 		            </select>
 		        </div>
 	        </div>
+	        <div class="form-group">
+		        <label class="control-label col-xs-3" for="txtHC">NÚMERO HISTORIA CLÍNICA:</label>
+		        <div class="col-xs-5" align="right">
+		            <input type="text" id="txtHC" name="txtHC" class="form-control" value="" disabled="disabled"/>
+		        </div>
+		    </div>
     		<div class="form-group">
-		        <label class="control-label col-xs-3" for="txtESPECIE">ESPECIE:</label>
+		        <label class="control-label col-xs-3" for="txtMEDICO">MÉDICO:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtESPECIE" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtMEDICO" class="form-control" value="${datosMedico}" disabled="disabled"/>
 		        </div>
 	        </div>
     		<div class="form-group">
-		        <label class="control-label col-xs-3" for="txtRAZA">RAZA:</label>
+		        <label class="control-label col-xs-3" for="txtDEPO">DEPOSICIONES AL DÍA:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtRAZA" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtDEPO" name="txtDEPO" class="form-control"/>
 		        </div>
 	        </div>
 	        <div class="form-group">
-		        <label class="control-label col-xs-3" for="txtGENERO">GÉNERO:</label>
+		        <label class="control-label col-xs-3" for="txtPESO">PESO KG:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtGENERO" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtPESO" name="txtPESO" class="form-control"/>
 		        </div>
 	        </div>
     		<div class="form-group">
-		        <label class="control-label col-xs-3" for="txtEDAD">EDAD:</label>
+		        <label class="control-label col-xs-3" for="txtTEMP">TEMPERATURA C°:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtEDAD" name="txtEDAD" class="form-control" maxlength="3"/>
+		            <input type="text" id="txtTEMP" name="txtTEMP" class="form-control" maxlength="3"/>
 		        </div>
 	        </div>
+    		<div class="form-group">
+		        <label class="control-label col-xs-3" for="txtVITAL">PULSOS POR MINUTO:</label>
+		        <div class="col-xs-5">
+		            <input type="text" id="txtVITAL" name="txtVITAL" class="form-control" maxlength="3"/>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="control-label col-xs-3" for="txtTIPODOC">DIAGNÓSTICO:</label>
+		        <div class="col-xs-5">
+		            <select id="txtTIPODOC" class="form-control">
+		            <c:forEach items="${listaDiagnostico}" var="diag">
+			            <option value="${diag.idDIAG}">${diag.descripcion}</option>		            
+		            </c:forEach>		            	
+		            </select>
+		        </div>
+		    </div>
+	        <div class="form-group">
+		        <label class="control-label col-xs-3" for="txtTIPODOC">ORDEN MÉDICA:</label>
+		        <div class="col-xs-5">
+		            <select id="txtTIPODOC" class="form-control">
+		            <c:forEach items="${listaExamenes}" var="exam">
+			            <option value="${exam.idEXAM}">${exam.descripcion}</option>		            
+		            </c:forEach>		            	
+		            </select>
+		        </div>
+		    </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtOBS">OBSERVACIÓN:</label>
 		        <div class="col-xs-5">
 		        	<textarea class="form-control" id="txtOBS" name="txtOBS" rows="3" cols="100" maxlength="255"></textarea>
 		        </div>
 	        </div>
-	    </div>
-        <div class="col-sm-4" align="left">
-        	<img class="thumbnail" alt="IMG" src="/TP2_Villa/static/img/x.png" width="150px" height="150px">
-        </div>
+    		<div class="form-group">
+		        <label class="control-label col-xs-3" for="txtCOMMENT">COMENTARIOS:</label>
+		        <div class="col-xs-5">
+		        	<textarea class="form-control" id="txtCOMMENT" name="txtCOMMENT" rows="3" cols="100" maxlength="255"></textarea>
+		        </div>
+	        </div>
     </div>
     
     <br>

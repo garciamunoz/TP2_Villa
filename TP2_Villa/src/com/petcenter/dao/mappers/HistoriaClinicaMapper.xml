@@ -7,15 +7,17 @@
 
   <select id="listaClienteMascota" parameterType="java.util.HashMap" resultType="DatosClienteMascota">
     SELECT cli.idCliente as 'idCliente', concat(nomCliente,' ',apePaternoCliente,' ',apeMaternoCliente) as 'datosCliente',
-		idMascota,nomMascota as 'datosMascota', fotoMascota,
-        ra.descripcionRaza, esp.descripcionEspecie, genma.descripcionGenMascota
+		ma.idMascota,nomMascota as 'datosMascota', fotoMascota,
+        ra.descripcionRaza, esp.descripcionEspecie, genma.descripcionGenMascota,
+        hc.idHC
 	FROM tb_cliente cli left join tb_mascota ma
 		on cli.idCliente=ma.idCliente and ma.estadoMascota=1 left join tb_raza ra
         on ma.idRaza=ra.idRaza left join tb_especie esp
         on ra.idEspecie=esp.idEspecie left join tb_generomascota genma
-        on ma.idGeneroMascota=genma.idGeneroMascota
+        on ma.idGeneroMascota=genma.idGeneroMascota left join tb_historia_clinica hc
+        on ma.idMascota=hc.idMascota
 	WHERE cli.estadoCliente=1
-		and idMascota not in (select idMascota from tb_historia_clinica where estadoHC=1)
+		and hc.estadoHC=1
 		and cli.idTipoDocumento=#{tipoDoc}
         and cli.nroDocumento=#{numDoc}
   </select>

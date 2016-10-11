@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- GIANMARCO MALEX TRILLO -->
+<mapper namespace="com.petcenter.dao.spec.AtencionMedicaMapper">
+
+  <select id="listaExamenes" resultType="Examen">
+    SELECT idEXAM as id,
+    		descripcion
+	FROM tb_examenes
+  </select>
+  
+  <select id="listaDiagnostico" resultType="Diagnostico">
+    SELECT idDIAG as id,
+    		descripcion
+	FROM tb_examenes
+  </select>
+  
+</mapper>

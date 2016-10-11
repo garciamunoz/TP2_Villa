@@ -18,6 +18,221 @@ USE `bd_petcenter`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `atributosanalisis`
+--
+
+DROP TABLE IF EXISTS `atributosanalisis`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `atributosanalisis` (
+  `codigoAtributo` varchar(45) NOT NULL,
+  `nombreAtributo` varchar(45) DEFAULT NULL,
+  `descripcionAtributo` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`codigoAtributo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `atributosanalisis`
+--
+
+LOCK TABLES `atributosanalisis` WRITE;
+/*!40000 ALTER TABLE `atributosanalisis` DISABLE KEYS */;
+/*!40000 ALTER TABLE `atributosanalisis` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `colegiado`
+--
+
+DROP TABLE IF EXISTS `colegiado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `colegiado` (
+  `numeroColegiatura` varchar(45) NOT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  `apellidoPaterno` varchar(45) DEFAULT NULL,
+  `apellidoMaterno` varchar(45) DEFAULT NULL,
+  `fechaColegiatura` date DEFAULT NULL,
+  `idEstado` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`numeroColegiatura`),
+  KEY `idEstado_idx` (`idEstado`),
+  CONSTRAINT `idEstado` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `colegiado`
+--
+
+LOCK TABLES `colegiado` WRITE;
+/*!40000 ALTER TABLE `colegiado` DISABLE KEYS */;
+/*!40000 ALTER TABLE `colegiado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `especialidad`
+--
+
+DROP TABLE IF EXISTS `especialidad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `especialidad` (
+  `idEspecialidad` varchar(45) NOT NULL,
+  `codigoEspecialidad` varchar(45) DEFAULT NULL,
+  `nombreEspecialidad` varchar(45) DEFAULT NULL,
+  `descripcionEspecialidad` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idEspecialidad`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `especialidad`
+--
+
+LOCK TABLES `especialidad` WRITE;
+/*!40000 ALTER TABLE `especialidad` DISABLE KEYS */;
+/*!40000 ALTER TABLE `especialidad` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `estado`
+--
+
+DROP TABLE IF EXISTS `estado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estado` (
+  `idEstado` varchar(45) NOT NULL,
+  `codigoEstado` varchar(45) DEFAULT NULL,
+  `nombreEstado` varchar(45) DEFAULT NULL,
+  `descripcionEstado` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idEstado`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estado`
+--
+
+LOCK TABLES `estado` WRITE;
+/*!40000 ALTER TABLE `estado` DISABLE KEYS */;
+/*!40000 ALTER TABLE `estado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `estandares`
+--
+
+DROP TABLE IF EXISTS `estandares`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estandares` (
+  `codigoEstandar` varchar(45) NOT NULL,
+  `nombreEstandar` varchar(45) DEFAULT NULL,
+  `descripcionEstandar` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`codigoEstandar`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estandares`
+--
+
+LOCK TABLES `estandares` WRITE;
+/*!40000 ALTER TABLE `estandares` DISABLE KEYS */;
+/*!40000 ALTER TABLE `estandares` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `normativas`
+--
+
+DROP TABLE IF EXISTS `normativas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `normativas` (
+  `numeroNormativa` varchar(45) NOT NULL,
+  `descripcionNormativa` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`numeroNormativa`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `normativas`
+--
+
+LOCK TABLES `normativas` WRITE;
+/*!40000 ALTER TABLE `normativas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `normativas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `precioxexamenclinico`
+--
+
+DROP TABLE IF EXISTS `precioxexamenclinico`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `precioxexamenclinico` (
+  `idPrecioXExamenClinico` varchar(45) NOT NULL,
+  `moneda` varchar(45) DEFAULT NULL,
+  `fechaInicial` date DEFAULT NULL,
+  `fechaFinal` date DEFAULT NULL,
+  `precio` double DEFAULT NULL,
+  `descuento` double DEFAULT NULL,
+  PRIMARY KEY (`idPrecioXExamenClinico`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `precioxexamenclinico`
+--
+
+LOCK TABLES `precioxexamenclinico` WRITE;
+/*!40000 ALTER TABLE `precioxexamenclinico` DISABLE KEYS */;
+/*!40000 ALTER TABLE `precioxexamenclinico` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_atencion_medica`
+--
+
+DROP TABLE IF EXISTS `tb_atencion_medica`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_atencion_medica` (
+  `idAM` int(11) NOT NULL AUTO_INCREMENT,
+  `idHC` int(11) NOT NULL,
+  `idDIAG` int(11) DEFAULT NULL,
+  `idEXAM` int(11) DEFAULT NULL,
+  `codMedico` int(11) DEFAULT NULL,
+  `desMedico` varchar(255) DEFAULT NULL,
+  `deposiciones` int(11) DEFAULT NULL,
+  `peso` double DEFAULT NULL,
+  `temperatura` int(11) DEFAULT NULL,
+  `signovital` int(11) DEFAULT NULL,
+  `observacion` varchar(255) DEFAULT NULL,
+  `comentario` varchar(255) DEFAULT NULL,
+  `estadoAM` tinyint(4) DEFAULT '1',
+  `registrado` date NOT NULL,
+  `actualizado` date DEFAULT NULL,
+  PRIMARY KEY (`idAM`),
+  KEY `fk_AM_HC` (`idHC`),
+  CONSTRAINT `fk_AM_HC` FOREIGN KEY (`idHC`) REFERENCES `tb_historia_clinica` (`idHC`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_atencion_medica`
+--
+
+LOCK TABLES `tb_atencion_medica` WRITE;
+/*!40000 ALTER TABLE `tb_atencion_medica` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_atencion_medica` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tb_cliente`
 --
 
@@ -126,6 +341,30 @@ INSERT INTO `tb_contactosecundario` VALUES (1,1,1,'JAMES','PARIONA','ROJAS','997
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tb_diagnostico`
+--
+
+DROP TABLE IF EXISTS `tb_diagnostico`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_diagnostico` (
+  `idDIAG` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idDIAG`)
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_diagnostico`
+--
+
+LOCK TABLES `tb_diagnostico` WRITE;
+/*!40000 ALTER TABLE `tb_diagnostico` DISABLE KEYS */;
+INSERT INTO `tb_diagnostico` VALUES (33,' ﻿Adenovirus'),(34,'\r\nAleutiana (Parvovirus)'),(36,'\r\nAnaplasma spp. '),(37,'\r\nAnemia infecciosa equina (Test de Coggins) '),(38,'\r\nArteritis viral equina '),(39,'\r\nAspergillus fumigatus '),(40,'\r\nBabesia  '),(41,'\r\nBabesia gibsoni '),(42,'\r\nBorrelia burgdorferi (enfermedad de Lyme) '),(43,'\r\nBorrelia C6 cuantitativa '),(44,'\r\nBorrelia Inmunoblot IgG'),(45,'\r\nBrucella abortus  (caballo)'),(46,'\r\nBrucella  '),(47,'\r\nBurkholderia mallei (Muermo) '),(48,'\r\nCalicivirus  '),(49,'\r\nChlamydophila '),(50,'\r\nChlamydophila psittaci '),(51,'\r\nCoronavirus entrico  '),(52,'\r\nCoronavirus  '),(53,'\r\nCoronavirus   + PTG'),(54,'\r\nCryptococcus neoformans '),(55,'\r\nDirofilaria Immitis'),(57,'\r\nEncephalitozoon cuniculi '),(58,'\r\nEnfermedad hemorragica del conejo (Calicivirus) '),(59,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA)'),(60,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA) + Coronavirus '),(61,'\r\nHerpesvirus   + Calicivirus   + Panleucopenia  '),(62,'\r\nHerpesvirus  '),(63,'\r\nHerpesvirus  '),(64,'\r\nHistoplasma capsulatum '),(65,'\r\nInmunodeficiencia '),(66,'\r\nInmunodeficiencia '),(67,'\r\nLeishmania '),(68,'\r\nLeishmania  + Ehrlichia   + PTG'),(69,'\r\nLeishmania  + PTG'),(70,'\r\nLeptospirosis '),(71,'\r\nLeucemia '),(72,'\r\nMicrofilaria'),(75,'\r\nMoquillo  '),(76,'\r\nMoquillo  IgG '),(77,'\r\nMoquillo  IgG + IgM '),(78,'\r\nMoquillo  IgM '),(79,'\r\nNeospora caninum '),(80,'\r\nPanleucopenia  '),(81,'\r\nPanleucopenia  X'),(82,'\r\nParvovirus  '),(83,'\r\nParvovirus  X'),(84,'\r\nPiroplasmosis equina (Babesia equi'),(86,'\r\nRickettsia conorii '),(87,'\r\nRinoneumonitis equina (Herpesvirus 1+4) '),(88,'\r\nRotavirus '),(89,'\r\nSarcoptes scabiei '),(90,'\r\nToxoplasma '),(91,'\r\nToxoplasma X'),(92,'\r\nToxoplasma Y'),(93,'\r\nTrypanosoma equiperdum (Durina) '),(94,'\r\nTrypanosoma evansi ');
+/*!40000 ALTER TABLE `tb_diagnostico` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tb_distrito`
 --
 
@@ -174,6 +413,30 @@ LOCK TABLES `tb_especie` WRITE;
 /*!40000 ALTER TABLE `tb_especie` DISABLE KEYS */;
 INSERT INTO `tb_especie` VALUES (1,'CANINO'),(2,'FELINO'),(3,'ROEDOR'),(4,'AVE'),(5,'OTROS');
 /*!40000 ALTER TABLE `tb_especie` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_examenes`
+--
+
+DROP TABLE IF EXISTS `tb_examenes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_examenes` (
+  `idEXAM` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idEXAM`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_examenes`
+--
+
+LOCK TABLES `tb_examenes` WRITE;
+/*!40000 ALTER TABLE `tb_examenes` DISABLE KEYS */;
+INSERT INTO `tb_examenes` VALUES (1,'﻿Analisis coprologico (Digestion y Parasitos)'),(2,'\r\nAnalisis coprologico + Coprocultivo'),(3,'\r\nAnalisis coprologico + Giardia '),(4,'\r\nAnalisis coprologico + Giardia  + Coprocultivo'),(5,'\r\nAnalisis coprologico + Giardia  + Cryptosporidium parvum '),(6,'\r\nAnalisis coprologico + Tecnica Baermann'),(7,'\r\nBaermann (Larvas pulmonares)'),(8,'\r\nCoprologico'),(9,' Analisis\r\nCryptosporidium parvum '),(10,'\r\nDigestion en heces'),(11,'\r\nDigestion en saliva'),(12,'\r\nElastasa'),(13,'\r\nGiardia '),(14,'\r\nMcMaster (recuento de huevos)'),(15,'\r\nParasitos en heces'),(16,'\r\nParasitos en saliva'),(17,'\r\nCalculo renal'),(18,'\r\nRatio Proteinas/Creatinina en orina (UPC)'),(19,'\r\nSedimento urinario'),(20,'\r\nUPC + PTG en orina'),(21,'\r\nUrinanalisis + Cultivo de orina'),(22,'\r\nUrinanalisis + UPC'),(23,'\r\nUrinanalisis + UPC + Cultivo de orina'),(24,'\r\nUrinanalisis completo (Sedimento + Bioquimica)'),(25,'\r\nOrina Completo'),(26,'\r\nHeces Completo'),(27,'\r\nSangre Completo'),(28,'\r Orina, Heces y Sangre Completo');
+/*!40000 ALTER TABLE `tb_examenes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -272,7 +535,7 @@ CREATE TABLE `tb_historia_clinica` (
   KEY `fk_HC_mascota` (`idMascota`),
   CONSTRAINT `fk_HC_cliente` FOREIGN KEY (`idCliente`) REFERENCES `tb_cliente` (`idCliente`),
   CONSTRAINT `fk_HC_mascota` FOREIGN KEY (`idMascota`) REFERENCES `tb_mascota` (`idMascota`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +544,7 @@ CREATE TABLE `tb_historia_clinica` (
 
 LOCK TABLES `tb_historia_clinica` WRITE;
 /*!40000 ALTER TABLE `tb_historia_clinica` DISABLE KEYS */;
-INSERT INTO `tb_historia_clinica` VALUES (1,1,5,12,'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd',1,'2016-10-06',NULL),(2,1,2,50,'fgdgw1234241487148wf1d4w7e1fwef1we8f1we8f1we1f8we1f8we1f8ew1f87we1f87we1f87*we1f8*7wef7we81*f7we*8f7we1f7we8*f17we1*f87*we1f7e8*w1f7ew1*f87we1f7we8*1f7we*81f7we*1f7*we8f17we8*1f7we*1f*87we1f7we*81f7we*1f7we*1f7we*8f17we*f1we7*8f1we78*f1we7*f17we*8f17we*f1',1,'2016-10-06',NULL);
+INSERT INTO `tb_historia_clinica` VALUES (1,1,5,12,'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd',0,'2016-10-06',NULL),(2,1,2,50,'fgdgw1234241487148wf1d4w7e1fwef1we8f1we8f1we1f8we1f8we1f8ew1f87we1f87we1f87*we1f8*7wef7we81*f7we*8f7we1f7we8*f17we1*f87*we1f7e8*w1f7ew1*f87we1f7we8*1f7we*81f7we*1f7*we8f17we8*1f7we*1f*87we1f7we*81f7we*1f7we*1f7we*8f17we*f1we7*8f1we78*f1we7*f17we*8f17we*f1',0,'2016-10-06',NULL),(3,1,3,21,'aszxasdsaddasdasd',0,'2016-10-06',NULL),(4,1,3,11,'asdasdasdsazcxvxcv',0,'2016-10-06',NULL),(5,1,1,22,'sadasdasdsd22',0,'2016-10-06',NULL),(6,1,5,333,'dsafsdfsdf',0,'2016-10-06',NULL),(7,1,3,11,'111',0,'2016-10-06',NULL),(8,1,5,33,'ASDASDASDA',0,'2016-10-06',NULL),(9,1,5,123,'123',0,'2016-10-06',NULL),(10,1,3,0,'',1,'2016-10-06',NULL),(11,1,5,0,'',0,'2016-10-06',NULL),(12,1,1,0,'',1,'2016-10-06',NULL),(13,1,2,5,'41414rfghfh',0,'2016-10-10','2016-10-10');
 /*!40000 ALTER TABLE `tb_historia_clinica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -557,4 +820,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-06 16:48:15
+-- Dump completed on 2016-10-10 19:02:34

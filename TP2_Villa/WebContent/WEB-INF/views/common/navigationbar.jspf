@@ -17,8 +17,8 @@
       
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><spring:message code="navbar.opc.mod.at"/><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="HC/listar"><spring:message code="navbar.sub.opc.mod.at.uc.first"/></a></li>
-          <li><a href="#"><spring:message code="navbar.sub.opc.mod.at.uc.second"/></a></li>
+          <li><a href="/TP2_Villa/HC/listar"><spring:message code="navbar.sub.opc.mod.at.uc.first"/></a></li>
+          <li><a href="/TP2_Villa/AM/inicio"><spring:message code="navbar.sub.opc.mod.at.uc.second"/></a></li>
         </ul>
       </li>
     </ul>
