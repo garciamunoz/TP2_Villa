@@ -104,7 +104,7 @@ function registrar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtNUMDOC">NÚMERO DOCUMENTO:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" value="10233775"/>
+		            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" value="" onkeydown="return isNumeric(event);"/>
 		            <input type="button" id="btnVALIDAR" value="VALIDAR" class="btn btn-info" onclick="validar();"/>
 		        </div>
 		    </div>
@@ -143,7 +143,7 @@ function registrar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtEDAD">EDAD:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtEDAD" name="txtEDAD" class="form-control" maxlength="3"/>
+		            <input type="text" id="txtEDAD" name="txtEDAD" class="form-control" maxlength="3" onkeydown="return isNumeric(event);"/>
 		        </div>
 	        </div>
     		<div class="form-group">

@@ -4,7 +4,7 @@
 
 <!-- GIANMARCO MALEX TRILLO -->
 <mapper namespace="com.petcenter.dao.spec.AtencionMedicaMapper">
-
+<!--  
   <select id="listaExamenes" resultType="Examen">
     SELECT idEXAM as id,
     		descripcion
@@ -16,5 +16,5 @@
     		descripcion
 	FROM tb_examenes
   </select>
-  
+-->
 </mapper>
