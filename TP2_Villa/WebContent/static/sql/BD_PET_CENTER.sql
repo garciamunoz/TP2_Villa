@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `bd_petcenter` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bd_petcenter`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
--- Host: localhost    Database: bd_petcenter
+-- Host: 127.0.0.1    Database: bd_petcenter
 -- ------------------------------------------------------
--- Server version	5.7.14-log
+-- Server version	5.7.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -220,7 +220,7 @@ CREATE TABLE `tb_atencion_medica` (
   PRIMARY KEY (`idAM`),
   KEY `fk_AM_HC` (`idHC`),
   CONSTRAINT `fk_AM_HC` FOREIGN KEY (`idHC`) REFERENCES `tb_historia_clinica` (`idHC`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,6 +229,7 @@ CREATE TABLE `tb_atencion_medica` (
 
 LOCK TABLES `tb_atencion_medica` WRITE;
 /*!40000 ALTER TABLE `tb_atencion_medica` DISABLE KEYS */;
+INSERT INTO `tb_atencion_medica` VALUES (1,10,1,1,1,'Doc. Vet Corbalan',3,25,30,60,'OJOS AMARILLOS','',1,'2016-10-10',NULL);
 /*!40000 ALTER TABLE `tb_atencion_medica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,8 +351,9 @@ DROP TABLE IF EXISTS `tb_diagnostico`;
 CREATE TABLE `tb_diagnostico` (
   `idDIAG` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(255) DEFAULT NULL,
+  `estado` int(11) DEFAULT '1',
   PRIMARY KEY (`idDIAG`)
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -360,7 +362,7 @@ CREATE TABLE `tb_diagnostico` (
 
 LOCK TABLES `tb_diagnostico` WRITE;
 /*!40000 ALTER TABLE `tb_diagnostico` DISABLE KEYS */;
-INSERT INTO `tb_diagnostico` VALUES (33,' ﻿Adenovirus'),(34,'\r\nAleutiana (Parvovirus)'),(36,'\r\nAnaplasma spp. '),(37,'\r\nAnemia infecciosa equina (Test de Coggins) '),(38,'\r\nArteritis viral equina '),(39,'\r\nAspergillus fumigatus '),(40,'\r\nBabesia  '),(41,'\r\nBabesia gibsoni '),(42,'\r\nBorrelia burgdorferi (enfermedad de Lyme) '),(43,'\r\nBorrelia C6 cuantitativa '),(44,'\r\nBorrelia Inmunoblot IgG'),(45,'\r\nBrucella abortus  (caballo)'),(46,'\r\nBrucella  '),(47,'\r\nBurkholderia mallei (Muermo) '),(48,'\r\nCalicivirus  '),(49,'\r\nChlamydophila '),(50,'\r\nChlamydophila psittaci '),(51,'\r\nCoronavirus entrico  '),(52,'\r\nCoronavirus  '),(53,'\r\nCoronavirus   + PTG'),(54,'\r\nCryptococcus neoformans '),(55,'\r\nDirofilaria Immitis'),(57,'\r\nEncephalitozoon cuniculi '),(58,'\r\nEnfermedad hemorragica del conejo (Calicivirus) '),(59,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA)'),(60,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA) + Coronavirus '),(61,'\r\nHerpesvirus   + Calicivirus   + Panleucopenia  '),(62,'\r\nHerpesvirus  '),(63,'\r\nHerpesvirus  '),(64,'\r\nHistoplasma capsulatum '),(65,'\r\nInmunodeficiencia '),(66,'\r\nInmunodeficiencia '),(67,'\r\nLeishmania '),(68,'\r\nLeishmania  + Ehrlichia   + PTG'),(69,'\r\nLeishmania  + PTG'),(70,'\r\nLeptospirosis '),(71,'\r\nLeucemia '),(72,'\r\nMicrofilaria'),(75,'\r\nMoquillo  '),(76,'\r\nMoquillo  IgG '),(77,'\r\nMoquillo  IgG + IgM '),(78,'\r\nMoquillo  IgM '),(79,'\r\nNeospora caninum '),(80,'\r\nPanleucopenia  '),(81,'\r\nPanleucopenia  X'),(82,'\r\nParvovirus  '),(83,'\r\nParvovirus  X'),(84,'\r\nPiroplasmosis equina (Babesia equi'),(86,'\r\nRickettsia conorii '),(87,'\r\nRinoneumonitis equina (Herpesvirus 1+4) '),(88,'\r\nRotavirus '),(89,'\r\nSarcoptes scabiei '),(90,'\r\nToxoplasma '),(91,'\r\nToxoplasma X'),(92,'\r\nToxoplasma Y'),(93,'\r\nTrypanosoma equiperdum (Durina) '),(94,'\r\nTrypanosoma evansi ');
+INSERT INTO `tb_diagnostico` VALUES (33,' ﻿Adenovirus',1),(34,'\r\nAleutiana (Parvovirus)',1),(36,'\r\nAnaplasma spp. ',1),(37,'\r\nAnemia infecciosa equina (Test de Coggins) ',1),(38,'\r\nArteritis viral equina ',1),(39,'\r\nAspergillus fumigatus ',1),(40,'\r\nBabesia  ',1),(41,'\r\nBabesia gibsoni ',1),(42,'\r\nBorrelia burgdorferi (enfermedad de Lyme) ',1),(43,'\r\nBorrelia C6 cuantitativa ',1),(44,'\r\nBorrelia Inmunoblot IgG',1),(45,'\r\nBrucella abortus  (caballo)',1),(46,'\r\nBrucella  ',1),(47,'\r\nBurkholderia mallei (Muermo) ',1),(48,'\r\nCalicivirus  ',1),(49,'\r\nChlamydophila ',1),(50,'\r\nChlamydophila psittaci ',1),(51,'\r\nCoronavirus entrico  ',1),(52,'\r\nCoronavirus  ',1),(53,'\r\nCoronavirus   + PTG',1),(54,'\r\nCryptococcus neoformans ',1),(55,'\r\nDirofilaria Immitis',1),(57,'\r\nEncephalitozoon cuniculi ',1),(58,'\r\nEnfermedad hemorragica del conejo (Calicivirus) ',1),(59,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA)',1),(60,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA) + Coronavirus ',1),(61,'\r\nHerpesvirus   + Calicivirus   + Panleucopenia  ',1),(62,'\r\nHerpesvirus  ',1),(63,'\r\nHerpesvirus  ',1),(64,'\r\nHistoplasma capsulatum ',1),(65,'\r\nInmunodeficiencia ',1),(66,'\r\nInmunodeficiencia ',1),(67,'\r\nLeishmania ',1),(68,'\r\nLeishmania  + Ehrlichia   + PTG',1),(69,'\r\nLeishmania  + PTG',1),(70,'\r\nLeptospirosis ',1),(71,'\r\nLeucemia ',1),(72,'\r\nMicrofilaria',1),(75,'\r\nMoquillo  ',1),(76,'\r\nMoquillo  IgG ',1),(77,'\r\nMoquillo  IgG + IgM ',1),(78,'\r\nMoquillo  IgM ',1),(79,'\r\nNeospora caninum ',1),(80,'\r\nPanleucopenia  ',1),(81,'\r\nPanleucopenia  X',1),(82,'\r\nParvovirus  ',1),(83,'\r\nParvovirus  X',1),(84,'\r\nPiroplasmosis equina (Babesia equi',1),(86,'\r\nRickettsia conorii ',1),(87,'\r\nRinoneumonitis equina (Herpesvirus 1+4) ',1),(88,'\r\nRotavirus ',1),(89,'\r\nSarcoptes scabiei ',1),(90,'\r\nToxoplasma ',1),(91,'\r\nToxoplasma X',1),(92,'\r\nToxoplasma Y',1),(93,'\r\nTrypanosoma equiperdum (Durina) ',1),(94,'\r\nTrypanosoma evansi ',1);
 /*!40000 ALTER TABLE `tb_diagnostico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -425,8 +427,9 @@ DROP TABLE IF EXISTS `tb_examenes`;
 CREATE TABLE `tb_examenes` (
   `idEXAM` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(255) DEFAULT NULL,
+  `estado` int(11) DEFAULT '1',
   PRIMARY KEY (`idEXAM`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -435,7 +438,7 @@ CREATE TABLE `tb_examenes` (
 
 LOCK TABLES `tb_examenes` WRITE;
 /*!40000 ALTER TABLE `tb_examenes` DISABLE KEYS */;
-INSERT INTO `tb_examenes` VALUES (1,'﻿Analisis coprologico (Digestion y Parasitos)'),(2,'\r\nAnalisis coprologico + Coprocultivo'),(3,'\r\nAnalisis coprologico + Giardia '),(4,'\r\nAnalisis coprologico + Giardia  + Coprocultivo'),(5,'\r\nAnalisis coprologico + Giardia  + Cryptosporidium parvum '),(6,'\r\nAnalisis coprologico + Tecnica Baermann'),(7,'\r\nBaermann (Larvas pulmonares)'),(8,'\r\nCoprologico'),(9,' Analisis\r\nCryptosporidium parvum '),(10,'\r\nDigestion en heces'),(11,'\r\nDigestion en saliva'),(12,'\r\nElastasa'),(13,'\r\nGiardia '),(14,'\r\nMcMaster (recuento de huevos)'),(15,'\r\nParasitos en heces'),(16,'\r\nParasitos en saliva'),(17,'\r\nCalculo renal'),(18,'\r\nRatio Proteinas/Creatinina en orina (UPC)'),(19,'\r\nSedimento urinario'),(20,'\r\nUPC + PTG en orina'),(21,'\r\nUrinanalisis + Cultivo de orina'),(22,'\r\nUrinanalisis + UPC'),(23,'\r\nUrinanalisis + UPC + Cultivo de orina'),(24,'\r\nUrinanalisis completo (Sedimento + Bioquimica)'),(25,'\r\nOrina Completo'),(26,'\r\nHeces Completo'),(27,'\r\nSangre Completo'),(28,'\r Orina, Heces y Sangre Completo');
+INSERT INTO `tb_examenes` VALUES (1,'﻿Analisis coprologico (Digestion y Parasitos)',1),(2,'\r\nAnalisis coprologico + Coprocultivo',1),(3,'\r\nAnalisis coprologico + Giardia ',1),(4,'\r\nAnalisis coprologico + Giardia  + Coprocultivo',1),(5,'\r\nAnalisis coprologico + Giardia  + Cryptosporidium parvum ',1),(6,'\r\nAnalisis coprologico + Tecnica Baermann',1),(7,'\r\nBaermann (Larvas pulmonares)',1),(8,'\r\nCoprologico',1),(9,' Analisis\r\nCryptosporidium parvum ',1),(10,'\r\nDigestion en heces',1),(11,'\r\nDigestion en saliva',1),(12,'\r\nElastasa',1),(13,'\r\nGiardia ',1),(14,'\r\nMcMaster (recuento de huevos)',1),(15,'\r\nParasitos en heces',1),(16,'\r\nParasitos en saliva',1),(17,'\r\nCalculo renal',1),(18,'\r\nRatio Proteinas/Creatinina en orina (UPC)',1),(19,'\r\nSedimento urinario',1),(20,'\r\nUPC + PTG en orina',1),(21,'\r\nUrinanalisis + Cultivo de orina',1),(22,'\r\nUrinanalisis + UPC',1),(23,'\r\nUrinanalisis + UPC + Cultivo de orina',1),(24,'\r\nUrinanalisis completo (Sedimento + Bioquimica)',1),(25,'\r\nOrina Completo',1),(26,'\r\nHeces Completo',1),(27,'\r\nSangre Completo',1),(28,'\r Orina, Heces y Sangre Completo',1);
 /*!40000 ALTER TABLE `tb_examenes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -820,4 +823,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-10 19:02:34
+-- Dump completed on 2016-10-13  1:35:27

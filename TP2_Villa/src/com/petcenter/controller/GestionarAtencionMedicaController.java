@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.petcenter.dto.AtencionMedica;
 import com.petcenter.dto.DatosClienteMascota;
+import com.petcenter.service.AtencionMedicaService;
 import com.petcenter.service.CommonService;
 import com.petcenter.service.HistoriaClinicaService;
 
@@ -34,6 +36,9 @@ public class GestionarAtencionMedicaController {
 	
 	@Autowired
 	private HistoriaClinicaService historiaClinicaService;
+
+	@Autowired
+	private AtencionMedicaService atencionMedicaService;
 	
 	@RequestMapping("/inicio")
 	public ModelAndView listar(){
@@ -46,6 +51,8 @@ public class GestionarAtencionMedicaController {
 		ModelAndView mav = new ModelAndView("medica/AMregistrar");
 		try {
 			request.getSession().setAttribute("listaTipoDoc", commonService.listaTipoDoc());
+			request.getSession().setAttribute("listaExamenes", atencionMedicaService.listaExamenes());
+			request.getSession().setAttribute("listaDiagnostico", atencionMedicaService.listaDiagnostico());
 			mav.addObject("codigoMedico", 1);
 			mav.addObject("datosMedico", "Doc. Vet Corbalan");
 		} catch (Exception e) {
@@ -101,14 +108,16 @@ public class GestionarAtencionMedicaController {
 	public ModelAndView buscar(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("medica/AMlistar");
 		try {
-//			String txtAM = request.getParameter("txtAM");
-//			String txtNUMDOC = request.getParameter("txtNUMDOC");
-//
-//			List<HistoriaClinica> listaAM = historiaClinicaService.listaAM(txtAM, txtNUMDOC);
-//			
-//			request.getSession().setAttribute("listaAM", listaAM);
-//			request.getSession().setAttribute("txtAM", txtAM);
-//			request.getSession().setAttribute("txtNUMDOC", txtNUMDOC);
+			String txtHC = request.getParameter("txtHC");
+			String txtAM = request.getParameter("txtAM");
+			String txtNUMDOC = request.getParameter("txtNUMDOC");
+
+			List<AtencionMedica> listaAM = atencionMedicaService.listaAM(txtHC, txtAM, txtNUMDOC);
+			
+			request.getSession().setAttribute("listaAM", listaAM);
+			request.getSession().setAttribute("txtHC", txtHC);
+			request.getSession().setAttribute("txtAM", txtAM);
+			request.getSession().setAttribute("txtNUMDOC", txtNUMDOC);
 			
 		} catch (Exception e) {
 			log.error(e);

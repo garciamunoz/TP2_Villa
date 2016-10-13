@@ -7,13 +7,13 @@
 <script type="text/javascript">
 
 function buscar(){
-	$('#formBHC').attr('action',"/TP2_Villa/HC/buscar");
-	$('#formBHC').submit();
+	$('#formBAM').attr('action',"/TP2_Villa/AM/buscar");
+	$('#formBAM').submit();
 }
 
 function regresar(){
-	$('#formBHC').attr('action',"/TP2_Villa/HC/listar");
-	$('#formBHC').submit();
+	$('#formBAM').attr('action',"/TP2_Villa/AM/inicio");
+	$('#formBAM').submit();
 }
 
 </script>
@@ -21,16 +21,22 @@ function regresar(){
 
 <div class="container">
 	<div class="page-header" align="center">
-       <h1>Buscar Historia Clínica</h1>
+       <h1>Buscar Atención Médica</h1>
     </div>
 
-	<form class="form-horizontal" action="" id="formBHC" method="POST">
+	<form class="form-horizontal" action="" id="formBAM" method="POST">
 
     <div class="row">
-   		<div class="form-group">
-	        <label class="control-label col-sm-3 col-xs-3" for="txtHC">CÓDIGO HC:</label>
+    	<div class="form-group">
+	        <label class="control-label col-sm-3 col-xs-3" for="txtAM">CÓDIGO HISTORIA CLÍNICA:</label>
 	        <div class="col-sm-3 col-xs-3">
-	        	<input type="text" id="txtHC" name="txtHC" class="form-control"/>
+	        	<input type="text" id="txtAM" name="txtHC" class="form-control"/>
+	        </div>
+	    </div>
+   		<div class="form-group">
+	        <label class="control-label col-sm-3 col-xs-3" for="txtAM">CÓDIGO ATENCIÓN MÉDICA:</label>
+	        <div class="col-sm-3 col-xs-3">
+	        	<input type="text" id="txtAM" name="txtAM" class="form-control"/>
 	        </div>
 	    </div>
     	<div class="form-group">

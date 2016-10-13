@@ -79,7 +79,7 @@ function buscar(){
                 	<th style="text-align: center;">MASCOTA</th>
                 	<th style="text-align: center;">REGISTRADO</th>
                 	<th style="text-align: center;">ACTUALIZADO</th>
-                	<th style="text-align: center;" colspan="2">ACCIÓN</th>
+                	<th style="text-align: center;" colspan="4">ACCIÓN</th>
                 </tr>
             </thead>
             <tbody>
@@ -91,7 +91,13 @@ function buscar(){
 	            		<td style="text-align: center;">${AM.registrado}</td>
 	            		<td style="text-align: center;">${AM.actualizado}</td>
 	            		<td style="text-align: center;">
-	            			<a href="#" onclick="detalle(${AM.idAM});">Ver Detalle</a>
+	            			<a href="#" onclick="">Medicación</a>
+	            		</td>
+	            		<td style="text-align: center;">
+	            			<a href="#" onclick="">Resultado Orden Médica</a>
+	            		</td>
+	            		<td style="text-align: center;">
+	            			<a href="#" onclick="">Ver Detalle</a>
 	            		</td>
 	            		<td style="text-align: center;">
 	            			<a href="javascript:void(0);" onclick="eliminar(${AM.idAM});">Eliminar</a>
@@ -99,7 +105,7 @@ function buscar(){
 	            	</tr>
             	</c:forEach>
             	<c:if test="${empty listaAM}">
-            		<tr><td colspan="7" style="text-align: center;">
+            		<tr><td colspan="9" style="text-align: center;">
             			No hay datos para mostrar.
             		</td></tr>
             	</c:if>
@@ -111,10 +117,6 @@ function buscar(){
     <div class="form-group">
         <div class="col-sm-12" align="left">
         	<input type="button" class="btn btn-info" value="LIMPIAR" onclick="limpiar();"/>
-        	<input type="button" class="btn btn-primary" value="MEDICACIÓN"/>
-        	<input type="button" class="btn btn-primary" value="DIAGNÓSTICO"/>
-        	<input type="button" class="btn btn-primary" value="ORDEN MÉDICA"/>
-        	<input type="button" class="btn btn-primary" value="IMPRIMIR AM"/>
 	    </div>
     </div>
 </form>

@@ -9,7 +9,7 @@
 var listaDatos;
 
 function regresar(){
-	$('#formRAM').attr('action',"/TP2_Villa/AM/listar");
+	$('#formRAM').attr('action',"/TP2_Villa/AM/inicio");
 	$('#formRAM').submit();
 }
 
@@ -87,6 +87,7 @@ function registrar(){
 
 	<form class="form-horizontal" action="" id="formRAM" method="POST">
 	<input type="hidden" id="hdnIDHC" name="hdnIDHC" value=""/>
+	<input type="hidden" id="txtIDMEDICO" name="txtIDMEDICO" value="${codigoMedico}"/>
 	<input type="hidden" id="txtMEDICO" name="txtMEDICO" value="${datosMedico}"/>
 
     <div class="col-sm-12">
@@ -158,9 +159,10 @@ function registrar(){
 		        </div>
 	        </div>
 	        <div class="form-group">
-		        <label class="control-label col-xs-3" for="txtTIPODOC">DIAGNÓSTICO:</label>
+		        <label class="control-label col-xs-3" for="txtDIAG">DIAGNÓSTICO:</label>
 		        <div class="col-xs-5">
-		            <select id="txtTIPODOC" class="form-control">
+		            <select id="txtDIAG" name="txtDIAG" class="form-control">
+			            <option value="-1">Seleccione</option>	
 		            <c:forEach items="${listaDiagnostico}" var="diag">
 			            <option value="${diag.idDIAG}">${diag.descripcion}</option>		            
 		            </c:forEach>		            	
@@ -168,9 +170,10 @@ function registrar(){
 		        </div>
 		    </div>
 	        <div class="form-group">
-		        <label class="control-label col-xs-3" for="txtTIPODOC">ORDEN MÉDICA:</label>
+		        <label class="control-label col-xs-3" for="txtEXAMEN">ORDEN MÉDICA:</label>
 		        <div class="col-xs-5">
-		            <select id="txtTIPODOC" class="form-control">
+		            <select id="txtEXAMEN" name="txtEXAMEN" class="form-control">
+			            <option value="-1">Seleccione</option>	
 		            <c:forEach items="${listaExamenes}" var="exam">
 			            <option value="${exam.idEXAM}">${exam.descripcion}</option>		            
 		            </c:forEach>		            	
