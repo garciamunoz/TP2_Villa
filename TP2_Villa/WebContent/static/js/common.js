@@ -3,13 +3,12 @@ function mensajeModal(mensaje){
 	$('#dialog-message').dialog('open');
 }
 
-function isNumeric(value){
+function isNumeric(event){
+	var key = (event.keyCode || event.witch);
+	var value = String.fromCharCode(key); 
     var isNumber = false;
-    for(var i = 0; i < value.length() - 1; i++) {
-        var caracter = value.charAt(i);
-        if(caracter < '0' || caracter > '9')
-            break;
-        isNumber = true;
-    }
+    if(!isNaN(value) || key == '8'){
+    	isNumber = true;
+    }    
     return isNumber;
 }

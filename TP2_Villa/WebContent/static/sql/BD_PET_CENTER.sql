@@ -823,4 +823,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD
 -- Dump completed on 2016-10-13  1:35:27
+=======
+-- Dump completed on 2016-10-12 18:16:39
+>>>>>>> branch 'master' of https://github.com/garciamunoz/TP2_Villa.git
