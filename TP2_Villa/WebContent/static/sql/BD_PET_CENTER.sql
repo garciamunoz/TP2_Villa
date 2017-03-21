@@ -813,6 +813,10 @@ LOCK TABLES `tb_tipodocumento` WRITE;
 INSERT INTO `tb_tipodocumento` VALUES (1,'DNI'),(2,'RUC'),(3,'CARNET EXTRANJERIA'),(4,'PASAPORTE'),(5,'OTROS');
 /*!40000 ALTER TABLE `tb_tipodocumento` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'bd_petcenter'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -823,8 +827,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
--- Dump completed on 2016-10-13  1:35:27
-=======
--- Dump completed on 2016-10-12 18:16:39
->>>>>>> branch 'master' of https://github.com/garciamunoz/TP2_Villa.git
+-- Dump completed on 2017-03-21  0:43:32
