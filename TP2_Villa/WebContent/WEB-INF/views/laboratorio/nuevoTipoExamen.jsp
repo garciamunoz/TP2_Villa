@@ -100,31 +100,105 @@
         <div class="modal-body" style="padding:40px 50px;">
           <form role="form">
             <div class="form-group">
-              <label for="idTypeCurrency" class="control-label"> <spring:message code="modal.search.price.lbl.type.currency"/></label>
-              <input type="text" class="form-control" id="idTypeCurrency" placeholder="<spring:message code="modal.search.price.lbl.type.currency"/>">
+            		<label for="optradio" class="control-label"> <spring:message code="modal.search.price.lbl.type.currency"/></label>
+				    <label class="radio-inline">
+				      <input type="radio" name="optradio" value="PEN"><spring:message code="type.currency.pen"/>
+				    </label>
+				    <label class="radio-inline">
+				      <input type="radio" name="optradio" value="USD"><spring:message code="type.currency.usd"/>
+				    </label>
             </div>
-
+            <div class="form-group">
+            	 <label for="date" class="control-label"><spring:message code="modal.search.price.lbl.start.date"/> </label>
+            	 <div class="input-group">
+		        <div class="input-group-addon">
+		         <i class="fa fa-calendar">
+		         </i>
+		        </div>
+		         <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/>
+		       </div>
+            </div>
+            <div class="form-group">
+            	 <label for="date2" class="control-label"><spring:message code="modal.search.price.lbl.end.date"/> </label>
+            	 <div class="input-group">
+		        <div class="input-group-addon">
+		         <i class="fa fa-calendar">
+		         </i>
+		        </div>
+		         <input class="form-control" id="date2" name="date" placeholder="DD/MM/YYYY" type="text"/>
+		       </div>
+            </div>            
      					     
-			   <div class="table-responsive">
-			        		<table class="table table-striped table-bordered table-hover">
-			              <thead>
-			                  <tr>
-			                      <th><spring:message code="modal.search.price.grid.type.currency"/></th>
-			                      <th><spring:message code="modal.search.price.grid.start.date"/></th>
-			                      <th><spring:message code="modal.search.price.grid.end.date"/></th>
-			                      <th><spring:message code="modal.search.price.grid.price"/></th>
-			                      <th><spring:message code="modal.search.price.grid.select"/></th>
-			                  </tr>
-			              </thead>
-			              <tbody id="tbPrice">
-			              </tbody>
-			          </table>
-			     </div>                           
+                    <div class="bootstrap-table">
+					<div class="fixed-table-toolbar"></div>
+					<div class="fixed-table-container" style="height: 299px; padding-bottom: 37px;">
+						<div class="fixed-table-header" style="height: 37px; border-bottom: 1px solid rgb(221, 221, 221); margin-right: 0px;">
+							<table class="table table-hover" style="width: 669px;">
+								<thead>
+									<tr>
+										<th class="bs-checkbox " style="width: 20px; ">
+											<div class="th-inner ">
+												<input name="btSelectAll" type="checkbox">
+											</div>
+											<div class="fht-cell" style="width: 29px;">
+											</div>
+										</th>
+										<th style="">
+											<div class="th-inner "><spring:message code="modal.search.price.grid.type.currency"/></div><div class="fht-cell" style="width: 173px;"></div>
+										</th>
+										<th style="">
+											<div class="th-inner "><spring:message code="modal.search.price.grid.start.date"/></div><div class="fht-cell" style="width: 237px;"></div>
+										</th>
+										<th style="">
+											<div class="th-inner "><spring:message code="modal.search.price.grid.end.date"/></div><div class="fht-cell" style="width: 227px;"></div>
+										</th>
+										<th style="">
+											<div class="th-inner "><spring:message code="modal.search.price.grid.price"/></div><div class="fht-cell" style="width: 227px;"></div>
+										</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div class="fixed-table-body">
+						<div class="fixed-table-loading" style="top: 0px;">Cargando, por favor espere…</div>
+						<table id="table-methods-table" data-height="299" class="table table-hover" style="margin-top: -41px;">
+							<thead>
+									<tr>
+										<th class="bs-checkbox " style="width: 20px; ">
+											<div class="th-inner ">
+												<input name="btSelectAll" type="checkbox">
+											</div>
+											<div class="fht-cell" style="width: 29px;">
+											</div>
+										</th>
+										<th style="">
+											<div class="th-inner "><spring:message code="modal.search.price.grid.type.currency"/></div><div class="fht-cell" style="width: 173px;"></div>
+										</th>
+										<th style="">
+											<div class="th-inner "><spring:message code="modal.search.price.grid.start.date"/></div><div class="fht-cell" style="width: 237px;"></div>
+										</th>
+										<th style="">
+											<div class="th-inner "><spring:message code="modal.search.price.grid.end.date"/></div><div class="fht-cell" style="width: 227px;"></div>
+										</th>
+										<th style="">
+											<div class="th-inner "><spring:message code="modal.search.price.grid.price"/></div><div class="fht-cell" style="width: 227px;"></div>
+										</th>
+									</tr>
+							</thead>
+							  <tbody id="tbPrice">
+							  </tbody>
+						</table>
+						</div>
+					<div class="fixed-table-pagination"></div>
+					</div>
+					</div>
+					<div class="clearfix"></div>                       
 			</form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" ><span class="glyphicon glyphicon-remove"></span> <spring:message code="modal.search.price.btn.search"/></button>
+          <button type="button" id="modBtnSearch" class="btn btn-primary" ><span class="glyphicon glyphicon-remove"></span> <spring:message code="modal.search.price.btn.search"/></button>
            <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <spring:message code="modal.search.price.btn.cancel"/></button>
+             <button type="button" id="btnSelecto" class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span> <spring:message code="modal.search.price.btn.select"/></button>
         </div>
       </div>
       

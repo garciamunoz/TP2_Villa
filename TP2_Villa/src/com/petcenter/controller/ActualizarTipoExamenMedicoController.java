@@ -16,6 +16,7 @@ import com.petcenter.dto.EspecialidadDTO;
 import com.petcenter.dto.EstadoDTO;
 import com.petcenter.dto.EstandarDTO;
 import com.petcenter.dto.NormativaDTO;
+import com.petcenter.dto.PrecioDTO;
 import com.petcenter.dto.TipoExamenDTO;
 import com.petcenter.service.ActualizarTipoExamenMedicoService;
 import com.petcenter.util.LaboratorioConstantes;
@@ -65,6 +66,16 @@ public class ActualizarTipoExamenMedicoController {
 		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_NORMATIVAS, listaNormativas);
 		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_ESTANDARES,listaEstandares   );
 		return LaboratorioConstantes.VISTA_NUEVO_TIPO_EXAMEN;
+	}
+	
+	@RequestMapping(value="/buscarPrecios",
+		    produces="application/json; charset=UTF-8",
+		    method=RequestMethod.GET)
+	public @ResponseBody Map<String,Object> buscarPrecios(@RequestParam("mon") String mon,@RequestParam("startDate") String startDate,@RequestParam("endDate") String endDate,Model model)throws Exception{
+		Map<String,Object> lista = new HashMap<String,Object>();
+		List<PrecioDTO> listaPrecios = actualizaTipoExamenMedicoService.listarPrecios(mon,startDate,endDate);
+		lista.put(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_PRECIOS, listaPrecios);
+		return lista;
 	}
 
 }

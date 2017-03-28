@@ -68,7 +68,7 @@
             <input id="btnBuscar" type="button" class="btn btn-primary" value="<spring:message code="uc.first.btn.search"/>">
             <input id="btnNuevo" type="button" class="btn btn-primary" value="<spring:message code="uc.first.btn.new"/>">
             <input type="reset" class="btn btn-primary" value="<spring:message code="uc.first.btn.upd"/>">
-            <input type="submit" class="btn btn-primary" value="<spring:message code="uc.first.btn.exit"/>">
+            <input type="button" id="btnExit" class="btn btn-primary" value="<spring:message code="uc.first.btn.exit"/>">
         </div>
     </div>
 </form>

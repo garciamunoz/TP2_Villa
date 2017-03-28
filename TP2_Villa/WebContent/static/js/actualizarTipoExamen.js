@@ -30,6 +30,9 @@ function funcionesgenerales(){
 	$('#btnNuevo').click(function(){
 		window.location="actualizarTipoExamen/nuevoTipoExamen";
 	});
+	$('#btnExit').click(function(){
+		window.location="/TP2_Villa/";
+	});
 	
 }
 

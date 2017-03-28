@@ -12,9 +12,12 @@
   <script src="/TP2_Villa/static/js/jquery-ui.min.js"></script>
   <script src="/TP2_Villa/static/js/bootstrap.min.js"></script>
   <script src="/TP2_Villa/static/js/common.js"></script>
+  <script src="/TP2_Villa/static/js/bootstrap-table.js"></script>
   <script type="text/javascript" src="/TP2_Villa/static/js/bootstrap-datepicker.js"></script>
   <link rel="stylesheet" href="/TP2_Villa/static/css/datepicker.css"/>
-  <link rel="stylesheet" href="/TP2_Villa/static/css/font-awesome.min.css" />  
+   <link rel="stylesheet" href="/TP2_Villa/static/css/datepicker.css"/>
+   <link rel="stylesheet" href="/TP2_Villa/static/css/bootstrap-table.css"/>
+  <link rel="stylesheet" href="/TP2_Villa/static/css/font-awesome.min.css" />
   <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 </head>

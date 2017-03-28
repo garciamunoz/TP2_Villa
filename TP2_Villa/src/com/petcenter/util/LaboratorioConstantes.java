@@ -9,5 +9,6 @@ public class LaboratorioConstantes {
 	public final static String NOMBRE_LISTA_BUSQUEDA_TIPOS_EXAMENES_MEDICOS="listaTiposExamenesMedicos" ;
 	public final static String NOMBRE_LISTA_BUSQUEDA_NORMATIVAS="listaNormativas" ;
 	public final static String NOMBRE_LISTA_BUSQUEDA_ESTANDARES="listaEstandares";
+	public final static String NOMBRE_LISTA_BUSQUEDA_PRECIOS="listaPrecios";
 	
 }
