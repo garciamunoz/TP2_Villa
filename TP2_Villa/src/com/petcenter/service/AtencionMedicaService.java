@@ -31,6 +31,10 @@ public class AtencionMedicaService {
 		return atencionMedicaMapper.listaDiagnostico();
 	}
 
+	public int registrarAM(AtencionMedica atencionMedica){
+		return atencionMedicaMapper.registrarAM(atencionMedica);
+	}
+	
 	public List<AtencionMedica> listaAM(String txtHC, String txtAM, String txtNUMDOC) {
 		Map<String, Object> mapa = new HashMap<>();
 		mapa.put("idHC", txtHC);
@@ -39,4 +43,11 @@ public class AtencionMedicaService {
 		return atencionMedicaMapper.listaAM(mapa);
 	}
 	
+	public AtencionMedica verAM(int idAM){
+		return atencionMedicaMapper.verAM(idAM);
+	}
+	
+	public int eliminarAM(int idAM){
+		return atencionMedicaMapper.eliminarAM(idAM);
+	}
 }

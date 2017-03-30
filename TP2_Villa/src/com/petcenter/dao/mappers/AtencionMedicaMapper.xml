@@ -19,6 +19,35 @@
 	WHERE estado=1
   </select>
   
+  <insert id="registrarAM" parameterType="AtencionMedica" useGeneratedKeys="true" keyProperty="idAM" keyColumn="idAM">
+    INSERT INTO tb_atencion_medica
+		(idHC,
+		idDIAG,
+		idEXAM,
+		codMedico,
+		desMedico,
+		deposiciones,
+		peso,
+		temperatura,
+		signovital,
+		observacion,
+		comentario,
+		registrado)
+	VALUES
+		(#{idHC},
+		#{idDIAG},
+		#{idEXAM},
+		#{codMedico},
+		#{desMedico},
+		#{deposiciones},
+		#{peso},
+		#{temperatura},
+		#{signovital},
+		#{observacion},
+		#{comentario},
+		SYSDATE())
+  </insert>
+  
   <select id="listaAM" parameterType="java.util.HashMap" resultType="AtencionMedica">
     SELECT AM.*, concat(nomCliente,' ',apePaternoCliente,' ',apeMaternoCliente) as 'datosCliente', nomMascota as 'datosMascota'
 	FROM tb_atencion_medica AM INNER JOIN tb_historia_clinica HC
@@ -36,5 +65,22 @@
 	   	AND CLI.nroDocumento=#{nroDocumento}
 	</if>
   </select>  
+  
+  <select id="verAM" parameterType="int" resultType="AtencionMedica">
+    SELECT AM.*, concat(nomCliente,' ',apePaternoCliente,' ',apeMaternoCliente) as 'datosCliente', nomMascota as 'datosMascota'
+	FROM tb_atencion_medica AM INNER JOIN tb_historia_clinica HC
+			ON AM.IDHC=HC.IDHC INNER JOIN tb_mascota MA
+	        ON HC.IDMASCOTA=MA.IDMASCOTA INNER JOIN tb_cliente CLI
+	        ON MA.IDCLIENTE=CLI.IDCLIENTE
+	WHERE AM.ESTADOAM=1
+		AND AM.idAM=#{idAM}
+  </select>
+  
+  <update id="eliminarAM" parameterType="int">
+  	UPDATE tb_atencion_medica 
+  	SET estadoAM=0,
+  		actualizado=SYSDATE()
+  	WHERE idAM=#{idAM}
+  </update>
   
 </mapper>

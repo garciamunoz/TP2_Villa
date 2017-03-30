@@ -19,6 +19,7 @@ import com.petcenter.dto.DatosClienteMascota;
 import com.petcenter.service.AtencionMedicaService;
 import com.petcenter.service.CommonService;
 import com.petcenter.service.HistoriaClinicaService;
+import com.petcenter.util.Constante;
 
 /**
  * 
@@ -41,8 +42,10 @@ public class GestionarAtencionMedicaController {
 	private AtencionMedicaService atencionMedicaService;
 	
 	@RequestMapping("/inicio")
-	public ModelAndView listar(){
+	public ModelAndView listar(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("medica/AMlistar");
+		request.getSession().setAttribute("codigoMedico", 1);
+		request.getSession().setAttribute("datosMedico", "Doc. Vet Corbalan");
 		return mav;
 	}
 	
@@ -53,8 +56,6 @@ public class GestionarAtencionMedicaController {
 			request.getSession().setAttribute("listaTipoDoc", commonService.listaTipoDoc());
 			request.getSession().setAttribute("listaExamenes", atencionMedicaService.listaExamenes());
 			request.getSession().setAttribute("listaDiagnostico", atencionMedicaService.listaDiagnostico());
-			mav.addObject("codigoMedico", 1);
-			mav.addObject("datosMedico", "Doc. Vet Corbalan");
 		} catch (Exception e) {
 			log.error(e);
 			mav.addObject("mensaje", "Ocurrrio un error en el Sistema");
@@ -73,28 +74,43 @@ public class GestionarAtencionMedicaController {
 	public ModelAndView registrar(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("medica/AMlistar");
 		try {
-//			String idCliente = request.getParameter("hdnIDCLIENTE");
-//			String idMascota = request.getParameter("txtMASCOTA");
-//			String edad = request.getParameter("txtEDAD");
-//			String observacion = request.getParameter("txtOBS");
-//				
-//			HistoriaClinica AM = new HistoriaClinica();
-//			AM.setIdCliente(Integer.parseInt(idCliente));
-//			AM.setIdMascota(Integer.parseInt(idMascota));
-//			if(!edad.equals(""))
-//				AM.setEdad(Integer.parseInt(edad));
-//			
-//			AM.setObservaciones(observacion);
-//				
-//			historiaClinicaService.registrarAM(AM);
-//			
-//			List<HistoriaClinica> listaAM = historiaClinicaService.listaAM(String.valueOf(AM.getIdAM()),"");
-//			
-//			request.getSession().setAttribute("listaAM", listaAM);
-//			request.getSession().setAttribute("txtAM", AM.getIdAM());
-//			request.getSession().setAttribute("txtNUMDOC", null);
+
+			String txtHC = request.getParameter("txtHC");			
+			String codMEDICO = request.getSession().getAttribute("codigoMedico").toString();
+			String desMEDICO = request.getSession().getAttribute("datosMedico").toString();
+			String idDIAG = request.getParameter("txtDIAG");
+			String idEXAM = request.getParameter("txtEXAMEN");
+			String deposiciones = request.getParameter("txtDEPO");
+			String peso = request.getParameter("txtPESO");
+			String temperatura = request.getParameter("txtTEMP");
+			String signovital = request.getParameter("txtVITAL");
+			String observacion = request.getParameter("txtOBS");
+			String comentario = request.getParameter("txtCOMMENT");
 			
-//			mav.addObject("mensaje", "Se registró la Atención Médica con código: "+AM.getIdAM());
+			AtencionMedica AM = new AtencionMedica();
+			AM.setIdHC(Integer.parseInt(txtHC));
+			AM.setCodMedico(Integer.parseInt(codMEDICO));
+			AM.setComentario(comentario);
+			AM.setDeposiciones(Integer.parseInt(deposiciones));
+			AM.setDesMedico(desMEDICO);
+			AM.setEstadoAM(Constante.ESTADO_ACTIVO);
+			AM.setIdDIAG(Integer.parseInt(idDIAG));
+			AM.setIdEXAM(Integer.parseInt(idEXAM));
+			AM.setObservacion(observacion);
+			AM.setPeso(Double.parseDouble(peso));
+			AM.setSignovital(Integer.parseInt(signovital));
+			AM.setTemperatura(Integer.parseInt(temperatura));
+				
+			atencionMedicaService.registrarAM(AM);
+			
+			List<AtencionMedica> listaAM = atencionMedicaService.listaAM("", String.valueOf(AM.getIdAM()), "");
+			
+			request.getSession().setAttribute("listaAM", listaAM);
+			request.getSession().setAttribute("txtHC", null);
+			request.getSession().setAttribute("txtAM", AM.getIdAM());
+			request.getSession().setAttribute("txtNUMDOC", null);
+			
+			mav.addObject("mensaje", "Se registró la Atención Médica con código: "+AM.getIdAM());
 			
 		} catch (Exception e) {
 			log.error(e);
@@ -130,8 +146,8 @@ public class GestionarAtencionMedicaController {
 	public ModelAndView detalle(@RequestParam int idAM){
 		ModelAndView mav = new ModelAndView("medica/AMdetalle");
 		try {
-//			DatosClienteMascota AM = historiaClinicaService.verAM(idAM);
-//			mav.addObject("AM", AM);
+			AtencionMedica AM = atencionMedicaService.verAM(idAM);
+			mav.addObject("AM", AM);
 		} catch (Exception e) {
 			log.error(e);
 			mav.addObject("mensaje", "Ocurrrio un error en el Sistema");
@@ -153,20 +169,21 @@ public class GestionarAtencionMedicaController {
 	public ModelAndView eliminar(HttpServletRequest request, @RequestParam int idAM){
 		ModelAndView mav = new ModelAndView("medica/AMlistar");
 		try {
-//			int resultado = historiaClinicaService.eliminarAM(idAM);
-//			if(resultado>0){
+			int resultado = atencionMedicaService.eliminarAM(idAM);
+			if(resultado>0){
 				mav.addObject("mensaje", "Se eliminó correctamente la Atención Médica con codigo: "+idAM);
 
-//				String txtAM = (String) request.getSession().getAttribute("txtAM");
-//				String txtNUMDOC = (String) request.getSession().getAttribute("txtNUMDOC");
+				String txtHC = (String) request.getSession().getAttribute("txtHC");
+				String txtAM = (String) request.getSession().getAttribute("txtAM");
+				String txtNUMDOC = (String) request.getSession().getAttribute("txtNUMDOC");
 				
-//				List<HistoriaClinica> listaAM = historiaClinicaService.listaAM(txtAM, txtNUMDOC);
+				List<AtencionMedica> listaAM = atencionMedicaService.listaAM(txtHC, txtAM, txtNUMDOC);
 				
-//				request.getSession().setAttribute("listaAM", listaAM);
+				request.getSession().setAttribute("listaAM", listaAM);
 				
-//			}else{
+			}else{
 				mav.addObject("mensaje", "Ocurrió un error en el Sistema.");
-//			}
+			}
 		} catch (Exception e) {
 			log.error(e);
 		}

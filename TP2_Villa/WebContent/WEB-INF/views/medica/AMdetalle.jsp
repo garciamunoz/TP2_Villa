@@ -7,8 +7,8 @@
 <script type="text/javascript">
 
 function regresar(){
-	$('#formDHC').attr('action',"/TP2_Villa/HC/listar");
-	$('#formDHC').submit();
+	$('#formDAM').attr('action',"/TP2_Villa/AM/listar");
+	$('#formDAM').submit();
 }
 
 </script>
@@ -16,71 +16,143 @@ function regresar(){
 
 <div class="container">
 	<div class="page-header" align="center">
-       <h1>Detalle Historia Clínica</h1>
+       <h1>Detalle Atención Médica</h1>
     </div>
 
-	<form class="form-horizontal" action="" id="formDHC" method="POST">
+	<form class="form-horizontal" action="" id="formDAM" method="POST">
 
     <div class="col-sm-12">
     	<div class="col-sm-8">
     		<div class="form-group">
-		        <label class="control-label col-sm-3 col-xs-3" for="txtHC">CÓDIGO HC:</label>
+		        <label class="control-label col-sm-3 col-xs-3" for="txtHC">CÓDIGO AM:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtHC" value="${hc.idHC}" class="form-control" disabled="disabled"></select>
+		            <input type="text" id="txtHC" value="${am.idHC}" class="form-control" disabled="disabled"></select>
 		        </div>
 		    </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtTIPODOC">TIPO DOCUMENTO:</label>
 		        <div class="col-xs-5">
-		        	<input type="text" id="txtTIPODOC" value="${hc.descDoc}" class="form-control" disabled="disabled"/>
+		        	<input type="text" id="txtTIPODOC" value="${am.descDoc}" class="form-control" disabled="disabled"/>
 		        </div>
 		    </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtNUMDOC">NÚMERO DOCUMENTO:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtNUMDOC" value="${hc.numDoc}" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtNUMDOC" value="${am.numDoc}" class="form-control" disabled="disabled"/>
 		        </div>
 		    </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtCLIENTE">CLIENTE:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtCLIENTE" value="${hc.datosCliente}" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtCLIENTE" value="${am.datosCliente}" class="form-control" disabled="disabled"/>
 		        </div>
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtPACIENTE">MASCOTA:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtPACIENTE" value="${hc.datosMascota}" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtPACIENTE" value="${am.datosMascota}" class="form-control" disabled="disabled"/>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="control-label col-xs-3" for="txtHC">NÚMERO HISTORIA CLÍNICA:</label>
+		        <div class="col-xs-5" align="right">
+		            <input type="text" id="txtHC" name="txtHC" class="form-control" value="${am.idHC}" disabled="disabled"/>
+		        </div>
+		    </div>
+    		<div class="form-group">
+		        <label class="control-label col-xs-3" for="txtMEDICO">MÉDICO:</label>
+		        <div class="col-xs-5">
+		            <input type="text" id="txtMEDICO" class="form-control" value="${datosMedico}" disabled="disabled"/>
 		        </div>
 	        </div>
     		<div class="form-group">
+		        <label class="control-label col-xs-3" for="txtDEPO">DEPOSICIONES AL DÍA:</label>
+		        <div class="col-xs-5">
+		            <input type="text" id="txtDEPO" name="txtDEPO" class="form-control"/>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="control-label col-xs-3" for="txtPESO">PESO KG:</label>
+		        <div class="col-xs-5">
+		            <input type="text" id="txtPESO" name="txtPESO" class="form-control"/>
+		        </div>
+	        </div>
+    		<div class="form-group">
+		        <label class="control-label col-xs-3" for="txtTEMP">TEMPERATURA C°:</label>
+		        <div class="col-xs-5">
+		            <input type="text" id="txtTEMP" name="txtTEMP" class="form-control" maxlength="3"/>
+		        </div>
+	        </div>
+    		<div class="form-group">
+		        <label class="control-label col-xs-3" for="txtVITAL">PULSOS POR MINUTO:</label>
+		        <div class="col-xs-5">
+		            <input type="text" id="txtVITAL" name="txtVITAL" class="form-control" maxlength="3"/>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="control-label col-xs-3" for="txtDIAG">DIAGNÓSTICO:</label>
+		        <div class="col-xs-5">
+		            <select id="txtDIAG" name="txtDIAG" class="form-control">
+			            <option value="-1">Seleccione</option>	
+		            <c:forEach items="${listaDiagnostico}" var="diag">
+			            <option value="${diag.idDIAG}">${diag.descripcion}</option>		            
+		            </c:forEach>		            	
+		            </select>
+		        </div>
+		    </div>
+	        <div class="form-group">
+		        <label class="control-label col-xs-3" for="txtEXAMEN">ORDEN MÉDICA:</label>
+		        <div class="col-xs-5">
+		            <select id="txtEXAMEN" name="txtEXAMEN" class="form-control">
+			            <option value="-1">Seleccione</option>	
+		            <c:forEach items="${listaExamenes}" var="exam">
+			            <option value="${exam.idEXAM}">${exam.descripcion}</option>		            
+		            </c:forEach>		            	
+		            </select>
+		        </div>
+		    </div>
+    		<div class="form-group">
+		        <label class="control-label col-xs-3" for="txtOBS">OBSERVACIÓN:</label>
+		        <div class="col-xs-5">
+		        	<textarea class="form-control" id="txtOBS" name="txtOBS" rows="3" cols="100" maxlength="255"></textarea>
+		        </div>
+	        </div>
+    		<div class="form-group">
+		        <label class="control-label col-xs-3" for="txtCOMMENT">COMENTARIOS:</label>
+		        <div class="col-xs-5">
+		        	<textarea class="form-control" id="txtCOMMENT" name="txtCOMMENT" rows="3" cols="100" maxlength="255"></textarea>
+		        </div>
+	        </div>
+	        <!-- 
+    		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtESPECIE">ESPECIE:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtESPECIE" value="${hc.descripcionEspecie}" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtESPECIE" value="${am.descripcionEspecie}" class="form-control" disabled="disabled"/>
 		        </div>
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtRAZA">RAZA:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtRAZA" value="${hc.descripcionRaza}" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtRAZA" value="${am.descripcionRaza}" class="form-control" disabled="disabled"/>
 		        </div>
 	        </div>
 	        <div class="form-group">
 		        <label class="control-label col-xs-3" for="txtGENERO">GENERO:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtGENERO" value="${hc.descripcionGenMascota}" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtGENERO" value="${am.descripcionGenMascota}" class="form-control" disabled="disabled"/>
 		        </div>
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtEDAD">EDAD:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtEDAD" value="${hc.edad}" class="form-control" disabled="disabled"/>
+		            <input type="text" id="txtEDAD" value="${am.edad}" class="form-control" disabled="disabled"/>
 		        </div>
 	        </div>
+	         -->
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtOBS">OBSERVACIÓN:</label>
 		        <div class="col-xs-5">
-		        	<textarea class="form-control" id="txtOBS" rows="3" cols="100" maxlength="255" disabled="disabled">${hc.observaciones}</textarea>
+		        	<textarea class="form-control" id="txtOBS" rows="3" cols="100" maxlength="255" disabled="disabled">${am.observaciones}</textarea>
 		        </div>
 	        </div>
 	    </div>

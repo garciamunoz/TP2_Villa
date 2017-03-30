@@ -97,7 +97,7 @@ function buscar(){
 	            			<a href="#" onclick="">Resultado Orden Médica</a>
 	            		</td>
 	            		<td style="text-align: center;">
-	            			<a href="#" onclick="">Ver Detalle</a>
+	            			<a href="#" onclick="detalle(${AM.idAM});">Ver Detalle</a>
 	            		</td>
 	            		<td style="text-align: center;">
 	            			<a href="javascript:void(0);" onclick="eliminar(${AM.idAM});">Eliminar</a>

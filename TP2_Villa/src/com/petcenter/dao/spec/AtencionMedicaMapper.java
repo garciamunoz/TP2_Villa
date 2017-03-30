@@ -16,6 +16,9 @@ public interface AtencionMedicaMapper {
 
 	List<Examen> listaExamenes(); 
 	List<Diagnostico> listaDiagnostico();
+	int registrarAM(AtencionMedica atencionMedica);
 	List<AtencionMedica> listaAM(Map<String, Object> mapa);
+	AtencionMedica verAM(int idAM);
+	int eliminarAM(int idAM);
 	
 }

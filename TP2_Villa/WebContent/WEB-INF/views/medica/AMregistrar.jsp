@@ -104,7 +104,7 @@ function registrar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtNUMDOC">NÚMERO DOCUMENTO:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" value="10233775"/>
+		            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" value=""/>
 		            <input type="button" id="btnVALIDAR" value="VALIDAR" class="btn btn-info" onclick="validar();"/>
 		        </div>
 		    </div>
@@ -125,7 +125,7 @@ function registrar(){
 	        <div class="form-group">
 		        <label class="control-label col-xs-3" for="txtHC">NÚMERO HISTORIA CLÍNICA:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="txtHC" name="txtHC" class="form-control" value="" disabled="disabled"/>
+		            <input type="text" id="txtHC" name="txtHC" class="form-control" value="" readonly="readonly"/>
 		        </div>
 		    </div>
     		<div class="form-group">
