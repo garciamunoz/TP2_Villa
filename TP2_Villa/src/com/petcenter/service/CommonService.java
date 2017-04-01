@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petcenter.dao.spec.CommonMapper;
+import com.petcenter.dto.AtributoDTO;
 import com.petcenter.dto.TipoDocDTO;
 
 @Service
@@ -18,4 +19,7 @@ public class CommonService {
 		return commonMapper.listaTipoDoc();
 	}
 	
+	public List<AtributoDTO> listaTodosAtributos() {
+		return commonMapper.listaTodosAtributos();
+	}
 }

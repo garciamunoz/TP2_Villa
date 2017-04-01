@@ -2,30 +2,24 @@ package com.petcenter.dto;
 
 public class EstadoDTO {
 
-	private Integer idEstado;
-	private String codigoEstado;
+	private String idEstado;
 	private String nombreEstado;
 	private String descripcionEstado;
+	private String indMante;
 	
 	public EstadoDTO(){}
 	
-	public EstadoDTO(Integer idEstado,String codigoEstado,String nombreEstado,String descripcionEstado){
+	public EstadoDTO(String idEstado, String nombreEstado, String descripcionEstado, String indMante){
 		this.idEstado = idEstado;
-		this.codigoEstado = codigoEstado;
 		this.nombreEstado = nombreEstado;
 		this.descripcionEstado = descripcionEstado;
+		this.indMante = indMante;
 	}
-	public Integer getIdEstado() {
+	public String getIdEstado() {
 		return idEstado;
 	}
-	public void setIdEstado(Integer idEstado) {
+	public void setIdEstado(String idEstado) {
 		this.idEstado = idEstado;
-	}
-	public String getCodigoEstado() {
-		return codigoEstado;
-	}
-	public void setCodigoEstado(String codigoEstado) {
-		this.codigoEstado = codigoEstado;
 	}
 	public String getNombreEstado() {
 		return nombreEstado;
@@ -38,6 +32,14 @@ public class EstadoDTO {
 	}
 	public void setDescripcionEstado(String descripcionEstado) {
 		this.descripcionEstado = descripcionEstado;
+	}
+
+	public String getIndMante() {
+		return indMante;
+	}
+
+	public void setIndMante(String indMante) {
+		this.indMante = indMante;
 	}
 	
 }

@@ -5,8 +5,8 @@
 <mapper namespace="com.petcenter.dao.spec.NormativaMapper">
 
   <select id="listarNormativa" resultType="NormativaDTO">
-		select idNormativa,numeroNormativa,descripcionNormativa
-		from normativa
+		select idNormativa, nombreNormativa
+		from tb_normativas
   </select>
   
 </mapper>

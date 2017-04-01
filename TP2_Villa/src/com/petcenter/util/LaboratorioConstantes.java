@@ -2,7 +2,7 @@ package com.petcenter.util;
 
 public class LaboratorioConstantes {
 	
-	public final static String VISTA_ACTUALIZA_TIPO_EXAMEN ="laboratorio/actualizarTipoExamen";
+	public final static String VISTA_ACTUALIZA_TIPO_EXAMEN ="laboratorio/actualizarTipoExamen2";
 	public final static String VISTA_NUEVO_TIPO_EXAMEN ="laboratorio/nuevoTipoExamen"; 
 	public final static String NOMBRE_LISTA_ESTADOS ="listaEstados";
 	public final static String NOMBRE_LISTA_ESPECIALIDADES="listaEspecialidades" ;
@@ -10,5 +10,6 @@ public class LaboratorioConstantes {
 	public final static String NOMBRE_LISTA_BUSQUEDA_NORMATIVAS="listaNormativas" ;
 	public final static String NOMBRE_LISTA_BUSQUEDA_ESTANDARES="listaEstandares";
 	public final static String NOMBRE_LISTA_BUSQUEDA_PRECIOS="listaPrecios";
+	public final static String NOMBRE_LISTA_TODOS_ATRIBUTOS="listaTodosAtributos";
 	
 }

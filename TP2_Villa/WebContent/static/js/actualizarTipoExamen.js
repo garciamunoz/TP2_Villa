@@ -39,7 +39,13 @@ function funcionesgenerales(){
 function crearFormulario(respuesta) {
 	var contenido="";
 	for(var i=0;i<respuesta.listaTiposExamenesMedicos.length;i++){
-		contenido=contenido+"<tr class=\"odd gradeX\"><td>"+respuesta.listaTiposExamenesMedicos[i].codigoTipoExamen+"</td><td>"+respuesta.listaTiposExamenesMedicos[i].nombreTipoExamen+"</td><td>"+respuesta.listaTiposExamenesMedicos[i].descripcionExamen+"</td><td>"+respuesta.listaTiposExamenesMedicos[i].nombreEspecialidad+"</td></tr>";
+		contenido=contenido+"<tr class=\"odd gradeX\">" +
+								"<td><a href=\"/TP2_Villa/actualizarTipoExamen/editarTipoExamen?idExamenClinico="+respuesta.listaTiposExamenesMedicos[i].idExamenClinico+"\" >"+respuesta.listaTiposExamenesMedicos[i].idExamenClinico+"</a></td>" +
+								"<td>"+respuesta.listaTiposExamenesMedicos[i].nombreExamenClinico+"</td>" +
+								"<td>"+respuesta.listaTiposExamenesMedicos[i].descripcionExamenClinico+"</td>" +
+								"<td>"+respuesta.listaTiposExamenesMedicos[i].especialidad.nombreEspecialidad+"</td>" +
+								"<td>"+respuesta.listaTiposExamenesMedicos[i].estado.nombreEstado+"</td>" +
+							"</tr>";
 		
 	}
 	$('#tbDetalleOrdenCompra').html("");

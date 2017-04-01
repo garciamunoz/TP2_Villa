@@ -1,82 +1,108 @@
 package com.petcenter.dto;
 
-public class TipoExamenDTO {
+import java.io.Serializable;
+import java.util.List;
+
+public class TipoExamenDTO implements Serializable {
 	
-	private Integer idTipoExamenMedico;
-	private String nombreTipoExamen;
-	private String descripcionExamen;
-	private String codigoTipoExamen;
+	private String idExamenClinico;
+	private String nombreExamenClinico;
+	private String descripcionExamenClinico;
+	private EspecialidadDTO especialidad;
+	private NormativaDTO normativa;
+	private EstandarDTO estandar;
 	private Integer diasCultivo;
-	private Integer idEspecialidad;
-	private Integer idEstado;
-	private String nombreEspecialidad;
+	private List<AtributoExamenClinicoDTO> atributos;
+	private EstadoDTO estado;
 	
-	public TipoExamenDTO(){}
-	
-	public TipoExamenDTO(Integer idTipoExamenMedico,String nombreTipoExamen,String descripcionExamen,String codigoTipoExamen,Integer diasCultivo,Integer idEspecialidad,Integer idEstado,String nombreEspecialidad){
-		
+	public TipoExamenDTO() {
 		super();
-		this.idTipoExamenMedico = idTipoExamenMedico;
-		this.nombreTipoExamen = nombreTipoExamen;
-		this.descripcionExamen = descripcionExamen;
-		this.codigoTipoExamen = codigoTipoExamen;
+	}
+
+	public TipoExamenDTO(String idExamenClinico, String nombreExamenClinico, String descripcionExamenClinico,
+			EspecialidadDTO especialidad, NormativaDTO normativa, EstandarDTO estandar, Integer diasCultivo,
+			EstadoDTO estado) {
+		super();
+		this.idExamenClinico = idExamenClinico;
+		this.nombreExamenClinico = nombreExamenClinico;
+		this.descripcionExamenClinico = descripcionExamenClinico;
+		this.especialidad = especialidad;
+		this.normativa = normativa;
+		this.estandar = estandar;
 		this.diasCultivo = diasCultivo;
-		this.idEspecialidad = idEspecialidad;
-		this.idEstado =  idEstado;
-		this.nombreEspecialidad = nombreEspecialidad;
+		this.estado = estado;
 	}
-	
-	public Integer getIdTipoExamenMedico() {
-		return idTipoExamenMedico;
+
+	public String getIdExamenClinico() {
+		return idExamenClinico;
 	}
-	public void setIdTipoExamenMedico(Integer idTipoExamenMedico) {
-		this.idTipoExamenMedico = idTipoExamenMedico;
+
+	public void setIdExamenClinico(String idExamenClinico) {
+		this.idExamenClinico = idExamenClinico;
 	}
-	public String getNombreTipoExamen() {
-		return nombreTipoExamen;
+
+	public String getNombreExamenClinico() {
+		return nombreExamenClinico;
 	}
-	public void setNombreTipoExamen(String nombreTipoExamen) {
-		this.nombreTipoExamen = nombreTipoExamen;
+
+	public void setNombreExamenClinico(String nombreExamenClinico) {
+		this.nombreExamenClinico = nombreExamenClinico;
 	}
-	public String getDescripcionExamen() {
-		return descripcionExamen;
+
+	public String getDescripcionExamenClinico() {
+		return descripcionExamenClinico;
 	}
-	public void setDescripcionExamen(String descripcionExamen) {
-		this.descripcionExamen = descripcionExamen;
+
+	public void setDescripcionExamenClinico(String descripcionExamenClinico) {
+		this.descripcionExamenClinico = descripcionExamenClinico;
 	}
-	public String getCodigoTipoExamen() {
-		return codigoTipoExamen;
+
+	public EspecialidadDTO getEspecialidad() {
+		return especialidad;
 	}
-	public void setCodigoTipoExamen(String codigoTipoExamen) {
-		this.codigoTipoExamen = codigoTipoExamen;
+
+	public void setEspecialidad(EspecialidadDTO especialidad) {
+		this.especialidad = especialidad;
 	}
+
+	public NormativaDTO getNormativa() {
+		return normativa;
+	}
+
+	public void setNormativa(NormativaDTO normativa) {
+		this.normativa = normativa;
+	}
+
+	public EstandarDTO getEstandar() {
+		return estandar;
+	}
+
+	public void setEstandar(EstandarDTO estandar) {
+		this.estandar = estandar;
+	}
+
 	public Integer getDiasCultivo() {
 		return diasCultivo;
 	}
+
 	public void setDiasCultivo(Integer diasCultivo) {
 		this.diasCultivo = diasCultivo;
 	}
-	public Integer getIdEspecialidad() {
-		return idEspecialidad;
-	}
-	public void setIdEspecialidad(Integer idEspecialidad) {
-		this.idEspecialidad = idEspecialidad;
+
+	public EstadoDTO getEstado() {
+		return estado;
 	}
 
-	public Integer getIdEstado() {
-		return idEstado;
+	public void setEstado(EstadoDTO estado) {
+		this.estado = estado;
 	}
 
-	public void setIdEstado(Integer idEstado) {
-		this.idEstado = idEstado;
+	public List<AtributoExamenClinicoDTO> getAtributos() {
+		return atributos;
 	}
 
-	public String getNombreEspecialidad() {
-		return nombreEspecialidad;
-	}
-
-	public void setNombreEspecialidad(String nombreEspecialidad) {
-		this.nombreEspecialidad = nombreEspecialidad;
+	public void setAtributos(List<AtributoExamenClinicoDTO> atributos) {
+		this.atributos = atributos;
 	}
 	
 }

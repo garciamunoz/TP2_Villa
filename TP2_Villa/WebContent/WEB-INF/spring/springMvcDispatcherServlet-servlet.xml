@@ -9,21 +9,23 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<!-- Para el uso de Anotaciones Spring MVC @Controller -->
-	<mvc:annotation-driven>
+	<!--mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
 			<bean
 				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 				<property name="objectMapper">
 					<bean class="com.fasterxml.jackson.databind.ObjectMapper">
 						<property name="serializationInclusion">
-							<!-- Para que el JsonMapper no devuelva atributos con valores nulos -->
 							<value type="com.fasterxml.jackson.annotation.JsonInclude.Include">ALWAYS</value>
 						</property>
 					</bean>
 				</property>
 			</bean>
 		</mvc:message-converters>
-	</mvc:annotation-driven>
+	</mvc:annotation-driven-->
+	
+	<mvc:annotation-driven />
+	
 	
 	<!-- 	FILEUPLOAD -->
 	<bean id="multipartResolver"  

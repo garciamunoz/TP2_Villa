@@ -10,7 +10,7 @@
         <ul class="dropdown-menu">
           <li><a href="#"><spring:message code="navbar.sub.opc.mod.lab.uc.first"/></a></li>
           <li><a href="/TP2_Villa/actualizarTipoExamen"><spring:message code="navbar.sub.opc.mod.lab.uc.second"/></a></li>
-          <li><a href="#"> <spring:message code="navbar.sub.opc.mod.lab.uc.third"/></a></li>
+          <li><a href="/TP2_Villa/consultarTipoExamen"> <spring:message code="navbar.sub.opc.mod.lab.uc.third"/></a></li>
         </ul>
       </li>
       <li><a href="#"><spring:message code="navbar.opc.mod.pac"/></a></li>

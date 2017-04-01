@@ -12,7 +12,7 @@
 <form class="form-horizontal">
 
     <div class="form-group">
-        <label class="control-label col-xs-3" ><spring:message code="uc.first.lbl.name"/></label>
+        <label class="control-label col-xs-3" ><spring:message code="uc.first.lbl.name"/>2222222222222</label>
         <div class="col-xs-9">
             <input name="nombre" id="nombre" type="text" class="form-control" placeholder="<spring:message code="uc.first.lbl.name"/>">
         </div>
