@@ -13,12 +13,18 @@
           <li><a href="#"> <spring:message code="navbar.sub.opc.mod.lab.uc.third"/></a></li>
         </ul>
       </li>
-      <li><a href="#"><spring:message code="navbar.opc.mod.pac"/></a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><spring:message code="navbar.opc.mod.pac"/><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/TP2_Villa/ESPE/inicio">Gestionar Especies</a></li>
+          <li><a href="/TP2_Villa/RAZA/inicio">Gestionar Raza</a></li>
+        </ul>
+      </li>
       
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><spring:message code="navbar.opc.mod.at"/><span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/TP2_Villa/HC/listar"><spring:message code="navbar.sub.opc.mod.at.uc.first"/></a></li>
           <li><a href="/TP2_Villa/AM/inicio"><spring:message code="navbar.sub.opc.mod.at.uc.second"/></a></li>
+          <li><a href="/TP2_Villa/DIAG/inicio"><spring:message code="navbar.sub.opc.mod.at.uc.third"/></a></li>
         </ul>
       </li>
     </ul>

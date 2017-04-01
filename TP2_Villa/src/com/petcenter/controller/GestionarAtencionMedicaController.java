@@ -46,6 +46,9 @@ public class GestionarAtencionMedicaController {
 		ModelAndView mav = new ModelAndView("medica/AMlistar");
 		request.getSession().setAttribute("codigoMedico", 1);
 		request.getSession().setAttribute("datosMedico", "Doc. Vet Corbalan");
+		request.getSession().setAttribute("listaTipoDoc", commonService.listaTipoDoc());
+		request.getSession().setAttribute("listaExamenes", atencionMedicaService.listaExamenes());
+		request.getSession().setAttribute("listaDiagnostico", atencionMedicaService.listaDiagnostico());
 		return mav;
 	}
 	
@@ -53,9 +56,7 @@ public class GestionarAtencionMedicaController {
 	public ModelAndView cargarRegistrar(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("medica/AMregistrar");
 		try {
-			request.getSession().setAttribute("listaTipoDoc", commonService.listaTipoDoc());
-			request.getSession().setAttribute("listaExamenes", atencionMedicaService.listaExamenes());
-			request.getSession().setAttribute("listaDiagnostico", atencionMedicaService.listaDiagnostico());
+			
 		} catch (Exception e) {
 			log.error(e);
 			mav.addObject("mensaje", "Ocurrrio un error en el Sistema");
@@ -147,7 +148,7 @@ public class GestionarAtencionMedicaController {
 		ModelAndView mav = new ModelAndView("medica/AMdetalle");
 		try {
 			AtencionMedica AM = atencionMedicaService.verAM(idAM);
-			mav.addObject("AM", AM);
+			mav.addObject("am", AM);
 		} catch (Exception e) {
 			log.error(e);
 			mav.addObject("mensaje", "Ocurrrio un error en el Sistema");

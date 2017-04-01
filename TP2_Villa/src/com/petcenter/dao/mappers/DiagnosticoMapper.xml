@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- GIANMARCO MALEX TRILLO -->
+<mapper namespace="com.petcenter.dao.spec.DiagnosticoMapper">
+
+  <insert id="registrarDiagnostico" parameterType="Diagnostico" useGeneratedKeys="true" keyProperty="idDIAG" keyColumn="idDIAG">
+    INSERT INTO tb_diagnostico
+		(descripcion,
+		observacion)
+	VALUES
+		(#{descripcion},
+		#{observacion})
+  </insert>
+  
+  <select id="listaDiagnostico" parameterType="java.util.HashMap" resultType="Diagnostico">
+    SELECT idDIAG,
+    		descripcion,
+    		observacion
+	FROM tb_diagnostico
+	WHERE estado=1
+	<if test="idDIAG != ''">
+		AND idDIAG=#{idDIAG}
+	</if>	  	
+	<if test="DESC != ''">
+	   	AND descripcion like '%${DESC}%'
+	</if>	  	
+  </select>  
+  
+  <select id="verDiagnostico" parameterType="int" resultType="Diagnostico">
+    SELECT idDIAG,
+    		descripcion,
+    		observacion
+	FROM tb_diagnostico
+	WHERE estado=1
+		AND idDIAG=#{idDIAG}
+  </select>
+  
+  <update id="eliminarDiagnostico" parameterType="int">
+  	UPDATE tb_diagnostico 
+  	SET estado=0
+  	WHERE idDIAG=#{idDIAG}
+  </update>
+  
+  <update id="actualizarDiagnostico" parameterType="java.util.HashMap">
+  	UPDATE tb_diagnostico 
+  	SET observacion=#{observacion}
+  	WHERE idDIAG=#{idDIAG}
+  </update>
+  
+</mapper>
