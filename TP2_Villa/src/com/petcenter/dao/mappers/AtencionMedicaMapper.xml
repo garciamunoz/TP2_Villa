@@ -6,14 +6,14 @@
 <mapper namespace="com.petcenter.dao.spec.AtencionMedicaMapper">
 
   <select id="listaExamenes" resultType="Examen">
-    SELECT idEXAM as id,
+    SELECT idEXAM,
     		descripcion
 	FROM tb_examenes
 	WHERE estado=1
   </select>
   
   <select id="listaDiagnostico" resultType="Diagnostico">
-    SELECT idDIAG as id,
+    SELECT idDIAG,
     		descripcion
 	FROM tb_diagnostico
 	WHERE estado=1

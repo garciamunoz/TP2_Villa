@@ -1,7 +1,11 @@
 package com.petcenter.dto;
 
-public class Examen {
+import java.io.Serializable;
 
+public class Examen implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private int idEXAM;
 	private String descripcion;
 	public int getIdEXAM() {

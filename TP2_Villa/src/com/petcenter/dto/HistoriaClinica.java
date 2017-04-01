@@ -1,9 +1,12 @@
 package com.petcenter.dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class HistoriaClinica {
+public class HistoriaClinica implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	private int idHC;
 	private int idCliente;
 	private int idMascota;

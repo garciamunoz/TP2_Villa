@@ -160,7 +160,7 @@ function registrar(){
 	        </div>
 	        <div class="form-group">
 		        <label class="control-label col-xs-3" for="txtDIAG">DIAGNÓSTICO:</label>
-		        <div class="col-xs-5">
+		        <div class="col-xs-8">
 		            <select id="txtDIAG" name="txtDIAG" class="form-control">
 			            <option value="-1">Seleccione</option>	
 		            <c:forEach items="${listaDiagnostico}" var="diag">
@@ -171,7 +171,7 @@ function registrar(){
 		    </div>
 	        <div class="form-group">
 		        <label class="control-label col-xs-3" for="txtEXAMEN">ORDEN MÉDICA:</label>
-		        <div class="col-xs-5">
+		        <div class="col-xs-8">
 		            <select id="txtEXAMEN" name="txtEXAMEN" class="form-control">
 			            <option value="-1">Seleccione</option>	
 		            <c:forEach items="${listaExamenes}" var="exam">

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petcenter.dao.spec.EspecieMapper">
+
+  <insert id="registrarEspecie" parameterType="Especie" useGeneratedKeys="true" keyProperty="idEspecie" keyColumn="idEspecie">
+    INSERT INTO tb_Especie
+		(descripcionEspecie,
+		observacion)
+	VALUES
+		(#{descripcionEspecie},
+		#{observacion})
+  </insert>
+  
+  <select id="listaEspecie" parameterType="java.util.HashMap" resultType="Especie">
+    SELECT idEspecie,
+    		descripcionEspecie,
+    		observacion
+	FROM tb_Especie
+	WHERE estado=1
+	<if test="idESPE != ''">
+		AND idEspecie=#{idESPE}
+	</if>	  	
+	<if test="DESC != ''">
+	   	AND descripcionEspecie like '%${DESC}%'
+	</if>	  	
+  </select>  
+  
+  <select id="verEspecie" parameterType="int" resultType="Especie">
+    SELECT idEspecie,
+    		descripcionEspecie,
+    		observacion
+	FROM tb_especie
+	WHERE estado=1
+		AND idEspecie=#{idESPE}
+  </select>
+  
+  <update id="eliminarEspecie" parameterType="int">
+  	UPDATE tb_especie 
+  	SET estado=0
+  	WHERE idEspecie=#{idESPE}
+  </update>
+  
+  <update id="actualizarEspecie" parameterType="java.util.HashMap">
+  	UPDATE tb_especie 
+  	SET observacion=#{observacion}
+  	WHERE idEspecie=#{idESPE}
+  </update>
+  
+</mapper>

@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `bd_petcenter` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bd_petcenter`;
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: bd_petcenter
+-- Host: localhost    Database: bd_petcenter
 -- ------------------------------------------------------
--- Server version	5.7.11
+-- Server version	5.7.14-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -220,7 +220,7 @@ CREATE TABLE `tb_atencion_medica` (
   PRIMARY KEY (`idAM`),
   KEY `fk_AM_HC` (`idHC`),
   CONSTRAINT `fk_AM_HC` FOREIGN KEY (`idHC`) REFERENCES `tb_historia_clinica` (`idHC`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,7 +229,7 @@ CREATE TABLE `tb_atencion_medica` (
 
 LOCK TABLES `tb_atencion_medica` WRITE;
 /*!40000 ALTER TABLE `tb_atencion_medica` DISABLE KEYS */;
-INSERT INTO `tb_atencion_medica` VALUES (1,10,1,1,1,'Doc. Vet Corbalan',3,25,30,60,'OJOS AMARILLOS','',1,'2016-10-10',NULL);
+INSERT INTO `tb_atencion_medica` VALUES (1,10,35,1,1,'Doc. Vet Corbalan',3,25,30,60,'OJOS AMARILLOS','nada',1,'2016-10-10',NULL),(2,12,33,4,1,'Doc. Vet Corbalan',1,2,4,3,'algo','nada',1,'2017-03-31',NULL);
 /*!40000 ALTER TABLE `tb_atencion_medica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -352,8 +352,9 @@ CREATE TABLE `tb_diagnostico` (
   `idDIAG` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(255) DEFAULT NULL,
   `estado` int(11) DEFAULT '1',
+  `observacion` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idDIAG`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,7 +363,7 @@ CREATE TABLE `tb_diagnostico` (
 
 LOCK TABLES `tb_diagnostico` WRITE;
 /*!40000 ALTER TABLE `tb_diagnostico` DISABLE KEYS */;
-INSERT INTO `tb_diagnostico` VALUES (33,' ﻿Adenovirus',1),(34,'\r\nAleutiana (Parvovirus)',1),(36,'\r\nAnaplasma spp. ',1),(37,'\r\nAnemia infecciosa equina (Test de Coggins) ',1),(38,'\r\nArteritis viral equina ',1),(39,'\r\nAspergillus fumigatus ',1),(40,'\r\nBabesia  ',1),(41,'\r\nBabesia gibsoni ',1),(42,'\r\nBorrelia burgdorferi (enfermedad de Lyme) ',1),(43,'\r\nBorrelia C6 cuantitativa ',1),(44,'\r\nBorrelia Inmunoblot IgG',1),(45,'\r\nBrucella abortus  (caballo)',1),(46,'\r\nBrucella  ',1),(47,'\r\nBurkholderia mallei (Muermo) ',1),(48,'\r\nCalicivirus  ',1),(49,'\r\nChlamydophila ',1),(50,'\r\nChlamydophila psittaci ',1),(51,'\r\nCoronavirus entrico  ',1),(52,'\r\nCoronavirus  ',1),(53,'\r\nCoronavirus   + PTG',1),(54,'\r\nCryptococcus neoformans ',1),(55,'\r\nDirofilaria Immitis',1),(57,'\r\nEncephalitozoon cuniculi ',1),(58,'\r\nEnfermedad hemorragica del conejo (Calicivirus) ',1),(59,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA)',1),(60,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA) + Coronavirus ',1),(61,'\r\nHerpesvirus   + Calicivirus   + Panleucopenia  ',1),(62,'\r\nHerpesvirus  ',1),(63,'\r\nHerpesvirus  ',1),(64,'\r\nHistoplasma capsulatum ',1),(65,'\r\nInmunodeficiencia ',1),(66,'\r\nInmunodeficiencia ',1),(67,'\r\nLeishmania ',1),(68,'\r\nLeishmania  + Ehrlichia   + PTG',1),(69,'\r\nLeishmania  + PTG',1),(70,'\r\nLeptospirosis ',1),(71,'\r\nLeucemia ',1),(72,'\r\nMicrofilaria',1),(75,'\r\nMoquillo  ',1),(76,'\r\nMoquillo  IgG ',1),(77,'\r\nMoquillo  IgG + IgM ',1),(78,'\r\nMoquillo  IgM ',1),(79,'\r\nNeospora caninum ',1),(80,'\r\nPanleucopenia  ',1),(81,'\r\nPanleucopenia  X',1),(82,'\r\nParvovirus  ',1),(83,'\r\nParvovirus  X',1),(84,'\r\nPiroplasmosis equina (Babesia equi',1),(86,'\r\nRickettsia conorii ',1),(87,'\r\nRinoneumonitis equina (Herpesvirus 1+4) ',1),(88,'\r\nRotavirus ',1),(89,'\r\nSarcoptes scabiei ',1),(90,'\r\nToxoplasma ',1),(91,'\r\nToxoplasma X',1),(92,'\r\nToxoplasma Y',1),(93,'\r\nTrypanosoma equiperdum (Durina) ',1),(94,'\r\nTrypanosoma evansi ',1);
+INSERT INTO `tb_diagnostico` VALUES (33,' ﻿Adenovirus',1,NULL),(34,'\r\nAleutiana (Parvovirus)',1,'123'),(36,'\r\nAnaplasma spp. ',0,NULL),(37,'\r\nAnemia infecciosa equina (Test de Coggins) ',1,NULL),(38,'\r\nArteritis viral equina ',1,NULL),(39,'\r\nAspergillus fumigatus ',1,NULL),(40,'\r\nBabesia  ',1,NULL),(41,'\r\nBabesia gibsoni ',1,NULL),(42,'\r\nBorrelia burgdorferi (enfermedad de Lyme) ',1,NULL),(43,'\r\nBorrelia C6 cuantitativa ',1,NULL),(44,'\r\nBorrelia Inmunoblot IgG',1,NULL),(45,'\r\nBrucella abortus  (caballo)',1,NULL),(46,'\r\nBrucella  ',1,NULL),(47,'\r\nBurkholderia mallei (Muermo) ',1,NULL),(48,'\r\nCalicivirus  ',1,NULL),(49,'\r\nChlamydophila ',1,NULL),(50,'\r\nChlamydophila psittaci ',1,NULL),(51,'\r\nCoronavirus entrico  ',1,NULL),(52,'\r\nCoronavirus  ',1,NULL),(53,'\r\nCoronavirus   + PTG',1,NULL),(54,'\r\nCryptococcus neoformans ',1,NULL),(55,'\r\nDirofilaria Immitis',1,NULL),(57,'\r\nEncephalitozoon cuniculi ',1,NULL),(58,'\r\nEnfermedad hemorragica del conejo (Calicivirus) ',1,NULL),(59,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA)',1,NULL),(60,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA) + Coronavirus ',1,NULL),(61,'\r\nHerpesvirus   + Calicivirus   + Panleucopenia  ',1,NULL),(62,'\r\nHerpesvirus  ',1,NULL),(63,'\r\nHerpesvirus  ',1,NULL),(64,'\r\nHistoplasma capsulatum ',1,NULL),(65,'\r\nInmunodeficiencia ',1,NULL),(66,'\r\nInmunodeficiencia ',1,NULL),(67,'\r\nLeishmania ',1,NULL),(68,'\r\nLeishmania  + Ehrlichia   + PTG',1,NULL),(69,'\r\nLeishmania  + PTG',1,NULL),(70,'\r\nLeptospirosis ',1,NULL),(71,'\r\nLeucemia ',1,NULL),(72,'\r\nMicrofilaria',1,NULL),(75,'\r\nMoquillo  ',1,NULL),(76,'\r\nMoquillo  IgG ',1,NULL),(77,'\r\nMoquillo  IgG + IgM ',1,NULL),(78,'\r\nMoquillo  IgM ',1,NULL),(79,'\r\nNeospora caninum ',1,NULL),(80,'\r\nPanleucopenia  ',1,NULL),(81,'\r\nPanleucopenia  X',1,NULL),(82,'\r\nParvovirus  ',1,NULL),(83,'\r\nParvovirus  X',1,NULL),(84,'\r\nPiroplasmosis equina (Babesia equi',1,NULL),(86,'\r\nRickettsia conorii ',1,NULL),(87,'\r\nRinoneumonitis equina (Herpesvirus 1+4) ',1,NULL),(88,'\r\nRotavirus ',1,NULL),(89,'\r\nSarcoptes scabiei ',1,NULL),(90,'\r\nToxoplasma ',1,NULL),(91,'\r\nToxoplasma X',1,NULL),(92,'\r\nToxoplasma Y',1,NULL),(93,'\r\nTrypanosoma equiperdum (Durina) ',1,NULL),(94,'\r\nTrypanosoma evansi ',1,NULL),(95,'a',0,'b'),(96,'c',0,'d'),(97,'asd',0,'zxc');
 /*!40000 ALTER TABLE `tb_diagnostico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,8 +404,10 @@ DROP TABLE IF EXISTS `tb_especie`;
 CREATE TABLE `tb_especie` (
   `idEspecie` tinyint(4) NOT NULL AUTO_INCREMENT,
   `descripcionEspecie` varchar(50) NOT NULL,
+  `observacion` varchar(255) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT '1',
   PRIMARY KEY (`idEspecie`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -413,7 +416,7 @@ CREATE TABLE `tb_especie` (
 
 LOCK TABLES `tb_especie` WRITE;
 /*!40000 ALTER TABLE `tb_especie` DISABLE KEYS */;
-INSERT INTO `tb_especie` VALUES (1,'CANINO'),(2,'FELINO'),(3,'ROEDOR'),(4,'AVE'),(5,'OTROS');
+INSERT INTO `tb_especie` VALUES (1,'CANINO',NULL,1),(2,'FELINO',NULL,1),(3,'ROEDOR','',1),(4,'AVE',NULL,1),(5,'OTROS',NULL,1),(7,'asdasd','123123213',0);
 /*!40000 ALTER TABLE `tb_especie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -702,10 +705,12 @@ CREATE TABLE `tb_raza` (
   `idRaza` tinyint(4) NOT NULL AUTO_INCREMENT,
   `descripcionRaza` varchar(50) NOT NULL,
   `idEspecie` tinyint(4) NOT NULL,
+  `observacion` varchar(255) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT '1',
   PRIMARY KEY (`idRaza`),
   KEY `fk_raza_especie` (`idEspecie`),
   CONSTRAINT `fk_raza_especie` FOREIGN KEY (`idEspecie`) REFERENCES `tb_especie` (`idEspecie`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -714,7 +719,7 @@ CREATE TABLE `tb_raza` (
 
 LOCK TABLES `tb_raza` WRITE;
 /*!40000 ALTER TABLE `tb_raza` DISABLE KEYS */;
-INSERT INTO `tb_raza` VALUES (1,'PITBUL',1),(2,'SIBERIANO',1),(3,'BOXER',1),(4,'Chow Chow',1),(5,'Cairn Terrier',1),(6,'San Bernardo',1),(7,'Shih Tzu',1),(8,'Pekines',1),(9,'Pastor Aleman',1),(10,'Schnauzer',1),(11,'Persa',2),(12,'Coon Maine',2),(13,'Siameses',2),(14,'Ragdoll',2),(15,'Oriental',2);
+INSERT INTO `tb_raza` VALUES (1,'PITBUL',1,NULL,1),(2,'SIBERIANO',1,NULL,1),(3,'BOXER',1,NULL,1),(4,'Chow Chow',1,NULL,1),(5,'Cairn Terrier',1,NULL,1),(6,'San Bernardo',1,NULL,1),(7,'Shih Tzu',1,NULL,1),(8,'Pekines',1,NULL,1),(9,'Pastor Aleman',1,NULL,1),(10,'Schnauzer',1,'',1),(11,'Persa',2,NULL,1),(12,'Coon Maine',2,NULL,1),(13,'Siameses',2,NULL,1),(14,'Ragdoll',2,NULL,1),(15,'Oriental',2,NULL,1),(16,'asdasd',5,'32423423423',0);
 /*!40000 ALTER TABLE `tb_raza` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -813,10 +818,6 @@ LOCK TABLES `tb_tipodocumento` WRITE;
 INSERT INTO `tb_tipodocumento` VALUES (1,'DNI'),(2,'RUC'),(3,'CARNET EXTRANJERIA'),(4,'PASAPORTE'),(5,'OTROS');
 /*!40000 ALTER TABLE `tb_tipodocumento` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'bd_petcenter'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -827,4 +828,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-21  0:43:32
+-- Dump completed on 2017-03-31 21:00:10

@@ -1,9 +1,12 @@
 package com.petcenter.dto;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class DatosClienteMascota {
+public class DatosClienteMascota implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	private int idHC;
 	private int idCliente; 
 	private String descDoc;

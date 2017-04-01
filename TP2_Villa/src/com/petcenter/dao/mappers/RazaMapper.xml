@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petcenter.dao.spec.RazaMapper">
+
+  <insert id="registrarRaza" parameterType="Raza" useGeneratedKeys="true" keyProperty="idRaza" keyColumn="idRaza">
+    INSERT INTO tb_raza
+		(descripcionRaza,
+		observacion,
+		idEspecie)
+	VALUES
+		(#{descripcionRaza},
+		#{observacion},
+		#{idEspecie})
+  </insert>
+  
+  <select id="listaRaza" parameterType="java.util.HashMap" resultType="Raza">
+    SELECT r.idRaza,
+    		r.descripcionRaza,
+    		r.observacion,
+            e.descripcionEspecie
+	FROM tb_raza r INNER JOIN tb_especie e
+		ON r.idEspecie=e.idEspecie
+	WHERE r.estado=1
+	<if test="idRAZA != ''">
+		AND idRaza=#{idRAZA}
+	</if>	  	
+	<if test="DESC != ''">
+	   	AND descripcionRaza like '%${DESC}%'
+	</if>	  	
+  </select>  
+  
+  <select id="verRaza" parameterType="int" resultType="Raza">
+    SELECT idRaza,
+    		descripcionRaza,
+    		observacion,
+    		idEspecie
+	FROM tb_raza
+	WHERE estado=1
+		AND idRaza=#{idRAZA}
+  </select>
+  
+  <update id="eliminarRaza" parameterType="int">
+  	UPDATE tb_raza 
+  	SET estado=0
+  	WHERE idRaza=#{idRAZA}
+  </update>
+  
+  <update id="actualizarRaza" parameterType="java.util.HashMap">
+  	UPDATE tb_raza 
+  	SET observacion=#{observacion}, idEspecie=#{idEspecie} 
+  	WHERE idRaza=#{idRAZA}
+  </update>
+  
+</mapper>

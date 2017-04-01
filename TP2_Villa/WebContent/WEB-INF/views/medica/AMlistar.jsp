@@ -91,13 +91,13 @@ function buscar(){
 	            		<td style="text-align: center;">${AM.registrado}</td>
 	            		<td style="text-align: center;">${AM.actualizado}</td>
 	            		<td style="text-align: center;">
-	            			<a href="#" onclick="">Medicación</a>
+	            			<a href="javascript:void(0);" onclick="">Medicación</a>
 	            		</td>
 	            		<td style="text-align: center;">
-	            			<a href="#" onclick="">Resultado Orden Médica</a>
+	            			<a href="javascript:void(0);" onclick="">Resultado Orden Médica</a>
 	            		</td>
 	            		<td style="text-align: center;">
-	            			<a href="#" onclick="detalle(${AM.idAM});">Ver Detalle</a>
+	            			<a href="javascript:void(0);" onclick="detalle(${AM.idAM});">Ver Detalle</a>
 	            		</td>
 	            		<td style="text-align: center;">
 	            			<a href="javascript:void(0);" onclick="eliminar(${AM.idAM});">Eliminar</a>

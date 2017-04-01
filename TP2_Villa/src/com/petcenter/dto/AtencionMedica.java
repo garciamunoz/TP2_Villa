@@ -1,9 +1,12 @@
 package com.petcenter.dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class AtencionMedica {
+public class AtencionMedica implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	private int idAM;
 	private int idHC;
 	private int idDIAG;

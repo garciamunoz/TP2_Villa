@@ -1,9 +1,15 @@
 package com.petcenter.dto;
 
-public class Diagnostico {
+import java.io.Serializable;
 
+public class Diagnostico implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private int idDIAG;
 	private String descripcion;
+	private String observacion;
+	
 	public int getIdDIAG() {
 		return idDIAG;
 	}
@@ -16,8 +22,14 @@ public class Diagnostico {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	public String getObservacion() {
+		return observacion;
+	}
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
 	@Override
 	public String toString() {
-		return "Diagnostico [idDIAG=" + idDIAG + ", descripcion=" + descripcion + "]";
+		return "Diagnostico [idDIAG=" + idDIAG + ", descripcion=" + descripcion + ", observacion=" + observacion + "]";
 	}
 }
