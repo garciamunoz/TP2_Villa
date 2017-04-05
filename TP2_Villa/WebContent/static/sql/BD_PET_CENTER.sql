@@ -719,8 +719,73 @@ CREATE TABLE `tb_raza` (
 
 LOCK TABLES `tb_raza` WRITE;
 /*!40000 ALTER TABLE `tb_raza` DISABLE KEYS */;
-INSERT INTO `tb_raza` VALUES (1,'PITBUL',1,NULL,1),(2,'SIBERIANO',1,NULL,1),(3,'BOXER',1,NULL,1),(4,'Chow Chow',1,NULL,1),(5,'Cairn Terrier',1,NULL,1),(6,'San Bernardo',1,NULL,1),(7,'Shih Tzu',1,NULL,1),(8,'Pekines',1,NULL,1),(9,'Pastor Aleman',1,NULL,1),(10,'Schnauzer',1,'',1),(11,'Persa',2,NULL,1),(12,'Coon Maine',2,NULL,1),(13,'Siameses',2,NULL,1),(14,'Ragdoll',2,NULL,1),(15,'Oriental',2,NULL,1),(16,'asdasd',5,'32423423423',0);
+INSERT INTO `tb_raza` VALUES (1,'PITBUL',1,NULL,1),(2,'SIBERIANO',1,NULL,1),(3,'BOXER',1,NULL,1),(4,'Chow Chow',1,NULL,1),(5,'Cairn Terrier',1,NULL,1),(6,'San Bernardo',1,NULL,1),(7,'Shih Tzu',1,NULL,1),(8,'Pekines',1,NULL,1),(9,'Pastor Aleman',1,NULL,1),(10,'Schnauzer',1,'',1),(11,'Persa',2,NULL,1),(12,'Coon Maine',2,NULL,1),(13,'Siameses',2,NULL,1),(14,'Ragdoll',2,NULL,1),(15,'Oriental',4,'',1),(16,'asdasd',5,'32423423423',0);
 /*!40000 ALTER TABLE `tb_raza` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_receta`
+--
+
+DROP TABLE IF EXISTS `tb_receta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_receta` (
+  `idReceta` int(11) NOT NULL AUTO_INCREMENT,
+  `idAM` int(11) NOT NULL,
+  `observacion` varchar(255) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT '1',
+  `actualizado` date DEFAULT NULL,
+  `registrado` date DEFAULT NULL,
+  PRIMARY KEY (`idReceta`),
+  KEY `fk_receta_am_idx` (`idAM`),
+  CONSTRAINT `fk_receta_am` FOREIGN KEY (`idAM`) REFERENCES `tb_atencion_medica` (`idAM`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_receta`
+--
+
+LOCK TABLES `tb_receta` WRITE;
+/*!40000 ALTER TABLE `tb_receta` DISABLE KEYS */;
+INSERT INTO `tb_receta` VALUES (1,1,'prueba receta',1,NULL,NULL),(2,1,'prueba receta 2',0,'2017-04-04','2017-04-04'),(3,1,'as',0,'2017-04-04','2017-04-04'),(4,1,'un poco de fiebre',1,NULL,'2017-04-04');
+/*!40000 ALTER TABLE `tb_receta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_receta_detalle`
+--
+
+DROP TABLE IF EXISTS `tb_receta_detalle`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_receta_detalle` (
+  `idRecetaDetalle` int(11) NOT NULL AUTO_INCREMENT,
+  `idReceta` int(11) NOT NULL,
+  `nombreMedicamento` varchar(255) DEFAULT NULL,
+  `via` varchar(255) DEFAULT NULL,
+  `dosis` varchar(255) DEFAULT NULL,
+  `indicacion` varchar(255) DEFAULT NULL,
+  `duracion` varchar(255) DEFAULT NULL,
+  `cantidad` varchar(255) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT '1',
+  `actualizado` date DEFAULT NULL,
+  `registrado` date DEFAULT NULL,
+  PRIMARY KEY (`idRecetaDetalle`),
+  KEY `fk_detalle_receta_idx` (`idReceta`),
+  CONSTRAINT `fk_detalle_receta` FOREIGN KEY (`idReceta`) REFERENCES `tb_receta` (`idReceta`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_receta_detalle`
+--
+
+LOCK TABLES `tb_receta_detalle` WRITE;
+/*!40000 ALTER TABLE `tb_receta_detalle` DISABLE KEYS */;
+INSERT INTO `tb_receta_detalle` VALUES (1,1,'AMOXICILINA','ORAL','1 TABLETA','CADA 8 HORAS','5 DIAS','15',1,NULL,NULL),(2,1,'DEXAMETOSA','ORAL','1 PASTILLA','CADA 12 HORAS','5 DIAS','10',1,NULL,NULL),(3,1,'CETERIZINA','ORAL','1 CAPSULA','POR LAS MAÑANAS','3 DIAS','3',1,NULL,NULL),(4,3,'1','2','3','4','5','6',0,'2017-04-04','2017-04-04'),(5,4,'DOLOCORLADRAN','ORAL','1 CAPSULA','CADA 24 HORAS','3 DIAS','5',1,NULL,'2017-04-04'),(6,4,'BROXOL','ORAL','1 PASTILLA','POR LA MAÃANA','1 SEMANA','7',1,NULL,'2017-04-04');
+/*!40000 ALTER TABLE `tb_receta_detalle` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -828,4 +893,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-31 21:00:10
+-- Dump completed on 2017-04-05  1:19:26

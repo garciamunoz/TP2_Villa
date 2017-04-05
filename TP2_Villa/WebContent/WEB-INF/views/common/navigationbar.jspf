@@ -25,6 +25,8 @@
           <li><a href="/TP2_Villa/HC/listar"><spring:message code="navbar.sub.opc.mod.at.uc.first"/></a></li>
           <li><a href="/TP2_Villa/AM/inicio"><spring:message code="navbar.sub.opc.mod.at.uc.second"/></a></li>
           <li><a href="/TP2_Villa/DIAG/inicio"><spring:message code="navbar.sub.opc.mod.at.uc.third"/></a></li>
+          <li><a href="/TP2_Villa/RM/inicio">Gestionar Receta Médica</a></li>
+          <li><a href="/TP2_Villa/RM/inicio">Gestionar Procedimiento</a></li>
         </ul>
       </li>
     </ul>
