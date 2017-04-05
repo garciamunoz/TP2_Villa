@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- GIANMARCO MALEX TRILLO -->
+<mapper namespace="com.petcenter.dao.spec.RecetaMapper">
+
+  <insert id="registrarReceta" parameterType="Receta" useGeneratedKeys="true" keyProperty="idReceta" keyColumn="idReceta">
+    INSERT INTO tb_receta
+		(idAM,
+		observacion,
+		registrado)
+	VALUES
+		(#{idAM},
+		#{observacion},
+		SYSDATE())
+  </insert>
+  
+  <insert id="registrarRecetaDetalle" parameterType="RecetaDetalle" useGeneratedKeys="true" keyProperty="idRecetaDetalle" keyColumn="idRecetaDetalle">
+    INSERT INTO tb_receta_detalle
+		(idReceta,
+		nombreMedicamento,
+		via,
+		dosis,
+		indicacion,
+		duracion,
+		cantidad,
+		registrado)
+	VALUES
+		(#{idReceta},
+		#{nombreMedicamento},
+		#{via},
+		#{dosis},
+		#{indicacion},
+		#{duracion},
+		#{cantidad},
+		SYSDATE())
+  </insert>
+  
+  <select id="listaReceta" parameterType="java.util.HashMap" resultType="Receta">
+    SELECT distinct r.idReceta,
+    		r.idAM,
+    		r.observacion,
+    		r.registrado
+	FROM tb_receta r inner join tb_atencion_medica am
+	WHERE r.estado=1 and am.estadoAM=1
+	<if test="idReceta != ''">
+		AND r.idReceta=#{idReceta}
+	</if>	  	
+	<if test="idAM != ''">
+	   	AND r.idAM=#{idAM}
+	</if>	  	
+  </select>  
+  
+  <select id="listaRecetaDetalle" parameterType="java.util.HashMap" resultType="RecetaDetalle">
+    SELECT idRecetaDetalle,
+		    idReceta,
+		    nombreMedicamento,
+		    via,
+		    dosis,
+		    indicacion,
+		    duracion,
+		    cantidad,
+		    estado,
+		    actualizado,
+		    registrado
+	FROM tb_receta_detalle
+	WHERE estado=1
+	<if test="idReceta != ''">
+		AND idReceta=#{idReceta}
+	</if>	  	
+  </select>  
+  
+  <select id="verReceta" parameterType="int" resultType="Receta">
+    SELECT idReceta,
+    		idAM,
+    		observacion
+	FROM tb_receta
+	WHERE estado=1
+		AND idReceta=#{idReceta}
+  </select>
+  
+  <update id="eliminarReceta" parameterType="int">
+  	UPDATE tb_receta 
+  	SET estado=0, actualizado=SYSDATE()
+  	WHERE idReceta=#{idReceta}
+  </update>
+  
+  <update id="eliminarRecetaDetalle" parameterType="int">
+  	UPDATE tb_receta_detalle 
+  	SET estado=0, actualizado=SYSDATE()
+  	WHERE idReceta=#{idReceta}
+  </update>
+  
+  <update id="actualizarReceta" parameterType="java.util.HashMap">
+  	UPDATE tb_receta 
+  	SET observacion=#{observacion}
+  	WHERE idReceta=#{idReceta}
+  </update>
+  
+</mapper>
