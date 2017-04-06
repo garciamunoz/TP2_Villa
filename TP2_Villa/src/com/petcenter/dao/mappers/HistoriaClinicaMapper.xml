@@ -39,11 +39,11 @@
   
   <select id="listaHC" parameterType="java.util.HashMap" resultType="HistoriaClinica">
     SELECT 
-	idHC,
+	hc.idHC,
     nomCliente as 'datosCliente',
     nomMascota as 'datosMascota',
-    registrado,
-    actualizado
+    hc.registrado,
+    hc.actualizado
 	FROM tb_historia_clinica hc inner join tb_cliente cli
 		 on hc.idCliente=cli.idCliente inner join tb_mascota mas
 	     on hc.idMascota=mas.idMascota

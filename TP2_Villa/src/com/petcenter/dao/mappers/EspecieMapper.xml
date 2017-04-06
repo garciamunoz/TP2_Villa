@@ -7,16 +7,20 @@
   <insert id="registrarEspecie" parameterType="Especie" useGeneratedKeys="true" keyProperty="idEspecie" keyColumn="idEspecie">
     INSERT INTO tb_Especie
 		(descripcionEspecie,
-		observacion)
+		observacion,
+		registrado)
 	VALUES
 		(#{descripcionEspecie},
-		#{observacion})
+		#{observacion},
+		SYSDATE())
   </insert>
   
   <select id="listaEspecie" parameterType="java.util.HashMap" resultType="Especie">
     SELECT idEspecie,
     		descripcionEspecie,
-    		observacion
+    		observacion,
+    		actualizado,
+    		registrado
 	FROM tb_Especie
 	WHERE estado=1
 	<if test="idESPE != ''">
@@ -38,13 +42,13 @@
   
   <update id="eliminarEspecie" parameterType="int">
   	UPDATE tb_especie 
-  	SET estado=0
+  	SET estado=0, actualizado=SYSDATE()
   	WHERE idEspecie=#{idESPE}
   </update>
   
   <update id="actualizarEspecie" parameterType="java.util.HashMap">
   	UPDATE tb_especie 
-  	SET observacion=#{observacion}
+  	SET observacion=#{observacion}, actualizado=SYSDATE()
   	WHERE idEspecie=#{idESPE}
   </update>
   

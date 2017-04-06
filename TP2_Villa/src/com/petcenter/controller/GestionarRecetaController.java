@@ -1,5 +1,6 @@
 package com.petcenter.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -101,11 +102,11 @@ public class GestionarRecetaController {
 				return mav;
 			}
 			
-			List<Receta> listaRM = recetaService.listaReceta(String.valueOf(receta.getIdReceta()), "");
+			List<Receta> listaRM = recetaService.listaReceta("", String.valueOf(receta.getIdAM()));
 			
 			request.getSession().setAttribute("listaRM", listaRM);
-			request.getSession().setAttribute("txtRM", String.valueOf(receta.getIdReceta()));
-			request.getSession().setAttribute("txtAM", null);
+			request.getSession().setAttribute("txtRM", null);
+			request.getSession().setAttribute("txtAM", String.valueOf(receta.getIdAM()));
 			
 			mav.addObject("mensaje", "Se registró la Receta Médica con código: "+receta.getIdReceta());
 			
@@ -122,18 +123,18 @@ public class GestionarRecetaController {
 		ModelAndView mav = new ModelAndView("medica/RMlistar");
 		try {
 
-			String idDIAD = request.getParameter("hdnRM");
+			String idRM = request.getParameter("hdnRM");
 			String observacion = request.getParameter("txtOBS");
 			
-			int resultado = recetaService.actualizarReceta(Integer.parseInt(idDIAD), observacion);
+			int resultado = recetaService.actualizarReceta(Integer.parseInt(idRM), observacion);
 			if(resultado > 0){
-				List<Receta> listaRM = recetaService.listaReceta(idDIAD, "");
+				List<Receta> listaRM = recetaService.listaReceta(idRM, "");
 				
 				request.getSession().setAttribute("listaRM", listaRM);
-				request.getSession().setAttribute("txtRM", idDIAD);
+				request.getSession().setAttribute("txtRM", idRM);
 				request.getSession().setAttribute("txtAM", null);
 				
-				mav.addObject("mensaje", "Se actualizó la Receta Médica con código: "+idDIAD);
+				mav.addObject("mensaje", "Se actualizó la Receta Médica con código: "+idRM);
 			}else{
 				throw new Exception();
 			}
@@ -221,6 +222,8 @@ public class GestionarRecetaController {
 
 	@RequestMapping(value = "/validar", method = RequestMethod.GET)
 	public @ResponseBody List<Receta> validar(@RequestParam String txtAM){
+		if(null == txtAM || txtAM.equals(""))return new ArrayList<Receta>();
+		
 		List<Receta> listaRM = recetaService.listaReceta("", txtAM);
 		return listaRM;
 	}

@@ -8,16 +8,20 @@
   <insert id="registrarDiagnostico" parameterType="Diagnostico" useGeneratedKeys="true" keyProperty="idDIAG" keyColumn="idDIAG">
     INSERT INTO tb_diagnostico
 		(descripcion,
-		observacion)
+		observacion,
+		registrado)
 	VALUES
 		(#{descripcion},
-		#{observacion})
+		#{observacion},
+		SYSDATE())
   </insert>
   
   <select id="listaDiagnostico" parameterType="java.util.HashMap" resultType="Diagnostico">
     SELECT idDIAG,
     		descripcion,
-    		observacion
+    		observacion,
+    		actualizado,
+    		registrado
 	FROM tb_diagnostico
 	WHERE estado=1
 	<if test="idDIAG != ''">
@@ -39,13 +43,13 @@
   
   <update id="eliminarDiagnostico" parameterType="int">
   	UPDATE tb_diagnostico 
-  	SET estado=0
+  	SET estado=0, actualizado=SYSDATE()
   	WHERE idDIAG=#{idDIAG}
   </update>
   
   <update id="actualizarDiagnostico" parameterType="java.util.HashMap">
   	UPDATE tb_diagnostico 
-  	SET observacion=#{observacion}
+  	SET observacion=#{observacion}, actualizado=SYSDATE()
   	WHERE idDIAG=#{idDIAG}
   </update>
   

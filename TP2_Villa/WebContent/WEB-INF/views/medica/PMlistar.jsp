@@ -18,8 +18,8 @@ $(function() {
           $( this ).dialog( "close" );
         },
         "Eliminar": function() {
-        	$('#formESPE').attr('action',"/TP2_Villa/ESPE/eliminar");
-        	$('#formESPE').submit();
+        	$('#formPM').attr('action',"/TP2_Villa/PM/eliminar");
+        	$('#formPM').submit();
         }
       }
     });
@@ -27,30 +27,30 @@ $(function() {
  });
 
 function registrar(){
-	$('#formESPE').attr('action',"/TP2_Villa/ESPE/cargarRegistrar");
-	$('#formESPE').submit();
+	$('#formPM').attr('action',"/TP2_Villa/PM/cargarRegistrar");
+	$('#formPM').submit();
 }
 
 function limpiar(){
-	$('#formESPE').attr('action',"/TP2_Villa/ESPE/limpiar");
-	$('#formESPE').submit();
+	$('#formPM').attr('action',"/TP2_Villa/PM/limpiar");
+	$('#formPM').submit();
 }
 
 function detalle(id){
-	$('#idESPE').val(id);
-	$('#formESPE').attr('action',"/TP2_Villa/ESPE/detalle");
-	$('#formESPE').submit();
+	$('#idPM').val(id);
+	$('#formPM').attr('action',"/TP2_Villa/PM/detalle");
+	$('#formPM').submit();
 }
 
 function eliminar(id){
-	$('#idESPE').val(id);
-	$('#spnESPE').text(id);
+	$('#idPM').val(id);
+	$('#spnPM').text(id);
 	$('#dialog-confirm').dialog('open');
 }
 
 function buscar(){
-	$('#formESPE').attr('action',"/TP2_Villa/ESPE/cargarBuscar");
-	$('#formESPE').submit();
+	$('#formPM').attr('action',"/TP2_Villa/PM/cargarBuscar");
+	$('#formPM').submit();
 }
 
 </script>
@@ -58,11 +58,11 @@ function buscar(){
 
 <div class="container">
 	<div class="page-header">
-       <h1>Gestionar Especie</h1>
+       <h1>Gestionar Procedimiento Médico</h1>
     </div>
 
-	<form class="form-horizontal" action="" id="formESPE" method="POST">
-	<input type="hidden" id="idESPE" name="idESPE" value="" />
+	<form class="form-horizontal" action="" id="formPM" method="POST">
+	<input type="hidden" id="idPM" name="idPM" value="" />
 
     <div class="form-group">
         <input type="button" class="btn btn-default" value="BUSCAR" onclick="buscar();"/>
@@ -74,25 +74,31 @@ function buscar(){
 		<table class="table table-hover table-bordered" border="1">
         	<thead style="background-color: #bce8f1;">
             	<tr>
-                	<th style="text-align: center;">CÓDIGO ESPECIE</th>
-                	<th style="text-align: center;">DESCRIPCIÓN</th>
+                	<th style="text-align: center;">CÓDIGO PROCEDIMIENTO MÉDICO</th>
+                	<th style="text-align: center;">CODIGO ATENCIÓN MÉDICA</th>
+                	<th style="text-align: center;">TIPO PROCEDIMIENTO</th>
+                	<th style="text-align: center;">ACTUALIZADO</th>
+                	<th style="text-align: center;">REGISTRADO</th>
                 	<th style="text-align: center;" colspan="2">ACCIÓN</th>
                 </tr>
             </thead>
             <tbody>
-            	<c:forEach var="ESPE" items="${listaESPE}">
+            	<c:forEach var="PM" items="${listaPM}">
 	            	<tr>
-	            		<td style="text-align: center;">${ESPE.idEspecie}</td>
-	            		<td style="text-align: center;">${ESPE.descripcionEspecie}</td>
+	            		<td style="text-align: center;">${PM.idProcedimiento}</td>
+	            		<td style="text-align: center;">${PM.idAM}</td>
+	            		<td style="text-align: center;">${PM.tipoProcedimiento}</td>
+	            		<td style="text-align: center;">${PM.actualizado}</td>
+	            		<td style="text-align: center;">${PM.registrado}</td>
 	            		<td style="text-align: center;">
-	            			<a href="javascript:void(0);" onclick="detalle(${ESPE.idEspecie});">Actualizar</a>
+	            			<a href="javascript:void(0);" onclick="detalle(${PM.idProcedimiento});">Actualizar</a>
 	            		</td>
 	            		<td style="text-align: center;">
-	            			<a href="javascript:void(0);" onclick="eliminar(${ESPE.idEspecie});">Eliminar</a>
+	            			<a href="javascript:void(0);" onclick="eliminar(${PM.idProcedimiento});">Eliminar</a>
 	            		</td>
 	            	</tr>
             	</c:forEach>
-            	<c:if test="${empty listaESPE}">
+            	<c:if test="${empty listaPM}">
             		<tr><td colspan="9" style="text-align: center;">
             			No hay datos para mostrar.
             		</td></tr>
@@ -110,7 +116,7 @@ function buscar(){
 </form>
 
 <div id="dialog-confirm" title="Mensaje" style="display: none;">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>¿Está seguro de eliminar la ESPECIE con código <span id="spnESPE">999</span>?</p>
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>¿Está seguro de eliminar el Procedimiento Médico con código <span id="spnPM">999</span>?</p>
 </div>
 
 </div>

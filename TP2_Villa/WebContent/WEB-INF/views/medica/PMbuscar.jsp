@@ -7,13 +7,13 @@
 <script type="text/javascript">
 
 function buscar(){
-	$('#formBESPE').attr('action',"/TP2_Villa/ESPE/buscar");
-	$('#formBESPE').submit();
+	$('#formBPM').attr('action',"/TP2_Villa/PM/buscar");
+	$('#formBPM').submit();
 }
 
 function regresar(){
-	$('#formBESPE').attr('action',"/TP2_Villa/ESPE/inicio");
-	$('#formBESPE').submit();
+	$('#formBPM').attr('action',"/TP2_Villa/PM/inicio");
+	$('#formBPM').submit();
 }
 
 </script>
@@ -21,22 +21,22 @@ function regresar(){
 
 <div class="container">
 	<div class="page-header" align="center">
-       <h1>Buscar Especie</h1>
+       <h1>Buscar Procedimiento Médico</h1>
     </div>
 
-	<form class="form-horizontal" action="" id="formBESPE" method="POST">
+	<form class="form-horizontal" action="" id="formBPM" method="POST">
 
     <div class="row">
     	<div class="form-group">
-	        <label class="control-label col-sm-3 col-xs-3" for="txtESPE">CÓDIGO ESPECIE:</label>
+	        <label class="control-label col-sm-3 col-xs-3" for="txtPM">CÓDIGO PROCEDIMIENTO MÉDICO:</label>
 	        <div class="col-sm-3 col-xs-3">
-	        	<input type="text" id="txtESPE" name="txtESPE" class="form-control"/>
+	        	<input type="text" id="txtPM" name="txtPM" class="form-control"/>
 	        </div>
 	    </div>
     	<div class="form-group">
-	        <label class="control-label col-sm-3 col-xs-3" for="txtDESC">DESCRIPCIÓN:</label>
+	        <label class="control-label col-sm-3 col-xs-3" for="txtAM">CÓDIGO ATENCIÓN MÉDICA:</label>
 	        <div class="col-sm-3 col-xs-3">
-	            <input type="text" id="txtDESC" name="txtDESC" class="form-control"/>
+	            <input type="text" id="txtAM" name="txtAM" class="form-control"/>
 	        </div>
 	    </div>
     </div>

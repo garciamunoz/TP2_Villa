@@ -21,6 +21,8 @@
 	    </layout>
 	</appender>
 
+	<logger name="com.petcenter.dao.mappers" level="DEBUG"/>
+
 	<root>
 		<level value="INFO" />
 		<appender-ref ref="console" />

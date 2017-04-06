@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petcenter.dao.spec.ClienteMapper">
+
+  <insert id="registrarCliente" parameterType="Cliente" useGeneratedKeys="true" keyProperty="idCliente" keyColumn="idCliente">
+    INSERT INTO tb_cliente
+		(codCliente,
+		idTipoCliente,
+		idTipoDocumento,
+		nroDocumento,
+		nomCliente,
+		apePaternoCliente,
+		apeMaternoCliente,
+		idGeneroCliente,
+		fecNacCliente,
+		idSede,
+		idDistrito,
+		direcCliente,
+		celCliente,
+		telfDomCliente,
+		telfTraCliente,
+		indNotificaciones,
+		correoElectCliente,
+		estadoCliente)
+	VALUES
+		(#{codCliente},
+		#{idTipoCliente},
+		#{idTipoDocumento},
+		#{nroDocumento},
+		#{nomCliente},
+		#{apePaternoCliente},
+		#{apeMaternoCliente},
+		#{idGeneroCliente},
+		#{fecNacCliente},
+		#{idSede},
+		#{idDistrito},
+		#{direcCliente},
+		#{celCliente},
+		#{telfDomCliente},
+		#{telfTraCliente},
+		#{indNotificaciones},
+		#{correoElectCliente},
+		1)
+  </insert>
+  
+  <select id="listaCliente" parameterType="java.util.HashMap" resultType="Cliente">
+    SELECT c.idCliente,
+	    c.codCliente,
+	    c.idTipoCliente,
+	    c.idTipoDocumento,
+	    c.nroDocumento,
+	    c.nomCliente,
+	    c.apePaternoCliente,
+	    c.apeMaternoCliente,
+	    c.idGeneroCliente,
+	    c.fecNacCliente,
+	    c.idSede,
+	    c.idDistrito,
+	    c.direcCliente,
+	    c.celCliente,
+	    c.telfDomCliente,
+	    c.telfTraCliente,
+	    c.indNotificaciones,
+	    c.correoElectCliente,
+	    c.estadoCliente,
+        tc.descripcionTipoCliente,
+        concat(td.descripcionTipoDocumento,' - ',c.nroDocumento) as documentoCompleto,
+        concat(c.nomCliente,' ',c.apePaternoCliente,' ',c.apeMaternoCliente) as nombreCompleto
+	FROM tb_cliente c inner join tb_tipocliente tc
+			on c.idTipoCliente=tc.idTipoCliente
+			inner join tb_tipodocumento td
+            on c.idTipoDocumento=td.idTipoDocumento
+    WHERE c.estadoCliente=1 
+	<if test="idTipoDocumento != ''">
+		AND c.idTipoDocumento=#{idTipoDocumento}
+	</if>	  	
+	<if test="nroDocumento != ''">
+	   	AND c.nroDocumento=#{nroDocumento}
+	</if>  	
+	<if test="codCliente != ''">
+	   	AND (c.codCliente=#{codCliente} OR c.idCliente=#{codCliente})
+	</if>  	
+	<if test="nomCliente != ''">
+	   	AND c.nomCliente like '%${nomCliente}%'
+	</if>  	
+	<if test="apePaternoCliente != ''">
+	   	AND c.apePaternoCliente like '%${apePaternoCliente}%'
+	</if>  	
+	<if test="apeMaternoCliente != ''">
+	   	AND c.apeMaternoCliente like '%${apeMaternoCliente}%' 
+	</if>					  	
+  </select>  
+  
+  <select id="verCliente" parameterType="int" resultType="Cliente">
+    SELECT idCliente,
+	    codCliente,
+	    idTipoCliente,
+	    idTipoDocumento,
+	    nroDocumento,
+	    nomCliente,
+	    apePaternoCliente,
+	    apeMaternoCliente,
+	    idGeneroCliente,
+	    fecNacCliente,
+	    idSede,
+	    idDistrito,
+	    direcCliente,
+	    celCliente,
+	    telfDomCliente,
+	    telfTraCliente,
+	    indNotificaciones,
+	    correoElectCliente,
+	    estadoCliente
+	FROM tb_cliente
+	WHERE estadoCliente=1 AND idCliente=#{idCliente}
+  </select>
+  
+  <update id="eliminarCliente" parameterType="int">
+  	UPDATE tb_cliente 
+  	SET estadoCliente=0
+  	WHERE idCliente=#{idCliente}
+  </update>
+  
+  <update id="actualizarCliente" parameterType="Cliente">
+  	UPDATE tb_cliente
+	SET
+		codCliente = #{codCliente},
+		idTipoCliente = #{idTipoCliente},
+		idTipoDocumento = #{idTipoDocumento},
+		nroDocumento = #{nroDocumento},
+		nomCliente = #{nomCliente},
+		apePaternoCliente = #{apePaternoCliente},
+		apeMaternoCliente = #{apeMaternoCliente},
+		idGeneroCliente = #{idGeneroCliente},
+		fecNacCliente = #{fecNacCliente},
+		idSede = #{idSede},
+		idDistrito = #{idDistrito},
+		direcCliente = #{direcCliente},
+		celCliente = #{celCliente},
+		telfDomCliente = #{telfDomCliente},
+		telfTraCliente = #{telfTraCliente},
+		indNotificaciones = #{indNotificaciones},
+		correoElectCliente = #{correoElectCliente}
+	WHERE idCliente=#{idCliente}
+  </update>
+  
+</mapper>

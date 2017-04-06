@@ -15,8 +15,11 @@
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><spring:message code="navbar.opc.mod.pac"/><span class="caret"></span></a>
         <ul class="dropdown-menu">
+          <li><a href="/TP2_Villa/CLI/inicio">Gestionar Cliente</a></li>
+          <li><a href="/TP2_Villa/MA/inicio">Gestionar Mascota</a></li>
           <li><a href="/TP2_Villa/ESPE/inicio">Gestionar Especies</a></li>
           <li><a href="/TP2_Villa/RAZA/inicio">Gestionar Raza</a></li>
+          <li><a href="/TP2_Villa/SCM/inicio">Gestionar Monitoreo y Control de Mascotas</a></li>
         </ul>
       </li>
       
@@ -26,7 +29,7 @@
           <li><a href="/TP2_Villa/AM/inicio"><spring:message code="navbar.sub.opc.mod.at.uc.second"/></a></li>
           <li><a href="/TP2_Villa/DIAG/inicio"><spring:message code="navbar.sub.opc.mod.at.uc.third"/></a></li>
           <li><a href="/TP2_Villa/RM/inicio">Gestionar Receta Médica</a></li>
-          <li><a href="/TP2_Villa/RM/inicio">Gestionar Procedimiento</a></li>
+          <li><a href="/TP2_Villa/PM/inicio">Gestionar Procedimiento</a></li>
         </ul>
       </li>
     </ul>

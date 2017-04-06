@@ -37,6 +37,13 @@
               <directory>${project.build.sourceDirectory}</directory>
               <targetPath>sources</targetPath>
             </resource>
+            <resource>
+	              <directory>${project.build.sourceDirectory}</directory>
+	              <targetPath>WEB-INF/classes</targetPath>
+				  <includes>
+	              	<include>**/*.xml</include>
+	              </includes>
+	        </resource>
           </webResources>
         </configuration>
       </plugin>

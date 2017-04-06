@@ -76,6 +76,8 @@ function buscar(){
             	<tr>
                 	<th style="text-align: center;">CÓDIGO ESPECIE</th>
                 	<th style="text-align: center;">DESCRIPCIÓN</th>
+                	<th style="text-align: center;">REGISTRADO</th>
+                	<th style="text-align: center;">ACTUALIZADO</th>
                 	<th style="text-align: center;" colspan="2">ACCIÓN</th>
                 </tr>
             </thead>
@@ -84,6 +86,8 @@ function buscar(){
 	            	<tr>
 	            		<td style="text-align: center;">${ESPE.idEspecie}</td>
 	            		<td style="text-align: center;">${ESPE.descripcionEspecie}</td>
+	            		<td style="text-align: center;">${ESPE.registrado}</td>
+	            		<td style="text-align: center;">${ESPE.actualizado}</td>
 	            		<td style="text-align: center;">
 	            			<a href="javascript:void(0);" onclick="detalle(${ESPE.idEspecie});">Actualizar</a>
 	            		</td>

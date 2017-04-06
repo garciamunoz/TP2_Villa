@@ -8,26 +8,30 @@
     INSERT INTO tb_raza
 		(descripcionRaza,
 		observacion,
-		idEspecie)
+		idEspecie,
+		registrado)
 	VALUES
 		(#{descripcionRaza},
 		#{observacion},
-		#{idEspecie})
+		#{idEspecie},
+		SYSDATE())
   </insert>
   
   <select id="listaRaza" parameterType="java.util.HashMap" resultType="Raza">
     SELECT r.idRaza,
     		r.descripcionRaza,
     		r.observacion,
-            e.descripcionEspecie
+            e.descripcionEspecie,
+            r.actualizado,
+    		r.registrado
 	FROM tb_raza r INNER JOIN tb_especie e
 		ON r.idEspecie=e.idEspecie
 	WHERE r.estado=1
 	<if test="idRAZA != ''">
-		AND idRaza=#{idRAZA}
+		AND r.idRaza=#{idRAZA}
 	</if>	  	
 	<if test="DESC != ''">
-	   	AND descripcionRaza like '%${DESC}%'
+	   	AND r.descripcionRaza like '%${DESC}%'
 	</if>	  	
   </select>  
   
@@ -43,13 +47,13 @@
   
   <update id="eliminarRaza" parameterType="int">
   	UPDATE tb_raza 
-  	SET estado=0
+  	SET estado=0, actualizado=SYSDATE()
   	WHERE idRaza=#{idRAZA}
   </update>
   
   <update id="actualizarRaza" parameterType="java.util.HashMap">
   	UPDATE tb_raza 
-  	SET observacion=#{observacion}, idEspecie=#{idEspecie} 
+  	SET observacion=#{observacion}, idEspecie=#{idEspecie}, actualizado=SYSDATE()
   	WHERE idRaza=#{idRAZA}
   </update>
   

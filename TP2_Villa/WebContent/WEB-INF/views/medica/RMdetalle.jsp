@@ -54,7 +54,7 @@ function actualizar(){
 	            <tbody>
 	            	<c:forEach var="RM" items="${listaRM}">
 	            	<tr>
-	            		<td style="text-align: center;">${RM.idReceta}</td>
+	            		<td style="text-align: center;">${RM.nombreMedicamento}</td>
 	            		<td style="text-align: center;">${RM.via}</td>
 	            		<td style="text-align: center;">${RM.dosis}</td>
 	            		<td style="text-align: center;">${RM.indicacion}</td>

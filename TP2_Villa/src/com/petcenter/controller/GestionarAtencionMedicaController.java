@@ -104,11 +104,11 @@ public class GestionarAtencionMedicaController {
 				
 			atencionMedicaService.registrarAM(AM);
 			
-			List<AtencionMedica> listaAM = atencionMedicaService.listaAM("", String.valueOf(AM.getIdAM()), "");
+			List<AtencionMedica> listaAM = atencionMedicaService.listaAM(txtHC, "", "");
 			
 			request.getSession().setAttribute("listaAM", listaAM);
-			request.getSession().setAttribute("txtHC", null);
-			request.getSession().setAttribute("txtAM", AM.getIdAM());
+			request.getSession().setAttribute("txtHC", txtHC);
+			request.getSession().setAttribute("txtAM", null);
 			request.getSession().setAttribute("txtNUMDOC", null);
 			
 			mav.addObject("mensaje", "Se registró la Atención Médica con código: "+AM.getIdAM());

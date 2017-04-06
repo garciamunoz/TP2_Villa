@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- GIANMARCO MALEX TRILLO -->
+<mapper namespace="com.petcenter.dao.spec.ProcedimientoMapper">
+
+  <insert id="registrarProcedimiento" parameterType="Procedimiento" useGeneratedKeys="true" keyProperty="idProcedimiento" keyColumn="idProcedimiento">
+    INSERT INTO tb_procedimiento
+		(idAM,
+		tipoProcedimiento,
+		descripcion,
+		observacion,
+		registrado)
+	VALUES
+		(#{idAM},
+		#{tipoProcedimiento},
+		#{descripcion},
+		#{observacion},
+		SYSDATE())
+  </insert>
+  
+  <select id="listaProcedimiento" parameterType="java.util.HashMap" resultType="Procedimiento">
+    SELECT idProcedimiento,
+	    idAM,
+	    tipoProcedimiento,
+	    descripcion,
+	    observacion,
+	    estado,
+	    actualizado,
+	    registrado
+	FROM tb_procedimiento
+	WHERE estado=1
+	<if test="idProcedimiento != ''">
+		AND idProcedimiento=#{idProcedimiento}
+	</if>	  	
+	<if test="idAM != ''">
+	   	AND idAM=#{idAM}
+	</if>	  	
+  </select>  
+  
+  <select id="verProcedimiento" parameterType="int" resultType="Procedimiento">
+    SELECT idProcedimiento,
+	    idAM,
+	    tipoProcedimiento,
+	    descripcion,
+	    observacion,
+	    estado,
+	    actualizado,
+	    registrado
+	FROM tb_procedimiento
+	WHERE idProcedimiento=#{idProcedimiento}
+  </select>
+  
+  <update id="eliminarProcedimiento" parameterType="int">
+  	UPDATE tb_Procedimiento 
+  	SET estado=0, actualizado=SYSDATE()
+  	WHERE idProcedimiento=#{idProcedimiento}
+  </update>
+  
+  <update id="actualizarProcedimiento" parameterType="java.util.HashMap">
+  	UPDATE tb_Procedimiento 
+  	SET tipoProcedimiento=#{tipoProcedimiento}, descripcion=#{descripcion}, observacion=#{observacion}, actualizado=SYSDATE()
+  	WHERE idProcedimiento=#{idProcedimiento}
+  </update>
+  
+</mapper>

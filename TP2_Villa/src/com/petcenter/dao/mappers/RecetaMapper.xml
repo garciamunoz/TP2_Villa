@@ -94,7 +94,7 @@
   
   <update id="actualizarReceta" parameterType="java.util.HashMap">
   	UPDATE tb_receta 
-  	SET observacion=#{observacion}
+  	SET observacion=#{observacion}, actualizado=SYSDATE()
   	WHERE idReceta=#{idReceta}
   </update>
   

@@ -1,6 +1,7 @@
 package com.petcenter.dto;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Raza implements Serializable{
 
@@ -11,7 +12,21 @@ public class Raza implements Serializable{
 	private String observacion;
 	private int idEspecie;
 	private String descripcionEspecie;
+	private Date actualizado;
+	private Date registrado;
 	
+	public Date getActualizado() {
+		return actualizado;
+	}
+	public void setActualizado(Date actualizado) {
+		this.actualizado = actualizado;
+	}
+	public Date getRegistrado() {
+		return registrado;
+	}
+	public void setRegistrado(Date registrado) {
+		this.registrado = registrado;
+	}
 	public int getIdRaza() {
 		return idRaza;
 	}

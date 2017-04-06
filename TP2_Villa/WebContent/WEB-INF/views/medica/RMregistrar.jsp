@@ -57,7 +57,6 @@ function registrar(){
 	}else{
 		mensajeModal("Atención Médica no encontrada.");	
 	}
-		
 }
 
 function agregar(){

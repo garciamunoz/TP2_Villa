@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `bd_petcenter` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bd_petcenter`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
--- Host: localhost    Database: bd_petcenter
+-- Host: 127.0.0.1    Database: bd_petcenter
 -- ------------------------------------------------------
--- Server version	5.7.14-log
+-- Server version	5.7.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -272,7 +272,7 @@ CREATE TABLE `tb_cliente` (
   CONSTRAINT `fk_cliente_sede` FOREIGN KEY (`idSede`) REFERENCES `tb_sede` (`idSede`),
   CONSTRAINT `fk_cliente_tipoCliente` FOREIGN KEY (`idTipoCliente`) REFERENCES `tb_tipocliente` (`idTipoCliente`),
   CONSTRAINT `fk_cliente_tipoDocumento` FOREIGN KEY (`idTipoDocumento`) REFERENCES `tb_tipodocumento` (`idTipoDocumento`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +281,7 @@ CREATE TABLE `tb_cliente` (
 
 LOCK TABLES `tb_cliente` WRITE;
 /*!40000 ALTER TABLE `tb_cliente` DISABLE KEYS */;
-INSERT INTO `tb_cliente` VALUES (1,'CLI0000001',1,1,'10233775','Cecilia','Ramirez','Ludeña',2,'1980-01-15',1,1,'Av. Revolucion 1247','99784514','2457866','4512487',1,'celiciaramirez@gmail.com',1),(2,'CLI0000002',1,1,'10226478','Manuel','Garcia','Ruiz',1,'1978-04-16',1,2,'Jr. Miramar 452','94441114','2411866','3512487',1,'manuelgr@gmail.com',1),(3,'CLI0000003',1,1,'10354612','Raul','Morales','Olivos',1,'1977-01-22',1,3,'Jr. Las Begonias 1452','98741114','2311266','4512487',1,'manuelgr@gmail.com',1);
+INSERT INTO `tb_cliente` VALUES (1,'CLI0000001',1,1,'10233775','Cecilia','Ramirez','Ludeña',2,'1980-01-15',1,1,'Av. Revolucion 1247','99784514','2457866','4512487',1,'celiciaramirez@gmail.com',1),(2,'CLI0000002',1,1,'10226478','Manuel','Garcia','Ruiz',1,'1978-04-16',1,2,'Jr. Miramar 452','94441114','2411866','3512487',1,'manuelgr@gmail.com',1),(3,'CLI0000003',1,1,'10354612','Raul','Morales','Olivos',1,'1977-01-22',1,3,'Jr. Las Begonias 1452','98741114','2311266','4512487',1,'manuelgr@gmail.com',1),(4,'1432707043',1,1,'70349690','GIANMARCO','MALEXX','TRILLO',1,'1991-06-22',4,3,'SU CASA','931539168','555-5555','500-5555',0,'MALEXPERU@GMAIL.COM',1);
 /*!40000 ALTER TABLE `tb_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,6 +353,8 @@ CREATE TABLE `tb_diagnostico` (
   `descripcion` varchar(255) DEFAULT NULL,
   `estado` int(11) DEFAULT '1',
   `observacion` varchar(255) DEFAULT NULL,
+  `actualizado` date DEFAULT NULL,
+  `registrado` date DEFAULT NULL,
   PRIMARY KEY (`idDIAG`)
 ) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -363,7 +365,7 @@ CREATE TABLE `tb_diagnostico` (
 
 LOCK TABLES `tb_diagnostico` WRITE;
 /*!40000 ALTER TABLE `tb_diagnostico` DISABLE KEYS */;
-INSERT INTO `tb_diagnostico` VALUES (33,' ﻿Adenovirus',1,NULL),(34,'\r\nAleutiana (Parvovirus)',1,'123'),(36,'\r\nAnaplasma spp. ',0,NULL),(37,'\r\nAnemia infecciosa equina (Test de Coggins) ',1,NULL),(38,'\r\nArteritis viral equina ',1,NULL),(39,'\r\nAspergillus fumigatus ',1,NULL),(40,'\r\nBabesia  ',1,NULL),(41,'\r\nBabesia gibsoni ',1,NULL),(42,'\r\nBorrelia burgdorferi (enfermedad de Lyme) ',1,NULL),(43,'\r\nBorrelia C6 cuantitativa ',1,NULL),(44,'\r\nBorrelia Inmunoblot IgG',1,NULL),(45,'\r\nBrucella abortus  (caballo)',1,NULL),(46,'\r\nBrucella  ',1,NULL),(47,'\r\nBurkholderia mallei (Muermo) ',1,NULL),(48,'\r\nCalicivirus  ',1,NULL),(49,'\r\nChlamydophila ',1,NULL),(50,'\r\nChlamydophila psittaci ',1,NULL),(51,'\r\nCoronavirus entrico  ',1,NULL),(52,'\r\nCoronavirus  ',1,NULL),(53,'\r\nCoronavirus   + PTG',1,NULL),(54,'\r\nCryptococcus neoformans ',1,NULL),(55,'\r\nDirofilaria Immitis',1,NULL),(57,'\r\nEncephalitozoon cuniculi ',1,NULL),(58,'\r\nEnfermedad hemorragica del conejo (Calicivirus) ',1,NULL),(59,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA)',1,NULL),(60,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA) + Coronavirus ',1,NULL),(61,'\r\nHerpesvirus   + Calicivirus   + Panleucopenia  ',1,NULL),(62,'\r\nHerpesvirus  ',1,NULL),(63,'\r\nHerpesvirus  ',1,NULL),(64,'\r\nHistoplasma capsulatum ',1,NULL),(65,'\r\nInmunodeficiencia ',1,NULL),(66,'\r\nInmunodeficiencia ',1,NULL),(67,'\r\nLeishmania ',1,NULL),(68,'\r\nLeishmania  + Ehrlichia   + PTG',1,NULL),(69,'\r\nLeishmania  + PTG',1,NULL),(70,'\r\nLeptospirosis ',1,NULL),(71,'\r\nLeucemia ',1,NULL),(72,'\r\nMicrofilaria',1,NULL),(75,'\r\nMoquillo  ',1,NULL),(76,'\r\nMoquillo  IgG ',1,NULL),(77,'\r\nMoquillo  IgG + IgM ',1,NULL),(78,'\r\nMoquillo  IgM ',1,NULL),(79,'\r\nNeospora caninum ',1,NULL),(80,'\r\nPanleucopenia  ',1,NULL),(81,'\r\nPanleucopenia  X',1,NULL),(82,'\r\nParvovirus  ',1,NULL),(83,'\r\nParvovirus  X',1,NULL),(84,'\r\nPiroplasmosis equina (Babesia equi',1,NULL),(86,'\r\nRickettsia conorii ',1,NULL),(87,'\r\nRinoneumonitis equina (Herpesvirus 1+4) ',1,NULL),(88,'\r\nRotavirus ',1,NULL),(89,'\r\nSarcoptes scabiei ',1,NULL),(90,'\r\nToxoplasma ',1,NULL),(91,'\r\nToxoplasma X',1,NULL),(92,'\r\nToxoplasma Y',1,NULL),(93,'\r\nTrypanosoma equiperdum (Durina) ',1,NULL),(94,'\r\nTrypanosoma evansi ',1,NULL),(95,'a',0,'b'),(96,'c',0,'d'),(97,'asd',0,'zxc');
+INSERT INTO `tb_diagnostico` VALUES (33,' ﻿Adenovirus',1,NULL,NULL,'2017-04-05'),(34,'\r\nAleutiana (Parvovirus)',1,'123',NULL,'2017-04-05'),(36,'\r\nAnaplasma spp. ',0,NULL,NULL,'2017-04-05'),(37,'\r\nAnemia infecciosa equina (Test de Coggins) ',1,NULL,NULL,'2017-04-05'),(38,'\r\nArteritis viral equina ',1,NULL,NULL,'2017-04-05'),(39,'\r\nAspergillus fumigatus ',1,NULL,NULL,'2017-04-05'),(40,'\r\nBabesia  ',1,NULL,NULL,'2017-04-05'),(41,'\r\nBabesia gibsoni ',1,NULL,NULL,'2017-04-05'),(42,'\r\nBorrelia burgdorferi (enfermedad de Lyme) ',1,NULL,NULL,'2017-04-05'),(43,'\r\nBorrelia C6 cuantitativa ',1,NULL,NULL,'2017-04-05'),(44,'\r\nBorrelia Inmunoblot IgG',1,NULL,NULL,'2017-04-05'),(45,'\r\nBrucella abortus  (caballo)',1,NULL,NULL,'2017-04-05'),(46,'\r\nBrucella  ',1,NULL,NULL,'2017-04-05'),(47,'\r\nBurkholderia mallei (Muermo) ',1,NULL,NULL,'2017-04-05'),(48,'\r\nCalicivirus  ',1,NULL,NULL,'2017-04-05'),(49,'\r\nChlamydophila ',1,NULL,NULL,'2017-04-05'),(50,'\r\nChlamydophila psittaci ',1,NULL,NULL,'2017-04-05'),(51,'\r\nCoronavirus entrico  ',1,NULL,NULL,'2017-04-05'),(52,'\r\nCoronavirus  ',1,NULL,NULL,'2017-04-05'),(53,'\r\nCoronavirus   + PTG',1,NULL,NULL,'2017-04-05'),(54,'\r\nCryptococcus neoformans ',1,NULL,NULL,'2017-04-05'),(55,'\r\nDirofilaria Immitis',1,NULL,NULL,'2017-04-05'),(57,'\r\nEncephalitozoon cuniculi ',1,NULL,NULL,'2017-04-05'),(58,'\r\nEnfermedad hemorragica del conejo (Calicivirus) ',1,NULL,NULL,'2017-04-05'),(59,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA)',1,NULL,NULL,'2017-04-05'),(60,'\r\nFIV (Acs ELISA) + FeLV (Ag ELISA) + Coronavirus ',1,NULL,NULL,'2017-04-05'),(61,'\r\nHerpesvirus   + Calicivirus   + Panleucopenia  ',1,NULL,NULL,'2017-04-05'),(62,'\r\nHerpesvirus  ',1,NULL,NULL,'2017-04-05'),(63,'\r\nHerpesvirus  ',1,NULL,NULL,'2017-04-05'),(64,'\r\nHistoplasma capsulatum ',1,NULL,NULL,'2017-04-05'),(65,'\r\nInmunodeficiencia ',1,NULL,NULL,'2017-04-05'),(66,'\r\nInmunodeficiencia ',1,NULL,NULL,'2017-04-05'),(67,'\r\nLeishmania ',1,NULL,NULL,'2017-04-05'),(68,'\r\nLeishmania  + Ehrlichia   + PTG',1,NULL,NULL,'2017-04-05'),(69,'\r\nLeishmania  + PTG',1,NULL,NULL,'2017-04-05'),(70,'\r\nLeptospirosis ',1,NULL,NULL,'2017-04-05'),(71,'\r\nLeucemia ',1,NULL,NULL,'2017-04-05'),(72,'\r\nMicrofilaria',1,NULL,NULL,'2017-04-05'),(75,'\r\nMoquillo  ',1,NULL,NULL,'2017-04-05'),(76,'\r\nMoquillo  IgG ',1,NULL,NULL,'2017-04-05'),(77,'\r\nMoquillo  IgG + IgM ',1,NULL,NULL,'2017-04-05'),(78,'\r\nMoquillo  IgM ',1,NULL,NULL,'2017-04-05'),(79,'\r\nNeospora caninum ',1,NULL,NULL,'2017-04-05'),(80,'\r\nPanleucopenia  ',1,NULL,NULL,'2017-04-05'),(81,'\r\nPanleucopenia  X',1,NULL,NULL,'2017-04-05'),(82,'\r\nParvovirus  ',1,NULL,NULL,'2017-04-05'),(83,'\r\nParvovirus  X',1,NULL,NULL,'2017-04-05'),(84,'\r\nPiroplasmosis equina (Babesia equi',1,NULL,NULL,'2017-04-05'),(86,'\r\nRickettsia conorii ',1,NULL,NULL,'2017-04-05'),(87,'\r\nRinoneumonitis equina (Herpesvirus 1+4) ',1,NULL,NULL,'2017-04-05'),(88,'\r\nRotavirus ',1,NULL,NULL,'2017-04-05'),(89,'\r\nSarcoptes scabiei ',1,NULL,NULL,'2017-04-05'),(90,'\r\nToxoplasma ',1,NULL,NULL,'2017-04-05'),(91,'\r\nToxoplasma X',1,NULL,NULL,'2017-04-05'),(92,'\r\nToxoplasma Y',1,NULL,NULL,'2017-04-05'),(93,'\r\nTrypanosoma equiperdum (Durina) ',1,NULL,NULL,'2017-04-05'),(94,'\r\nTrypanosoma evansi ',1,NULL,NULL,'2017-04-05'),(95,'a',0,'b',NULL,'2017-04-05'),(96,'c',0,'d',NULL,'2017-04-05'),(97,'asd',0,'zxc',NULL,'2017-04-05');
 /*!40000 ALTER TABLE `tb_diagnostico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,11 +405,13 @@ DROP TABLE IF EXISTS `tb_especie`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_especie` (
   `idEspecie` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `descripcionEspecie` varchar(50) NOT NULL,
+  `descripcionEspecie` varchar(255) NOT NULL,
   `observacion` varchar(255) DEFAULT NULL,
-  `estado` tinyint(4) DEFAULT '1',
+  `estado` tinyint(1) DEFAULT '1',
+  `actualizado` date DEFAULT NULL,
+  `registrado` date DEFAULT NULL,
   PRIMARY KEY (`idEspecie`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -416,7 +420,7 @@ CREATE TABLE `tb_especie` (
 
 LOCK TABLES `tb_especie` WRITE;
 /*!40000 ALTER TABLE `tb_especie` DISABLE KEYS */;
-INSERT INTO `tb_especie` VALUES (1,'CANINO',NULL,1),(2,'FELINO',NULL,1),(3,'ROEDOR','',1),(4,'AVE',NULL,1),(5,'OTROS',NULL,1),(7,'asdasd','123123213',0);
+INSERT INTO `tb_especie` VALUES (1,'CANINO',NULL,1,NULL,'2017-04-05'),(2,'FELINO',NULL,1,NULL,'2017-04-05'),(3,'ROEDOR','',1,NULL,'2017-04-05'),(4,'AVE',NULL,1,NULL,'2017-04-05'),(5,'OTROS',NULL,1,NULL,'2017-04-05'),(7,'asdasd','123123213',0,NULL,'2017-04-05'),(8,'EJEMPLO 1','OBS 01',0,'2017-04-05','2017-04-05');
 /*!40000 ALTER TABLE `tb_especie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -568,11 +572,13 @@ CREATE TABLE `tb_mascota` (
   `idCliente` int(11) NOT NULL,
   `idRelClienteMascota` tinyint(4) NOT NULL,
   `idRaza` tinyint(4) NOT NULL,
-  `fotoMascota` blob NOT NULL,
-  `estadoMascota` tinyint(4) NOT NULL,
+  `fotoMascota` blob,
+  `estadoMascota` tinyint(1) NOT NULL DEFAULT '1',
   `descMascota` varchar(150) NOT NULL,
   `idGeneroMascota` tinyint(4) NOT NULL,
   `fechaNacMascota` date NOT NULL,
+  `actualizado` date DEFAULT NULL,
+  `registrado` date DEFAULT NULL,
   PRIMARY KEY (`idMascota`),
   UNIQUE KEY `idx_mascota_codigo` (`codMascota`),
   KEY `fk_mascota_cliente` (`idCliente`),
@@ -583,7 +589,7 @@ CREATE TABLE `tb_mascota` (
   CONSTRAINT `fk_mascota_genero` FOREIGN KEY (`idGeneroMascota`) REFERENCES `tb_generomascota` (`idGeneroMascota`),
   CONSTRAINT `fk_mascota_raza` FOREIGN KEY (`idRaza`) REFERENCES `tb_raza` (`idRaza`),
   CONSTRAINT `fk_mascota_relacionCliente` FOREIGN KEY (`idRelClienteMascota`) REFERENCES `tb_relacionclientemascota` (`idRelClienteMascota`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -592,7 +598,7 @@ CREATE TABLE `tb_mascota` (
 
 LOCK TABLES `tb_mascota` WRITE;
 /*!40000 ALTER TABLE `tb_mascota` DISABLE KEYS */;
-INSERT INTO `tb_mascota` VALUES (1,'MAS0000001','Firulay',1,1,1,'',1,'presenta alergias al spray antipulgas',1,'2014-05-12'),(2,'MAS0000002','Duquesa',1,1,2,'',1,'problemas al respirar',2,'2010-05-14'),(3,'MAS0000003','Bronco',1,1,4,'',1,'presenta problemas de la vista de un ojo',1,'2011-01-22'),(5,'mas03','CHIQUITO',1,1,1,'',1,'',2,'2014-05-12');
+INSERT INTO `tb_mascota` VALUES (1,'MAS0000001','Firulay',1,1,1,'',1,'presenta alergias al spray antipulgas',1,'2014-05-12',NULL,'2017-04-05'),(2,'MAS0000002','Duquesa',1,1,2,'',1,'problemas al respirar',2,'2010-05-14',NULL,'2017-04-05'),(3,'MAS0000003','Bronco',1,1,4,'',1,'presenta problemas de la vista de un ojo',1,'2011-01-22',NULL,'2017-04-05'),(5,'mas03','CHIQUITO',1,1,1,'',1,'',2,'2014-05-12',NULL,'2017-04-05'),(6,'1448335559','ROCKY',4,2,14,NULL,0,'PELO NEGRO',2,'2017-04-05','2017-04-05','2017-04-05'),(7,'1450552571','PERRO DE SANTA',4,2,8,NULL,1,'NO TIENE',2,'2017-04-05',NULL,'2017-04-05'),(8,'1450732370','LUBOX',4,2,10,NULL,1,'cojea',2,'2017-04-05',NULL,'2017-04-05'),(9,'1451269784','VELA',4,1,2,NULL,0,'LADRA POCO',1,'2015-05-05','2017-04-05','2017-04-05');
 /*!40000 ALTER TABLE `tb_mascota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -642,6 +648,38 @@ LOCK TABLES `tb_parentcontactoseccli` WRITE;
 /*!40000 ALTER TABLE `tb_parentcontactoseccli` DISABLE KEYS */;
 INSERT INTO `tb_parentcontactoseccli` VALUES (1,'SOBRINO'),(2,'HIJO'),(3,'HERMANO'),(4,'TIO'),(5,'OTROS');
 /*!40000 ALTER TABLE `tb_parentcontactoseccli` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_procedimiento`
+--
+
+DROP TABLE IF EXISTS `tb_procedimiento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_procedimiento` (
+  `idProcedimiento` int(11) NOT NULL AUTO_INCREMENT,
+  `idAM` int(11) NOT NULL,
+  `tipoProcedimiento` varchar(255) DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `observacion` varchar(255) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT '1',
+  `actualizado` date DEFAULT NULL,
+  `registrado` date DEFAULT NULL,
+  PRIMARY KEY (`idProcedimiento`),
+  KEY `fk_procedimiento_am_idx` (`idAM`),
+  CONSTRAINT `fk_procedimiento_am` FOREIGN KEY (`idAM`) REFERENCES `tb_atencion_medica` (`idAM`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_procedimiento`
+--
+
+LOCK TABLES `tb_procedimiento` WRITE;
+/*!40000 ALTER TABLE `tb_procedimiento` DISABLE KEYS */;
+INSERT INTO `tb_procedimiento` VALUES (1,1,'Oncologia','cancer abdominal','tumor en la barriga',1,'2017-04-05','2017-04-05'),(2,1,'Psiquiatria','stress','falta de atencion',1,NULL,'2017-04-05'),(3,1,'Genetica','muestra de sangre','contar cromosomas',1,NULL,'2017-04-06');
+/*!40000 ALTER TABLE `tb_procedimiento` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -703,14 +741,16 @@ DROP TABLE IF EXISTS `tb_raza`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_raza` (
   `idRaza` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `descripcionRaza` varchar(50) NOT NULL,
+  `descripcionRaza` varchar(255) NOT NULL,
   `idEspecie` tinyint(4) NOT NULL,
   `observacion` varchar(255) DEFAULT NULL,
-  `estado` tinyint(4) DEFAULT '1',
+  `estado` tinyint(1) DEFAULT '1',
+  `actualizado` date DEFAULT NULL,
+  `registrado` date DEFAULT NULL,
   PRIMARY KEY (`idRaza`),
   KEY `fk_raza_especie` (`idEspecie`),
   CONSTRAINT `fk_raza_especie` FOREIGN KEY (`idEspecie`) REFERENCES `tb_especie` (`idEspecie`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -719,7 +759,7 @@ CREATE TABLE `tb_raza` (
 
 LOCK TABLES `tb_raza` WRITE;
 /*!40000 ALTER TABLE `tb_raza` DISABLE KEYS */;
-INSERT INTO `tb_raza` VALUES (1,'PITBUL',1,NULL,1),(2,'SIBERIANO',1,NULL,1),(3,'BOXER',1,NULL,1),(4,'Chow Chow',1,NULL,1),(5,'Cairn Terrier',1,NULL,1),(6,'San Bernardo',1,NULL,1),(7,'Shih Tzu',1,NULL,1),(8,'Pekines',1,NULL,1),(9,'Pastor Aleman',1,NULL,1),(10,'Schnauzer',1,'',1),(11,'Persa',2,NULL,1),(12,'Coon Maine',2,NULL,1),(13,'Siameses',2,NULL,1),(14,'Ragdoll',2,NULL,1),(15,'Oriental',4,'',1),(16,'asdasd',5,'32423423423',0);
+INSERT INTO `tb_raza` VALUES (1,'PITBUL',1,NULL,1,NULL,'2017-04-05'),(2,'SIBERIANO',1,NULL,1,NULL,'2017-04-05'),(3,'BOXER',1,NULL,1,NULL,'2017-04-05'),(4,'Chow Chow',1,NULL,1,NULL,'2017-04-05'),(5,'Cairn Terrier',1,NULL,1,NULL,'2017-04-05'),(6,'San Bernardo',1,NULL,1,NULL,'2017-04-05'),(7,'Shih Tzu',1,NULL,1,NULL,'2017-04-05'),(8,'Pekines',1,NULL,1,NULL,'2017-04-05'),(9,'Pastor Aleman',1,NULL,1,NULL,'2017-04-05'),(10,'Schnauzer',1,'',1,NULL,'2017-04-05'),(11,'Persa',2,NULL,1,NULL,'2017-04-05'),(12,'Coon Maine',2,NULL,1,NULL,'2017-04-05'),(13,'Siameses',2,NULL,1,NULL,'2017-04-05'),(14,'Ragdoll',2,NULL,1,NULL,'2017-04-05'),(15,'Oriental',4,'',1,NULL,'2017-04-05'),(16,'asdasd',5,'32423423423',0,NULL,'2017-04-05'),(17,'raza 16',5,'ejemplo 01',0,'2017-04-05','2017-04-05');
 /*!40000 ALTER TABLE `tb_raza` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -740,7 +780,7 @@ CREATE TABLE `tb_receta` (
   PRIMARY KEY (`idReceta`),
   KEY `fk_receta_am_idx` (`idAM`),
   CONSTRAINT `fk_receta_am` FOREIGN KEY (`idAM`) REFERENCES `tb_atencion_medica` (`idAM`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -749,7 +789,7 @@ CREATE TABLE `tb_receta` (
 
 LOCK TABLES `tb_receta` WRITE;
 /*!40000 ALTER TABLE `tb_receta` DISABLE KEYS */;
-INSERT INTO `tb_receta` VALUES (1,1,'prueba receta',1,NULL,NULL),(2,1,'prueba receta 2',0,'2017-04-04','2017-04-04'),(3,1,'as',0,'2017-04-04','2017-04-04'),(4,1,'un poco de fiebre',1,NULL,'2017-04-04');
+INSERT INTO `tb_receta` VALUES (1,1,'prueba receta',1,NULL,'2017-04-04'),(2,1,'prueba receta 2',0,'2017-04-04','2017-04-04'),(3,1,'as',0,'2017-04-04','2017-04-04'),(4,1,'un poco de fiebre',1,NULL,'2017-04-04'),(5,1,'no tiene',1,NULL,'2017-04-06');
 /*!40000 ALTER TABLE `tb_receta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -775,7 +815,7 @@ CREATE TABLE `tb_receta_detalle` (
   PRIMARY KEY (`idRecetaDetalle`),
   KEY `fk_detalle_receta_idx` (`idReceta`),
   CONSTRAINT `fk_detalle_receta` FOREIGN KEY (`idReceta`) REFERENCES `tb_receta` (`idReceta`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -784,7 +824,7 @@ CREATE TABLE `tb_receta_detalle` (
 
 LOCK TABLES `tb_receta_detalle` WRITE;
 /*!40000 ALTER TABLE `tb_receta_detalle` DISABLE KEYS */;
-INSERT INTO `tb_receta_detalle` VALUES (1,1,'AMOXICILINA','ORAL','1 TABLETA','CADA 8 HORAS','5 DIAS','15',1,NULL,NULL),(2,1,'DEXAMETOSA','ORAL','1 PASTILLA','CADA 12 HORAS','5 DIAS','10',1,NULL,NULL),(3,1,'CETERIZINA','ORAL','1 CAPSULA','POR LAS MAÑANAS','3 DIAS','3',1,NULL,NULL),(4,3,'1','2','3','4','5','6',0,'2017-04-04','2017-04-04'),(5,4,'DOLOCORLADRAN','ORAL','1 CAPSULA','CADA 24 HORAS','3 DIAS','5',1,NULL,'2017-04-04'),(6,4,'BROXOL','ORAL','1 PASTILLA','POR LA MAÃANA','1 SEMANA','7',1,NULL,'2017-04-04');
+INSERT INTO `tb_receta_detalle` VALUES (1,1,'AMOXICILINA','ORAL','1 TABLETA','CADA 8 HORAS','5 DIAS','15',1,NULL,NULL),(2,1,'DEXAMETOSA','ORAL','1 PASTILLA','CADA 12 HORAS','5 DIAS','10',1,NULL,NULL),(3,1,'CETERIZINA','ORAL','1 CAPSULA','POR LAS MAÑANAS','3 DIAS','3',1,NULL,NULL),(4,3,'1','2','3','4','5','6',0,'2017-04-04','2017-04-04'),(5,4,'DOLOCORLADRAN','ORAL','1 CAPSULA','CADA 24 HORAS','3 DIAS','5',1,NULL,'2017-04-04'),(6,4,'BROXOL','ORAL','1 PASTILLA','POR LA MAÃANA','1 SEMANA','7',1,NULL,'2017-04-04'),(7,5,'CETERIZINA','ORAL','1 POR LA MAÃANA','1 AL DIA','5 DIAS','5',1,NULL,'2017-04-06');
 /*!40000 ALTER TABLE `tb_receta_detalle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -883,6 +923,10 @@ LOCK TABLES `tb_tipodocumento` WRITE;
 INSERT INTO `tb_tipodocumento` VALUES (1,'DNI'),(2,'RUC'),(3,'CARNET EXTRANJERIA'),(4,'PASAPORTE'),(5,'OTROS');
 /*!40000 ALTER TABLE `tb_tipodocumento` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'bd_petcenter'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -893,4 +937,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-05  1:19:26
+-- Dump completed on 2017-04-06  1:19:43

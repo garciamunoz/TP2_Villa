@@ -76,6 +76,8 @@ function buscar(){
                 	<th style="text-align: center;">CÓDIGO RAZA</th>
                 	<th style="text-align: center;">DESCRIPCIÓN</th>
                 	<th style="text-align: center;">ESPECIE</th>
+                	<th style="text-align: center;">REGISTRADO</th>
+                	<th style="text-align: center;">ACTUALIZADO</th>
                 	<th style="text-align: center;" colspan="2">ACCIÓN</th>
                 </tr>
             </thead>
@@ -85,6 +87,8 @@ function buscar(){
 	            		<td style="text-align: center;">${RAZA.idRaza}</td>
 	            		<td style="text-align: center;">${RAZA.descripcionRaza}</td>
 	            		<td style="text-align: center;">${RAZA.descripcionEspecie}</td>
+	            		<td style="text-align: center;">${RAZA.registrado}</td>
+	            		<td style="text-align: center;">${RAZA.actualizado}</td>
 	            		<td style="text-align: center;">
 	            			<a href="javascript:void(0);" onclick="detalle(${RAZA.idRaza});">Actualizar</a>
 	            		</td>

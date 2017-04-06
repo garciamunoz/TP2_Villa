@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petcenter.dao.spec.MascotaMapper">
+
+  <insert id="registrarMascota" parameterType="Mascota" useGeneratedKeys="true" keyProperty="idMascota" keyColumn="idMascota">
+    INSERT INTO tb_mascota
+		(codMascota,
+		nomMascota,
+		idCliente,
+		idRelClienteMascota,
+		idRaza,
+		fotoMascota,
+		estadoMascota,
+		descMascota,
+		idGeneroMascota,
+		fechaNacMascota,
+		registrado)
+	VALUES
+		(#{codMascota},
+		#{nomMascota},
+		#{idCliente},
+		#{idRelClienteMascota},
+		#{idRaza},
+		#{fotoMascota},
+		1,
+		#{descMascota},
+		#{idGeneroMascota},
+		#{fechaNacMascota},
+		SYSDATE())
+  </insert>
+  
+  <select id="listaMascota" parameterType="java.util.HashMap" resultType="Mascota">
+    SELECT m.idMascota,
+	    m.codMascota,
+	    m.nomMascota,
+	    m.idCliente,
+	    m.idRelClienteMascota,
+	    m.idRaza,
+	    m.fotoMascota,
+	    m.estadoMascota,
+	    m.descMascota,
+	    m.idGeneroMascota,
+	    m.fechaNacMascota,
+	    m.actualizado,
+	    m.registrado,
+	    concat(e.descripcionEspecie,' - ',r.descripcionRaza) as datosMascota,
+	    concat(c.nomCliente,' ',c.apePaternoCliente,' ',c.apeMaternoCliente) as datosCliente,
+	    rcm.descripcionRelClienteMascota
+	FROM tb_mascota m inner join tb_raza r
+		on m.idRaza=r.idRaza inner join tb_especie e
+		on r.idEspecie=e.idEspecie inner join tb_relacionclientemascota rcm
+	    on m.idRelClienteMascota=rcm.idRelClienteMascota inner join tb_cliente c
+	    on m.idCliente=c.idCliente
+    WHERE c.estadoCliente=1 
+	<if test="idTipoDocumento != ''">
+		AND c.idTipoDocumento=#{idTipoDocumento}
+	</if>	  	
+	<if test="nroDocumento != ''">
+	   	AND c.nroDocumento=#{nroDocumento}
+	</if>
+	<if test="codCliente != ''">
+	   	AND (c.codCliente=#{codCliente} OR c.idCliente=#{codCliente})
+	</if>    	
+	<if test="codMascota != ''">
+	   	AND (m.codMascota=#{codMascota} OR m.idMascota=#{codMascota})
+	</if>
+	<if test="nomCliente != ''">
+	   	AND c.nomCliente like '%${nomCliente}%'
+	</if>   	
+	<if test="nomMascota != ''">
+	   	AND m.nomMascota like '%${nomMascota}%'
+	</if>  	
+	<if test="apePaternoCliente != ''">
+	   	AND c.apePaternoCliente like '%${apePaternoCliente}%'
+	</if>  	
+	<if test="apeMaternoCliente != ''">
+	   	AND c.apeMaternoCliente like '%${apeMaternoCliente}%' 
+	</if>					  	
+  </select>  
+  
+  <select id="verMascota" parameterType="int" resultType="Mascota">
+    SELECT m.idMascota,
+	    m.codMascota,
+	    m.nomMascota,
+	    m.idCliente,
+	    m.idRelClienteMascota,
+	    m.idRaza,
+	    m.fotoMascota,
+	    m.estadoMascota,
+	    m.descMascota,
+	    m.idGeneroMascota,
+	    m.fechaNacMascota,
+	    m.actualizado,
+	    m.registrado,
+	    concat(c.nomCliente,' ',c.apePaternoCliente,' ',c.apeMaternoCliente) as datosCliente
+	FROM tb_mascota m inner join tb_cliente c
+			on m.idCliente=c.idCliente 
+	WHERE m.idMascota=#{idMascota}
+  </select>
+  
+  <update id="eliminarMascota" parameterType="int">
+  	UPDATE tb_mascota 
+  	SET estadoMascota=0
+  	WHERE idMascota=#{idMascota}
+  </update>
+  
+  <update id="actualizarMascota" parameterType="Mascota">
+  	UPDATE tb_mascota
+	SET
+	idMascota = #{idMascota},
+	codMascota = #{codMascota},
+	nomMascota = #{nomMascota},
+	idCliente = #{idCliente},
+	idRelClienteMascota = #{idRelClienteMascota},
+	idRaza = #{idRaza},
+	fotoMascota = #{fotoMascota},
+	descMascota = #{descMascota},
+	idGeneroMascota = #{idGeneroMascota},
+	fechaNacMascota = #{fechaNacMascota},
+	estadoMascota = #{estadoMascota},
+	actualizado = SYSDATE()
+	WHERE idMascota=#{idMascota}
+  </update>
+  
+</mapper>
