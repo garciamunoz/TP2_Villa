@@ -15,14 +15,45 @@ function regresar(){
 
 function registrar(){
 	obligatorio();
-	
+	if(!valido)return false;
 	var dateRegex = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
-	var valFecha = dateRegex.test($('#fecNacCliente').val());
+	var fecha = $('#fecNacCliente').val();
+	if(fecha.length < 10){
+		mensajeModal("El Formato para la Fecha de Nacimiento es dd/mm/aaaa");
+		return false;
+	}
+	var valFecha = dateRegex.test(fecha);
 	if(!valFecha){
 		mensajeModal("El Formato para la Fecha de Nacimiento es dd/mm/aaaa");
 		return false;
 	}
 	
+	var fechaArray = fecha.split("/");
+	var dia = fechaArray[0];
+	var mes = fechaArray[1];
+	var ano = fechaArray[2];
+	 
+	var fecha_hoy = new Date();
+	var ahora_ano = fecha_hoy.getYear();
+	var ahora_mes = fecha_hoy.getMonth();
+	var ahora_dia = fecha_hoy.getDate();
+	var edad = (ahora_ano + 1900) - ano;
+	    
+	    if ( ahora_mes < (mes - 1)){
+	      edad--;
+	    }
+	    if (((mes - 1) == ahora_mes) && (ahora_dia < dia)){ 
+	      edad--;
+	    }
+	    if (edad > 1900){
+	        edad -= 1900;
+	    }
+	
+	if(edad < 18){
+		mensajeModal("La Fecha de Nacimiento no puede ser menor a 18 años.");
+		return false;
+	}
+	    
 	if(valido){
 		$('#formRCLI').attr('action',"/TP2_Villa/CLI/registrar");
 		$('#formRCLI').submit();	
@@ -41,6 +72,27 @@ function obligatorio(){
 			return false;
 		}
 		valido = true;
+	});
+}
+
+function validar(){
+	$.ajax({
+		type:'GET',
+		url: '/TP2_Villa/CLI/validar',
+		async: false,
+		data: {
+			txtNROCLI: $('#nroDocumento').val()
+		},
+		success: function(data){
+			listaDatos = data;
+			if(data.length > 0){
+				mensajeModal("Número de Documento ya existente.");
+				$('#nroDocumento').val('');
+			}
+		},
+		error: function(e){
+			console.log("error: " + e);
+		}
 	});
 }
 
@@ -77,7 +129,7 @@ function obligatorio(){
 		    <div class="form-group">
 		        <label class="control-label col-xs-3" for="nroDocumento">Número de Documento:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="nroDocumento" name="nroDocumento" class="form-control" value=""/>
+		            <input type="text" id="nroDocumento" name="nroDocumento" class="form-control" value="" onblur="validar();"/>
 		        </div>
 		    </div>
 		    <div class="form-group">

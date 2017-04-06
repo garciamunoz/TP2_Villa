@@ -29,7 +29,7 @@ function registrar(){
 	
 	if(valido){
 		$('#formRMA').attr('action',"/TP2_Villa/MA/registrar");
-// 		$('#formRMA').submit();	
+		$('#formRMA').submit();	
 	}
 }
 
