@@ -53,6 +53,17 @@ function buscar(){
 	$('#formSCM').submit();
 }
 
+function exportar(){
+	var lista = "";
+	$('input:checked').each(function() {
+		lista += $(this).attr('id') + ",";    
+	});
+	if(lista.length > 1){lista = lista.substring(0,lista.length-1)}
+	else{mensajeModal("Seleccione por lo menos 1 registro.");return false;}
+	$('#lista').val(lista);
+	$('#formSCM').attr('action',"/TP2_Villa/SCM/exportar");
+	$('#formSCM').submit();
+}
 </script>
 
 
@@ -61,8 +72,9 @@ function buscar(){
        <h1>Gestionar Seguimiento y Control de Mascotas</h1>
     </div>
 
-	<form class="form-horizontal" action="" id="formCLI" method="POST">
+	<form class="form-horizontal" action="" id="formSCM" method="POST">
 	<input type="hidden" id="idCLI" name="idCLI" value="" />
+	<input type="hidden" id="lista" name="lista" value="" />
 
     	<div class="form-group">
 	        <label class="control-label col-xs-1" for="txtFILTRO">Filtros:</label>
@@ -77,7 +89,7 @@ function buscar(){
 
     	<div class="form-group" align="center">
 	        <input type="button" class="btn btn-primary" value="Exportar" onclick="exportar();"/>
-	        <input type="button" class="btn btn-success" value="Enviar Notificaciones" onclick="notificar();"/>
+<!-- 	        <input type="button" class="btn btn-success" value="Enviar Notificaciones" onclick="notificar();"/> -->
 	    </div>
 
     <br>
@@ -94,13 +106,13 @@ function buscar(){
                 </tr>
             </thead>
             <tbody>
-            	<c:forEach var="CLI" items="${listaSCM}">
+            	<c:forEach var="SCM" items="${listaSCM}">
 	            	<tr>
 	            		<td style="text-align: center;"><input type="checkbox" id="${SCM.idMascota}" /></td>
 	            		<td style="text-align: center;">${SCM.datosCliente}</td>
 	            		<td style="text-align: center;">${SCM.datosMascota}</td>
-	            		<td style="text-align: center;">${SCM.especie}</td>
-	            		<td style="text-align: center;">${SCM.fechaUltimaAM}</td>
+	            		<td style="text-align: center;">${SCM.descripcionEspecie}</td>
+	            		<td style="text-align: center;">${SCM.fechaUltimaAtencion}</td>
 	            	</tr>
             	</c:forEach>
             	<c:if test="${empty listaSCM}">
