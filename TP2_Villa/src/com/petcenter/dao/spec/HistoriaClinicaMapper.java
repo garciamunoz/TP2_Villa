@@ -18,4 +18,6 @@ public interface HistoriaClinicaMapper {
 	List<HistoriaClinica> listaHC(Map<String, Object> mapa);
 	DatosClienteMascota verHC(int idHC);
 	int eliminarHC(int idHC);
+	List<DatosClienteMascota> listaClienteMascotaValidado(Map<String, Object> mapa);
+	
 }

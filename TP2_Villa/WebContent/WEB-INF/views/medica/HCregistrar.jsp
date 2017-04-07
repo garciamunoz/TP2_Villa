@@ -35,7 +35,7 @@ function validar(){
 				$('#hdnIDCLIENTE').val(datos.idCliente);
 				$('#txtCLIENTE').val(datos.datosCliente);
 				$.each(data,function( index, element ) {
-					if(element.idHC != 0 && element.idMascota != 0){
+					if(element.idMascota != 0){
 						$('#txtMASCOTA').append($('<option>', { 
 					        value: element.idMascota,
 					        text : element.datosMascota 

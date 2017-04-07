@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.petcenter.dto.AtencionMedica;
 import com.petcenter.dto.Receta;
 import com.petcenter.dto.RecetaDetalle;
+import com.petcenter.service.AtencionMedicaService;
 import com.petcenter.service.RecetaService;
 
 /**
@@ -32,6 +34,9 @@ public class GestionarRecetaController {
 	
 	@Autowired
 	private RecetaService recetaService;
+	
+	@Autowired
+	private AtencionMedicaService atencionMedicaService;
 	
 	@RequestMapping("/inicio")
 	public ModelAndView listar(HttpServletRequest request){
@@ -221,10 +226,9 @@ public class GestionarRecetaController {
 	}
 
 	@RequestMapping(value = "/validar", method = RequestMethod.GET)
-	public @ResponseBody List<Receta> validar(@RequestParam String txtAM){
-		if(null == txtAM || txtAM.equals(""))return new ArrayList<Receta>();
-		
-		List<Receta> listaRM = recetaService.listaReceta("", txtAM);
+	public @ResponseBody List<AtencionMedica> validar(@RequestParam String txtAM){
+		if(null == txtAM || txtAM.equals(""))return new ArrayList<AtencionMedica>();
+		List<AtencionMedica> listaRM = atencionMedicaService.listaAM("", txtAM, "");
 		return listaRM;
 	}
 	

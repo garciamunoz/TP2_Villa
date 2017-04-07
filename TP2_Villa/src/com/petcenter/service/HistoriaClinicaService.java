@@ -47,4 +47,12 @@ public class HistoriaClinicaService {
 	public int eliminarHC(int idHC){
 		return historiaClinicaMapper.eliminarHC(idHC);
 	}
+	
+	public List<DatosClienteMascota> listaClienteMascotaValidado(String tipoDoc, String numDoc){
+		Map<String, Object> mapa = new HashMap<>();
+		mapa.put("tipoDoc", tipoDoc);
+		mapa.put("numDoc", numDoc);
+		return historiaClinicaMapper.listaClienteMascotaValidado(mapa);
+	}
+	
 }

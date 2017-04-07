@@ -166,7 +166,7 @@ public class GestionarHistoriaClinica {
 	
 	@RequestMapping(value = "/validar", method = RequestMethod.GET)
 	public @ResponseBody List<DatosClienteMascota> validar(@RequestParam String tipoDoc, @RequestParam String numDoc){
-		List<DatosClienteMascota> datos = historiaClinicaService.listaClienteMascota(tipoDoc, numDoc);
+		List<DatosClienteMascota> datos = historiaClinicaService.listaClienteMascotaValidado(tipoDoc, numDoc);
 //		for (DatosClienteMascota datosClienteMascota : datos) {
 //			String fotoString = new String(Base64.encodeBase64(datosClienteMascota.getFotoMascota()));
 //			datosClienteMascota.setFotoString(fotoString);

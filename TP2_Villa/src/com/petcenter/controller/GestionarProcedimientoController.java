@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.petcenter.dto.AtencionMedica;
 import com.petcenter.dto.Procedimiento;
+import com.petcenter.service.AtencionMedicaService;
 import com.petcenter.service.ProcedimientoService;
 
 /**
@@ -31,6 +33,9 @@ public class GestionarProcedimientoController {
 	
 	@Autowired
 	private ProcedimientoService procedimientoService;
+	
+	@Autowired
+	private AtencionMedicaService atencionMedicaService;
 	
 	@RequestMapping("/inicio")
 	public ModelAndView listar(HttpServletRequest request){
@@ -197,10 +202,10 @@ public class GestionarProcedimientoController {
 	}
 
 	@RequestMapping(value = "/validar", method = RequestMethod.GET)
-	public @ResponseBody List<Procedimiento> validar(@RequestParam String txtAM){
-		if(null == txtAM || txtAM.equals(""))return new ArrayList<Procedimiento>();
+	public @ResponseBody List<AtencionMedica> validar(@RequestParam String txtAM){
+		if(null == txtAM || txtAM.equals(""))return new ArrayList<AtencionMedica>();
 		
-		List<Procedimiento> listaPM = procedimientoService.listaProcedimiento("", txtAM);
+		List<AtencionMedica> listaPM = atencionMedicaService.listaAM("", txtAM, "");
 		return listaPM;
 	}
 	
