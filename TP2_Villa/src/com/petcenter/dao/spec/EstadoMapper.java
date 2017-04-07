@@ -7,5 +7,7 @@ import com.petcenter.dto.EstadoDTO;
 public interface EstadoMapper {
 	
 	List<EstadoDTO> listaEstados();
+	
+	List<EstadoDTO> listaEstados2();
 
 }

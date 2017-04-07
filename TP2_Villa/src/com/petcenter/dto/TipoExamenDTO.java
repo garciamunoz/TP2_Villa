@@ -14,6 +14,7 @@ public class TipoExamenDTO implements Serializable {
 	private Integer diasCultivo;
 	private List<AtributoExamenClinicoDTO> atributos;
 	private EstadoDTO estado;
+	private List<PrecioExamenDTO> precios;
 	
 	public TipoExamenDTO() {
 		super();
@@ -103,6 +104,14 @@ public class TipoExamenDTO implements Serializable {
 
 	public void setAtributos(List<AtributoExamenClinicoDTO> atributos) {
 		this.atributos = atributos;
+	}
+
+	public List<PrecioExamenDTO> getPrecios() {
+		return precios;
+	}
+
+	public void setPrecios(List<PrecioExamenDTO> precios) {
+		this.precios = precios;
 	}
 	
 }

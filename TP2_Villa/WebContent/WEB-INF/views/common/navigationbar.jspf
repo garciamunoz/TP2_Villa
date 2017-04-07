@@ -11,6 +11,9 @@
           <li><a href="#"><spring:message code="navbar.sub.opc.mod.lab.uc.first"/></a></li>
           <li><a href="/TP2_Villa/actualizarTipoExamen"><spring:message code="navbar.sub.opc.mod.lab.uc.second"/></a></li>
           <li><a href="/TP2_Villa/consultarTipoExamen"> <spring:message code="navbar.sub.opc.mod.lab.uc.third"/></a></li>
+          <li><a href="/TP2_Villa/actualizarPrecioExamen"> Actualizar precios de exámenes</a></li>
+          <li><a href="/TP2_Villa/consultarColegiaturas"> Consultar colegiatura de veterinario</a></li>
+          <li><a href="/TP2_Villa/actualizarSolicitudAnalisis">Solicitud de examen médico</a></li>
         </ul>
       </li>
       <li><a href="#"><spring:message code="navbar.opc.mod.pac"/></a></li>

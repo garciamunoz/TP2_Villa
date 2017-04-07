@@ -88,7 +88,8 @@
 			    idEspecialidad = #{especialidad.idEspecialidad}, 
 			    idNormativa = #{normativa.idNormativa}, 
 			    idEstandar = #{estandar.idEstandar}, 
-			    diasCultivo = #{diasCultivo} 
+			    diasCultivo = #{diasCultivo}, 
+			    idEstado = #{estado.idEstado} 
 			WHERE idExamenClinico = #{idExamenClinico} 
 	</update>
 	

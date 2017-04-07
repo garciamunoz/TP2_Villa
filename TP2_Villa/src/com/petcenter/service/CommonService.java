@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.petcenter.dao.spec.CommonMapper;
 import com.petcenter.dto.AtributoDTO;
+import com.petcenter.dto.MonedaDTO;
 import com.petcenter.dto.TipoDocDTO;
 
 @Service
@@ -21,5 +22,9 @@ public class CommonService {
 	
 	public List<AtributoDTO> listaTodosAtributos() {
 		return commonMapper.listaTodosAtributos();
+	}
+	
+	public List<MonedaDTO> listaMonedas() {
+		return commonMapper.listaMonedas();
 	}
 }

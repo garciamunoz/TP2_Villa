@@ -26,5 +26,9 @@ $(function(){
 		});
 	});
 	
+	$('#btnSalir').click(function(){
+		window.location.href = "/TP2_Villa";
+	});
+	
 	
 });

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- GIANMARCO MALEX TRILLO -->
+<mapper namespace="com.petcenter.dao.spec.SolicitudExamenMapper">
+
+  <resultMap id="ClienteMap" type="ClienteDTO">
+		<id property="idCliente" column="idCliente3" />
+		
+		<result property="nomCliente" column="nomCliente"/>
+		<result property="apePaternoCliente" column="apePaternoCliente"/>
+		<result property="apeMaternoCliente" column="apeMaternoCliente"/>
+  </resultMap>
+  
+  <resultMap id="MascotaMap" type="MascotaDTO">
+		<id property="idMascota" column="idMascota2" />
+		
+		<result property="nomMascota" column="nomMascota"/>
+		<result property="idCliente" column="idCliente4"/>
+  </resultMap>
+
+  <resultMap id="AtencionMedicaMap" type="AtencionMedica">
+  		<id property="idAM" column="idAM" />
+  		
+  		<result property="idHC" column="idHC"/>
+  		<result property="idDIAG" column="idDIAG"/>
+  		<result property="idEXAM" column="idEXAM"/>
+  		<result property="codMedico" column="codMedico"/>
+  		<result property="desMedico" column="desMedico"/>
+  		
+  		<result property="deposiciones" column="deposiciones"/>
+  		<result property="peso" column="peso"/>
+  		<result property="temperatura" column="temperatura"/>
+  		<result property="signovital" column="signovital"/>
+  		<result property="observacion" column="observacion"/>
+  		
+  		<result property="comentario" column="comentario"/>
+  		<result property="estadoAM" column="estadoAM"/>
+  		<result property="registrado" column="registrado"/>
+  		<result property="actualizado" column="actualizado"/>
+  </resultMap>
+  
+  <resultMap id="HistoriaClinicaMap" type="HistoriaClinica">
+  		<id property="idHC" column="idHC2" />
+  
+  		<result property="idCliente" column="idCliente2"/>
+  		<result property="idMascota" column="idMascota"/>
+  		<result property="edad" column="edad"/>
+  		<result property="observaciones" column="observaciones"/>
+  		<result property="estadoHC" column="estadoHC"/>
+  		<result property="registrado" column="registrado"/>
+  		<result property="actualizado" column="actualizado"/>
+  		
+  		<association property="cliente" resultMap="ClienteMap"/>
+  </resultMap>
+  
+  <resultMap id="HistoriaClinica2Map" type="HistoriaClinica">
+  		<id property="idHC" column="idHC2" />
+  
+  		<result property="idCliente" column="idCliente2"/>
+  		<result property="idMascota" column="idMascota"/>
+  		<result property="edad" column="edad"/>
+  		<result property="observaciones" column="observaciones"/>
+  		<result property="estadoHC" column="estadoHC"/>
+  		<result property="registrado" column="registrado"/>
+  		<result property="actualizado" column="actualizado"/>
+  		
+  		<association property="cliente" resultMap="ClienteMap"/>
+  		<association property="mascota" resultMap="MascotaMap"/>
+  </resultMap>  
+  
+  <resultMap id="SolicitudExamenClinicoMap" type="SolicitudExamenClinicoDTO">
+		<id property="idSolicitudexamen" column="idSolicitudexamen" />
+		
+		<result property="fechaSolicitudexamen" column="fechaSolicitudexamen"/>
+		<result property="tipoOrdenMedica" column="tipoOrdenMedica"/>
+		<result property="nroOrdenMedica" column="nroOrdenMedica"/>
+		
+		<result property="subtotal" column="subtotal"/>
+		<result property="totalDscto" column="totalDscto"/>
+		<result property="totalIgv" column="totalIgv"/>
+		<result property="totalPrecio" column="totalPrecio"/>
+		
+		<result property="nombresClienteExterno" column="nombresClienteExterno"/>
+		<result property="numeroColegiatura" column="numeroColegiatura"/>
+		<result property="cantExamenes" column="cantExamenes"/>
+		<result property="idEstado" column="idEstado"/>
+		
+		<association property="atencionMedica" resultMap="AtencionMedicaMap"/>
+		
+		<association property="historiaClinica" resultMap="HistoriaClinicaMap"/>
+		
+		<association property="estado" javaType="EstadoDTO">
+	   		<id property="idEstado" column="idEstado2"/>
+	    	<result property="nombreEstado" column="nombreEstado"/>
+	    </association>
+  </resultMap>
+
+  <select id="consultarSolicitudesExamenes" resultMap="SolicitudExamenClinicoMap">
+	select sec.idSolicitudexamen, 
+		   sec.fechaSolicitudexamen, sec.nroOrdenMedica, sec.TipoOrdenMedica, 
+		   sec.Subtotal, sec.totalDscto, sec.totalIgv, sec.totalPrecio, 
+	       sec.NombresClienteExterno, sec.numeroColegiatura, sec.CantExamenes, sec.idEstado, 
+	       am.idAM, 
+	       am.idHC, am.idDIAG, am.idEXAM, am.codMedico, am.desMedico, 
+	       am.deposiciones, am.peso, am.temperatura, am.signovital, am.observacion, 
+	       am.comentario, am.estadoAM, am.registrado, am.actualizado, 
+	       hc.idHC as idHC2, 
+	       hc.idCliente as idCliente2, hc.idMascota, hc.edad, hc.observaciones, 
+	       hc.estadoHC, hc.registrado, hc.actualizado, 
+	       c.idCliente as idCliente3, 
+	       c.nomCliente, c.apePaternoCliente, c.apeMaternoCliente, 
+	       es.idEstado as idEstado2, es.nombreEstado 
+	  from TB_SOLICITUDEXAMENCLINICO sec, TB_ATENCION_MEDICA am, TB_HISTORIA_CLINICA hc, TB_CLIENTE c, TB_ESTADO es 
+	 where sec.NROORDENMEDICA = am.IDAM 
+	   and am.idHC = hc.idHC 
+	   <if test="idSolicitudexamen != null">
+	   and sec.IDSOLICITUDEXAMEN = #{idSolicitudexamen} 
+	   </if>
+	   <if test="idCliente != 0">
+	   and hc.IDCLIENTE = #{idCliente}  
+	   </if>
+	   <if test="fechaInicial != null and fechaFinal != null">
+	   and sec.FECHASOLICITUDEXAMEN BETWEEN STR_TO_DATE(#{fechaInicial}, '%d-%m-%Y') and STR_TO_DATE(#{fechaFinal}, '%d-%m-%Y') 
+	   </if>
+	   and c.IDCLIENTE = hc.IDCLIENTE
+	   and es.idEstado = sec.idEstado 
+  </select>
+  
+  <resultMap id="SolicitudExamenClinico2Map" type="SolicitudExamenClinicoDTO">
+		<association property="atencionMedica" resultMap="AtencionMedicaMap"/>
+		<association property="historiaClinica" resultMap="HistoriaClinica2Map"/>
+  </resultMap>
+  
+  <select id="recuperarAtencionMedica" parameterType="int" resultMap="SolicitudExamenClinico2Map">
+	select am.idAM, 
+	       am.idHC, am.idDIAG, am.idEXAM, am.codMedico, am.desMedico, 
+	       am.deposiciones, am.peso, am.temperatura, am.signovital, am.observacion, 
+	       am.comentario, am.estadoAM, am.registrado, am.actualizado, 
+	       hc.idHC as idHC2, 
+	       hc.idCliente as idCliente2, hc.idMascota, hc.edad, hc.observaciones, 
+	       hc.estadoHC, hc.registrado, hc.actualizado, 
+	       c.idCliente as idCliente3, 
+	       c.nomCliente, c.apePaternoCliente, c.apeMaternoCliente, 
+	       m.idMascota as idMascota2, 
+		   m.nomMascota, m.idCliente as idCliente4 
+	  from TB_ATENCION_MEDICA am, TB_HISTORIA_CLINICA hc, TB_CLIENTE c, TB_MASCOTA m 
+	 where am.IDHC = hc.IDHC
+	   and am.IDAM = #{idAM} 
+	   and c.IDCLIENTE = hc.IDCLIENTE 
+	   and m.IDMASCOTA = hc.IDMASCOTA
+       and m.IDCLIENTE = hc.IDCLIENTE
+  </select>
+  
+  <select id="generarNumero" resultType="int">
+  	SELECT CAST(MAX(idSolicitudexamen) AS SIGNED INTEGER)+1 AS nuevo FROM TB_SOLICITUDEXAMENCLINICO
+  </select>
+  
+  <insert id="registrarSolicitudExamenClinico" parameterType="SolicitudExamenClinicoDTO">
+	    insert into TB_SOLICITUDEXAMENCLINICO
+	    (idSolicitudexamen, 
+		 fechaSolicitudexamen, nroOrdenMedica, TipoOrdenMedica, 
+		 Subtotal, totalDscto, totalIgv, totalPrecio, 
+	     NombresClienteExterno, numeroColegiatura, CantExamenes, idEstado)
+	    values   
+	    (#{idSolicitudexamen}, 
+		 #{fechaSolicitudexamen}, #{nroOrdenMedica}, '1', 
+		 #{subtotal}, #{totalDscto}, #{totalIgv}, #{totalPrecio}, 
+	     #{nombresClienteExterno}, #{numeroColegiatura}, #{cantExamenes}, #{idEstado})
+  </insert>
+  
+  <delete id="eliminarDetalle" parameterType="String">
+		DELETE FROM TB_DETALLESOLICITUDEXAMENCLINICO 
+			WHERE idSolicitudexamen = #{idSolicitudexamen}
+  </delete>
+  
+  <insert id="registrarDetalle" parameterType="DetalleSolicitudExamenClinicoDTO">
+	    insert into TB_DETALLESOLICITUDEXAMENCLINICO 
+	    (idSolicitudexamen, item, tipoExamen, idExamenClinico, indMuestras, precio, descuento)
+	    values 
+	    (#{idSolicitudexamen}, #{item}, '1', #{idExamenClinico}, #{indMuestras}, #{precio}, #{descuento}) 
+   </insert>
+  
+   <select id="consultarTipoExamPrecioExamVig" resultType="TipoExamPrecioExamVigDTO">
+	   	select ec.idExamenClinico, ec.nombreExamenClinico, ec.descripcionExamenClinico, ec.diasCultivo, 
+			   pec.precio, pec.descuento  
+		  from tb_examenclinico ec, tb_precioxexamenclinico pec
+		 where ec.idExamenClinico = pec.idExamenClinico
+		   and pec.indVigente = 'V' 
+		   <if test="idExamenClinico != null">
+		   and ec.idExamenClinico = #{idExamenClinico} 
+		   </if>
+		   <if test="nombreExamenClinico != null">
+		   and ec.nombreExamenClinico like '%${nombreExamenClinico}%' 
+		   </if>
+   </select>
+   
+   <select id="recuperarDetalle" parameterType="String" resultType="DetalleSolicitudExamenClinicoDTO">
+   			select idSolicitudexamen, item, tipoExamen, idExamenClinico, indMuestras, precio, descuento 
+   			  from TB_DETALLESOLICITUDEXAMENCLINICO 
+   			 where idSolicitudexamen = #{idSolicitudexamen}
+   </select>
+   
+   <update id="actualizarSolicitudExamenClinico" parameterType="SolicitudExamenClinicoDTO">
+		   UPDATE TB_SOLICITUDEXAMENCLINICO
+			  SET idEstado = #{idEstado}  
+			WHERE idSolicitudexamen = #{idSolicitudexamen}  
+  </update>
+  
+</mapper>

@@ -23,6 +23,7 @@
     <div class="form-group">
         <div class="col-xs-offset-3 col-xs-9">
             <input id="btnBuscar" type="button" class="btn btn-primary" value="<spring:message code="uc.first.btn.search"/>">
+            <input id="btnSalir" type="button" class="btn btn-primary" value="Salir" > 
         </div>
     </div>
     

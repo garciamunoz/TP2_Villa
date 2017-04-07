@@ -28,4 +28,10 @@
 		   and a.idEstado = 'ACT'
   </select>
   
+  <select id="listaMonedas" resultType="MonedaDTO">
+  	select idMoneda, nombreMoneda, idEstado 
+	  from TB_MONEDA
+	 where idEstado = 'ACT'
+  </select>
+  
 </mapper>

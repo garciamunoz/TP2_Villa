@@ -19,9 +19,11 @@ import com.petcenter.dto.EstadoDTO;
 import com.petcenter.dto.EstandarDTO;
 import com.petcenter.dto.NormativaDTO;
 import com.petcenter.dto.PrecioDTO;
+import com.petcenter.dto.PrecioExamenDTO;
 import com.petcenter.dto.TipoExamenDTO;
 import com.petcenter.service.ActualizarTipoExamenMedicoService;
 import com.petcenter.service.CommonService;
+import com.petcenter.service.PrecioExamenService;
 import com.petcenter.util.LaboratorioConstantes;
 
 
@@ -34,6 +36,9 @@ public class ActualizarTipoExamenMedicoController {
 	
 	@Autowired
 	private CommonService commonService;
+	
+	@Autowired
+	private PrecioExamenService precioExamenService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String inicio(Model model){
@@ -76,7 +81,7 @@ public class ActualizarTipoExamenMedicoController {
 		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_NORMATIVAS, listaNormativas);
 		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_ESTANDARES,listaEstandares);
 		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_ESTADOS, listaEstados);
-		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_PRECIOS, listaPrecios);
+		//model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_PRECIOS, listaPrecios);
 		
 		return LaboratorioConstantes.VISTA_NUEVO_TIPO_EXAMEN;
 	}
@@ -90,7 +95,7 @@ public class ActualizarTipoExamenMedicoController {
 		List<NormativaDTO> listaNormativas = actualizaTipoExamenMedicoService.listarNormativa();
 		List<EstandarDTO> listaEstandares = actualizaTipoExamenMedicoService.listaEstandares();
 		List<EstadoDTO> listaEstados =  actualizaTipoExamenMedicoService.listarEstados();
-		List<PrecioDTO> listaPrecios = actualizaTipoExamenMedicoService.listaPrecios();
+		List<PrecioExamenDTO> listaPrecios = precioExamenService.listarPreciosExamen(idExamenClinico);
 		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_ESPECIALIDADES, listaEspecialidades);
 		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_NORMATIVAS, listaNormativas);
 		model.addAttribute(LaboratorioConstantes.NOMBRE_LISTA_BUSQUEDA_ESTANDARES,listaEstandares);

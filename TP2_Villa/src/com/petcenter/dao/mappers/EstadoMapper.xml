@@ -10,4 +10,12 @@
       where indMante = 'X'
   </select>
   
+  <select id="listaEstados2" resultType="EstadoDTO">
+  <![CDATA[
+    select idEstado, nombreEstado, descripcionEstado 
+      from tb_estado 
+      where indMante <> 'X'
+  ]]>
+  </select>
+  
 </mapper>

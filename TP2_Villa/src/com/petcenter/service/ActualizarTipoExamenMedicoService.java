@@ -1,10 +1,13 @@
 package com.petcenter.service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.petcenter.dao.spec.EspecialidadMapper;
 import com.petcenter.dao.spec.EstadoMapper;
@@ -18,6 +21,7 @@ import com.petcenter.dto.EstadoDTO;
 import com.petcenter.dto.EstandarDTO;
 import com.petcenter.dto.NormativaDTO;
 import com.petcenter.dto.PrecioDTO;
+import com.petcenter.dto.PrecioExamenDTO;
 import com.petcenter.dto.TipoExamenDTO;
 
 @Service
@@ -35,6 +39,9 @@ public class ActualizarTipoExamenMedicoService {
 	private EstandarMapper estandarMapper;
 	@Autowired
 	private PrecioMapper precioMapper;
+	
+	@Autowired
+	private PrecioExamenService precioExamenService;
 	
 	public List<EspecialidadDTO> listarEspecialidades(){
 		return especialidadMapper.listarEspecialidades();
@@ -63,18 +70,34 @@ public class ActualizarTipoExamenMedicoService {
 		return precioMapper.listaPrecios();
 	}
 	
+	@Transactional
 	public void registrar(TipoExamenDTO tipoExamen) {
 		int nuevo = tipoExamenMedicoMapper.generarNumero();
 		String strNuevo = String.format("%04d", nuevo);
 		
 		tipoExamen.setIdExamenClinico(strNuevo);
-
+		
 		tipoExamenMedicoMapper.registrar(tipoExamen);
 		
 		for (AtributoExamenClinicoDTO atr : tipoExamen.getAtributos()) {
 			atr.setIdExamenClinico(tipoExamen.getIdExamenClinico());
 			tipoExamenMedicoMapper.registrarDetalle(atr);
 		}
+		
+		PrecioExamenDTO precioExamen = new PrecioExamenDTO();
+		precioExamen.setIdExamenClinico(strNuevo);
+		precioExamen.setFechaInicial(new Date());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		try {
+			precioExamen.setFechaFinal(dateFormat.parse("31-12-9999"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		precioExamen.setIdMoneda("PEN");
+		precioExamen.setPrecio(0.0);
+		precioExamen.setDescuento(0.0);
+		
+		precioExamenService.registrarPrecioExamen(precioExamen);
 	}
 	
 	public TipoExamenDTO recuperarTipoExamen(String idExamenClinico) {

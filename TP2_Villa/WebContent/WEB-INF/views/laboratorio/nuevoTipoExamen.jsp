@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../common/header.jspf"%>
   <script src="/TP2_Villa/static/js/tipoExamen.js"></script>
 <%--content--%>
@@ -80,19 +81,24 @@
     <div class="form-group">
         <label class="control-label col-xs-3"><spring:message code="uc.first.lbl.est"/></label>
         <div class="col-xs-3">
-            <select id="idEst" class="form-control">
-            	<option value="0"><spring:message code="uc.first.tb.dwon.choose"/></option>
+            <select id="idEst" class="form-control" <c:if test="${accion == 'registrar'}">disabled="disabled"</c:if> >
             	<c:forEach items="${listaEstados}" var="est">
-			   		<option value="${est.idEstado}" <c:if test="${est.idEstado == tipoExamen.estado.idEstado}">selected="selected"</c:if>>${est.nombreEstado}</option>
+            		<c:choose>
+            			<c:when test="${accion == 'registrar'}">
+            				<option value="${est.idEstado}" <c:if test="${est.idEstado == 'ACT'}">selected="selected"</c:if>>${est.nombreEstado}</option>
+            			</c:when>
+            			<c:otherwise>
+            				<option value="${est.idEstado}" <c:if test="${est.idEstado == tipoExamen.estado.idEstado}">selected="selected"</c:if>>${est.nombreEstado}</option>
+            			</c:otherwise>
+            		</c:choose>
 			    </c:forEach>
             </select>
         </div>
         <label class="control-label col-xs-3" ><spring:message code="uc.first.title.tipo.examen.lbl.precio"/></label>
         <div class="col-xs-3">
-            <select id="idPrecio" class="form-control">
-            	<option value="0"><spring:message code="uc.first.tb.dwon.choose"/></option>
+            <select id="idPrecio" class="form-control" disabled="disabled">
             	<c:forEach items="${listaPrecios}" var="pre">
-			   		<option value="${pre.idExamenClinico}" <c:if test="${pre.indVigente == 'V'}">selected="selected"</c:if>>${pre.precio}</option>
+			   		<option value="<fmt:formatDate pattern="dd-MM-yyyy" value="${pre.fechaInicial}" />,<fmt:formatDate pattern="dd-MM-yyyy" value="${pre.fechaFinal}" />" <c:if test="${pre.indVigente == 'V'}">selected="selected"</c:if>>${pre.precio}</option>
 			    </c:forEach>
             </select>
         </div>
@@ -142,7 +148,7 @@
             	<input id="btnSave" type="button" class="btn btn-primary" value="<spring:message code="uc.first.title.tipo.examen.btn.save"/>">
             </c:if>
             <c:if test="${accion == 'actualizar'}">
-            	<input id="btnUpdate" type="button" class="btn btn-primary" value="Actualizar">
+            	<input id="btnUpdate" type="button" class="btn btn-primary" value="Grabar">
             </c:if>
             <input id="btnCancel" type="button" class="btn btn-primary" value="<spring:message code="uc.first.title.tipo.examen.btn.cancel"/>">
         </div>

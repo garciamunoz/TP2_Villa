@@ -3,6 +3,7 @@ package com.petcenter.dao.spec;
 import java.util.List;
 
 import com.petcenter.dto.AtributoDTO;
+import com.petcenter.dto.MonedaDTO;
 import com.petcenter.dto.TipoDocDTO;
 
 /**
@@ -13,8 +14,7 @@ import com.petcenter.dto.TipoDocDTO;
 public interface CommonMapper {
 
 	List<TipoDocDTO> listaTipoDoc();
-	
-	
 	List<AtributoDTO> listaTodosAtributos();
+	List<MonedaDTO> listaMonedas();
 	
 }

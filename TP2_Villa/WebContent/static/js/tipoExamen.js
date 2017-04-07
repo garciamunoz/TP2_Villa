@@ -28,6 +28,7 @@ $(function(){
 		req.normativa = {};
 		req.estandar = {};
 		req.atributos = [];
+		req.estado = {};
 		
 		req.idExamenClinico = $("#codigo").val();
 		req.nombreExamenClinico = $("#nombre").val();
@@ -36,6 +37,7 @@ $(function(){
 		req.normativa.idNormativa = $("#idNorm").val();
 		req.estandar.idEstandar = $("#idEstandar").val();
 		req.diasCultivo = $("#idDiasCultivo").val();
+		req.estado.idEstado = $("#idEst").val();
 		
 		$("tr", "#tbATRIBUTOSXEXAMENCLINICO").each(function(i, item) {
 			var atributoExamCli = {};
@@ -55,7 +57,7 @@ $(function(){
 	        }
 	    });
 		
-		alert("Tipo de examen médico se grabó correctamente");
+		alert("Tipo de examen modificado correctamente");
         window.location.href = "/TP2_Villa/actualizarTipoExamen";
     });
 	
@@ -98,7 +100,7 @@ function funcionesgenerales(){
 	});
 	
 	$("#btnCancel").click(function(){
-		window.location="/TP2_Villa/";
+		window.location="/TP2_Villa/actualizarTipoExamen";
 	});
 	
 	$("#btnAgregarAtributo").click(function(){
@@ -235,7 +237,7 @@ function funcionesgenerales(){
 	        }
 	    });
 		
-		alert("Tipo de examen médico se grabó correctamente");
+		alert("Tipo de examen registrado correctamente");
         window.location.href = "/TP2_Villa/actualizarTipoExamen";
 		
 	});
