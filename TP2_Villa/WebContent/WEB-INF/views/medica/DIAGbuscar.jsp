@@ -30,7 +30,7 @@ function regresar(){
     	<div class="form-group">
 	        <label class="control-label col-sm-3 col-xs-3" for="txtDIAG">CÓDIGO DIAGNÓSTICO:</label>
 	        <div class="col-sm-3 col-xs-3">
-	        	<input type="text" id="txtDIAG" name="txtDIAG" class="form-control"/>
+	        	<input type="text" id="txtDIAG" name="txtDIAG" class="form-control" onkeypress="return isNumeric(event);"/>
 	        </div>
 	    </div>
     	<div class="form-group">

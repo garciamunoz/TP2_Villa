@@ -30,13 +30,13 @@ function regresar(){
     	<div class="form-group">
 	        <label class="control-label col-sm-3 col-xs-3" for="txtPM">CÓDIGO PROCEDIMIENTO MÉDICO:</label>
 	        <div class="col-sm-3 col-xs-3">
-	        	<input type="text" id="txtPM" name="txtPM" class="form-control"/>
+	        	<input type="text" id="txtPM" name="txtPM" class="form-control" onkeypress="return isNumeric(event);"/>
 	        </div>
 	    </div>
     	<div class="form-group">
 	        <label class="control-label col-sm-3 col-xs-3" for="txtAM">CÓDIGO ATENCIÓN MÉDICA:</label>
 	        <div class="col-sm-3 col-xs-3">
-	            <input type="text" id="txtAM" name="txtAM" class="form-control"/>
+	            <input type="text" id="txtAM" name="txtAM" class="form-control" onkeypress="return isNumeric(event);"/>
 	        </div>
 	    </div>
     </div>

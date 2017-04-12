@@ -44,6 +44,8 @@ function validar(){
 				});
 			}else{
 				mensajeModal("Cliente no encontrado.");
+				$('#txtNUMDOC').val('');
+				mascota('');
 			}
 		},
 		error: function(e){
@@ -56,13 +58,15 @@ function mascota(id){
 	$('#txtESPECIE').val('');
 	$('#txtRAZA').val('');
 	$('#txtGENERO').val('');
+	$('#txtEDAD').val('');
 	
 	$.each(listaDatos,function( index, element ) {
 		if(element.idMascota == id){
 			$('#txtESPECIE').val(element.descripcionEspecie);
 			$('#txtRAZA').val(element.descripcionRaza);
 			$('#txtGENERO').val(element.descripcionGenMascota);
-			return;
+			$('#txtEDAD').val(element.edadActual);
+			return false;
 		}
 	});
 }
@@ -90,6 +94,8 @@ function registrar(){
 	<input type="hidden" id="hdnIDCLIENTE" name="hdnIDCLIENTE" value=""/>
 
     <div class="col-sm-12">
+    	<div class="col-sm-2">
+    	</div>
     	<div class="col-sm-8">
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtTIPODOC">TIPO DOCUMENTO:</label>
@@ -104,8 +110,8 @@ function registrar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtNUMDOC">NÚMERO DOCUMENTO:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" value="" onkeydown="return isNumeric(event);"/>
-		            <input type="button" id="btnVALIDAR" value="VALIDAR" class="btn btn-info" onclick="validar();"/>
+		            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" value="" onkeypress="return isNumeric(event);" onblur="validar();"/>
+<!-- 		            <input type="button" id="btnVALIDAR" value="VALIDAR" class="btn btn-info" onclick="validar();"/> -->
 		        </div>
 		    </div>
     		<div class="form-group">
@@ -121,6 +127,9 @@ function registrar(){
 		            	<option value="-1">Seleccione</option>
 		            </select>
 		        </div>
+	        </div>
+	        <div class="form-group">
+	        	<img class="thumbnail" alt="IMG" src="/TP2_Villa/static/img/x.png" width="150px" height="150px" style="float: right;position: absolute;right: 0;">
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtESPECIE">ESPECIE:</label>
@@ -143,7 +152,7 @@ function registrar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtEDAD">EDAD:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtEDAD" name="txtEDAD" class="form-control" maxlength="3" onkeydown="return isNumeric(event);"/>
+		            <input type="text" id="txtEDAD" name="txtEDAD" class="form-control" maxlength="3" onkeypress="return isNumeric(event);"/>
 		        </div>
 	        </div>
     		<div class="form-group">
@@ -152,19 +161,16 @@ function registrar(){
 		        	<textarea class="form-control" id="txtOBS" name="txtOBS" rows="3" cols="100" maxlength="255"></textarea>
 		        </div>
 	        </div>
+	        <div class="form-group">
+		        <div class="col-sm-3" align="left">
+		        	<input type="button" class="btn btn-primary" value="REGRESAR" onclick="regresar();"/>
+			    </div>
+		        <div class="col-sm-3" align="center">
+		        	<input type="button" class="btn btn-success" value="GRABAR" onclick="registrar();"/>
+		        </div>
+		    </div>
 	    </div>
-        <div class="col-sm-4" align="left">
-        	<img class="thumbnail" alt="IMG" src="/TP2_Villa/static/img/x.png" width="150px" height="150px">
-        </div>
-    </div>
-    
-    <br>
-    <div class="form-group">
-        <div class="col-sm-3" align="left">
-        	<input type="button" class="btn btn-primary" value="REGRESAR" onclick="regresar();"/>
-	    </div>
-        <div class="col-sm-3" align="center">
-        	<input type="button" class="btn btn-success" value="GRABAR" onclick="registrar();"/>
+        <div class="col-sm-2">
         </div>
     </div>
 </form>

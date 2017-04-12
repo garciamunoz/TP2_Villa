@@ -64,7 +64,7 @@ function validar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtAM">CODIGO ATENCIÓN MÉDICA:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="txtAM" name="txtAM" class="form-control" value="" onblur="validar();"/>
+		            <input type="text" id="txtAM" name="txtAM" class="form-control" value="" onblur="validar();" onkeypress="return isNumeric(event);"/>
 		        </div>
 		    </div>
 		    <div class="form-group">
@@ -109,7 +109,7 @@ function validar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtDESC">DESCRIPCIÓN:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="txtDESC" name="txtDESC" class="form-control" value=""/>
+		            <input type="text" id="txtDESC" name="txtDESC" class="form-control" value="" maxlength="255"/>
 		        </div>
 		    </div>
     		<div class="form-group">

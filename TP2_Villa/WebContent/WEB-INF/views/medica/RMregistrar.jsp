@@ -67,7 +67,7 @@ function agregar(){
     		"<td style='text-align: center;'><input name='dosis' value='' /></td>"+
     		"<td style='text-align: center;'><input name='indicacion' value='' /></td>"+
     		"<td style='text-align: center;'><input name='duracion' value='' /></td>"+
-    		"<td style='text-align: center;'><input name='cantidad' value='' /></td>"+
+    		"<td style='text-align: center;'><input name='cantidad' value='' onkeypress='return isNumeric(event);'/></td>"+
     		"<td style='text-align: center;'><input type='button' id='"+now+"' value='ELIMINAR' onclick='eliminar("+now+");' /></td>"+
         "</tr>");
 }
@@ -94,7 +94,7 @@ $(document).ready(function(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtAM">CÓDIGO ATENCIÓN MÉDICA:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="txtAM" name="txtAM" class="form-control" value="" onblur="validar();"/>
+		            <input type="text" id="txtAM" name="txtAM" class="form-control" value="" onblur="validar();" onkeypress="return isNumeric(event);"/>
 		        </div>
 		    </div>
     		<div class="form-group">

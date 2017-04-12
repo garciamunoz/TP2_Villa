@@ -78,7 +78,7 @@ function buscar(){
                 	<th style="text-align: center;">CLIENTE</th>
                 	<th style="text-align: center;">MASCOTA</th>
                 	<th style="text-align: center;">REGISTRADO</th>
-                	<th style="text-align: center;">ACTUALIZADO</th>
+<!--                 	<th style="text-align: center;">ACTUALIZADO</th> -->
                 	<th style="text-align: center;" colspan="2">ACCIÓN</th>
                 </tr>
             </thead>
@@ -89,7 +89,7 @@ function buscar(){
 	            		<td style="text-align: center;">${hc.datosCliente}</td>
 	            		<td style="text-align: center;">${hc.datosMascota}</td>
 	            		<td style="text-align: center;">${hc.registrado}</td>
-	            		<td style="text-align: center;">${hc.actualizado}</td>
+<%-- 	            		<td style="text-align: center;">${hc.actualizado}</td> --%>
 	            		<td style="text-align: center;">
 	            			<a href="#" onclick="detalle(${hc.idHC});">Ver Detalle</a>
 	            		</td>
@@ -114,7 +114,7 @@ function buscar(){
 	        	<input type="button" class="btn btn-info" value="LIMPIAR" onclick="limpiar();"/>
 	        </div>
 	        <div class="col-sm-6" align="right">
-	        	<input type="button" class="btn btn-primary" value="REGRESAR"/>
+<!-- 	        	<input type="button" class="btn btn-primary" value="REGRESAR"/> -->
 	        </div>
 	    </div>
     </div>

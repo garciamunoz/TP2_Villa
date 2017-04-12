@@ -45,6 +45,8 @@ function validar(){
 				});
 			}else{
 				mensajeModal("Cliente no encontrado.");
+				$('#txtNUMDOC').val('');
+				mascota('');
 			}
 		},
 		error: function(e){
@@ -61,7 +63,7 @@ function mascota(id){
 		if(element.idMascota == id){
 			$('#hdnIDHC').val(element.idHC);
 			$('#txtHC').val(element.idHC);
-			return;
+			return false;
 		}
 	});
 }
@@ -91,6 +93,9 @@ function registrar(){
 	<input type="hidden" id="txtMEDICO" name="txtMEDICO" value="${datosMedico}"/>
 
     <div class="col-sm-12">
+    		<div class="col-sm-2">
+    		</div>
+    		<div class="col-sm-8">
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtTIPODOC">TIPO DOCUMENTO:</label>
 		        <div class="col-xs-5">
@@ -104,8 +109,8 @@ function registrar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtNUMDOC">NÚMERO DOCUMENTO:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" value=""/>
-		            <input type="button" id="btnVALIDAR" value="VALIDAR" class="btn btn-info" onclick="validar();"/>
+		            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" value="" onblur="validar();" onkeypress="return isNumeric(event);"/>
+<!-- 		            <input type="button" id="btnVALIDAR" value="VALIDAR" class="btn btn-info" onclick="validar();"/> -->
 		        </div>
 		    </div>
     		<div class="form-group">
@@ -137,30 +142,30 @@ function registrar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtDEPO">DEPOSICIONES AL DÍA:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtDEPO" name="txtDEPO" class="form-control"/>
+		            <input type="text" id="txtDEPO" name="txtDEPO" class="form-control" onkeypress="return isNumeric(event);"/>
 		        </div>
 	        </div>
 	        <div class="form-group">
 		        <label class="control-label col-xs-3" for="txtPESO">PESO KG:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtPESO" name="txtPESO" class="form-control"/>
+		            <input type="text" id="txtPESO" name="txtPESO" class="form-control" onkeypress="return isNumeric(event);"/>
 		        </div>
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtTEMP">TEMPERATURA C°:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtTEMP" name="txtTEMP" class="form-control" maxlength="3"/>
+		            <input type="text" id="txtTEMP" name="txtTEMP" class="form-control" maxlength="3" onkeypress="return isNumeric(event);"/>
 		        </div>
 	        </div>
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtVITAL">PULSOS POR MINUTO:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtVITAL" name="txtVITAL" class="form-control" maxlength="3"/>
+		            <input type="text" id="txtVITAL" name="txtVITAL" class="form-control" maxlength="3" onkeypress="return isNumeric(event);"/>
 		        </div>
 	        </div>
 	        <div class="form-group">
 		        <label class="control-label col-xs-3" for="txtDIAG">DIAGNÓSTICO:</label>
-		        <div class="col-xs-8">
+		        <div class="col-xs-5">
 		            <select id="txtDIAG" name="txtDIAG" class="form-control">
 			            <option value="-1">Seleccione</option>	
 		            <c:forEach items="${listaDiagnostico}" var="diag">
@@ -171,7 +176,7 @@ function registrar(){
 		    </div>
 	        <div class="form-group">
 		        <label class="control-label col-xs-3" for="txtEXAMEN">ORDEN MÉDICA:</label>
-		        <div class="col-xs-8">
+		        <div class="col-xs-5">
 		            <select id="txtEXAMEN" name="txtEXAMEN" class="form-control">
 			            <option value="-1">Seleccione</option>	
 		            <c:forEach items="${listaExamenes}" var="exam">
@@ -192,16 +197,17 @@ function registrar(){
 		        	<textarea class="form-control" id="txtCOMMENT" name="txtCOMMENT" rows="3" cols="100" maxlength="255"></textarea>
 		        </div>
 	        </div>
-    </div>
-    
-    <br>
-    <div class="form-group">
-        <div class="col-sm-3" align="left">
-        	<input type="button" class="btn btn-primary" value="REGRESAR" onclick="regresar();"/>
-	    </div>
-        <div class="col-sm-3" align="center">
-        	<input type="button" class="btn btn-success" value="GRABAR" onclick="registrar();"/>
-        </div>
+	        <div class="form-group">
+		        <div class="col-sm-3" align="left">
+		        	<input type="button" class="btn btn-primary" value="REGRESAR" onclick="regresar();"/>
+			    </div>
+		        <div class="col-sm-3" align="center">
+		        	<input type="button" class="btn btn-success" value="GRABAR" onclick="registrar();"/>
+		        </div>
+		    </div>
+	        </div>
+	        <div class="col-sm-2">
+        	</div>
     </div>
 </form>
 </div>

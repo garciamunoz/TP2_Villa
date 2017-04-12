@@ -4,7 +4,7 @@ function mensajeModal(mensaje){
 }
 
 function isNumeric(event){
-	var key = (event.keyCode || event.witch);
+	var key = (event.keyCode || event.which);
 	var value = String.fromCharCode(key); 
     var isNumber = false;
     if(!isNaN(value) || key == '8'){

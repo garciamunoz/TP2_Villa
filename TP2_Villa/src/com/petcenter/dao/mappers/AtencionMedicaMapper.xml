@@ -9,14 +9,16 @@
     SELECT idEXAM,
     		descripcion
 	FROM tb_examenes
-	WHERE estado=1
+	WHERE estado=1 
+	ORDER BY descripcion ASC
   </select>
   
   <select id="listaDiagnostico" resultType="Diagnostico">
     SELECT idDIAG,
     		descripcion
 	FROM tb_diagnostico
-	WHERE estado=1
+	WHERE estado=1 
+	ORDER BY descripcion ASC 
   </select>
   
   <insert id="registrarAM" parameterType="AtencionMedica" useGeneratedKeys="true" keyProperty="idAM" keyColumn="idAM">
@@ -64,6 +66,7 @@
 	<if test="nroDocumento != ''">
 	   	AND CLI.nroDocumento=#{nroDocumento}
 	</if>
+	ORDER BY AM.registrado DESC
   </select>  
   
   <select id="verAM" parameterType="int" resultType="AtencionMedica">

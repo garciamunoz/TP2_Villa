@@ -30,19 +30,19 @@ function regresar(){
     	<div class="form-group">
 	        <label class="control-label col-sm-3 col-xs-3" for="txtAM">CÓDIGO HISTORIA CLÍNICA:</label>
 	        <div class="col-sm-3 col-xs-3">
-	        	<input type="text" id="txtAM" name="txtHC" class="form-control"/>
+	        	<input type="text" id="txtAM" name="txtHC" class="form-control" onkeypress="return isNumeric(event);"/>
 	        </div>
 	    </div>
    		<div class="form-group">
 	        <label class="control-label col-sm-3 col-xs-3" for="txtAM">CÓDIGO ATENCIÓN MÉDICA:</label>
 	        <div class="col-sm-3 col-xs-3">
-	        	<input type="text" id="txtAM" name="txtAM" class="form-control"/>
+	        	<input type="text" id="txtAM" name="txtAM" class="form-control" onkeypress="return isNumeric(event);"/>
 	        </div>
 	    </div>
     	<div class="form-group">
 	        <label class="control-label col-sm-3 col-xs-3" for="txtNUMDOC">NÚMERO DOCUMENTO:</label>
 	        <div class="col-sm-3 col-xs-3">
-	            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control"/>
+	            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" onkeypress="return isNumeric(event);"/>
 	        </div>
 	    </div>
     </div>

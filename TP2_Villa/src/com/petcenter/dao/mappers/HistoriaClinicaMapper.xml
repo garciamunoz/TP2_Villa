@@ -20,6 +20,7 @@
 		and hc.estadoHC=1
 		and cli.idTipoDocumento=#{tipoDoc}
         and cli.nroDocumento=#{numDoc}
+    ORDER BY ma.actualizado DESC
   </select>
   
   <insert id="registrarHC" parameterType="HistoriaClinica" useGeneratedKeys="true" keyProperty="idHC" keyColumn="idHC">
@@ -56,6 +57,7 @@
 		<if test="numDOC != ''">
 	    	AND cli.nroDocumento=#{numDOC}
 	  	</if>
+	 ORDER BY hc.registrado DESC
   </select>
   
   <select id="verHC" parameterType="int" resultType="DatosClienteMascota">
@@ -83,7 +85,8 @@
   <select id="listaClienteMascotaValidado" parameterType="java.util.HashMap" resultType="DatosClienteMascota">
     SELECT cli.idCliente as 'idCliente', concat(nomCliente,' ',apePaternoCliente,' ',apeMaternoCliente) as 'datosCliente',
 		ma.idMascota,nomMascota as 'datosMascota', 'fotoMascota',
-        ra.descripcionRaza, esp.descripcionEspecie, genma.descripcionGenMascota
+        ra.descripcionRaza, esp.descripcionEspecie, genma.descripcionGenMascota, 
+        YEAR(CURDATE())-YEAR(ma.fechaNacMascota) + IF(DATE_FORMAT(CURDATE(),'%m-%d') > DATE_FORMAT(ma.fechaNacMascota,'%m-%d'), 0, -1)  as 'edadActual'
 	FROM tb_cliente cli left join tb_mascota ma
 		on cli.idCliente=ma.idCliente and ma.estadoMascota=1 left join tb_raza ra
         on ma.idRaza=ra.idRaza left join tb_especie esp
@@ -93,6 +96,7 @@
 		and ma.estadoMascota=1 and ma.idMascota not in (select idMascota from tb_historia_clinica where estadoHC = 1) 
 		and cli.idTipoDocumento=#{tipoDoc}
         and cli.nroDocumento=#{numDoc}
+    ORDER BY ma.actualizado DESC
   </select>
   
 </mapper>

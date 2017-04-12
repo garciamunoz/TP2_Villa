@@ -78,8 +78,8 @@ function buscar(){
                 	<th style="text-align: center;">CLIENTE</th>
                 	<th style="text-align: center;">MASCOTA</th>
                 	<th style="text-align: center;">REGISTRADO</th>
-                	<th style="text-align: center;">ACTUALIZADO</th>
-                	<th style="text-align: center;" colspan="4">ACCIÓN</th>
+<!--                 	<th style="text-align: center;">ACTUALIZADO</th> -->
+                	<th style="text-align: center;" colspan="5">ACCIÓN</th>
                 </tr>
             </thead>
             <tbody>
@@ -89,12 +89,15 @@ function buscar(){
 	            		<td style="text-align: center;">${AM.datosCliente}</td>
 	            		<td style="text-align: center;">${AM.datosMascota}</td>
 	            		<td style="text-align: center;">${AM.registrado}</td>
-	            		<td style="text-align: center;">${AM.actualizado}</td>
+<%-- 	            		<td style="text-align: center;">${AM.actualizado}</td> --%>
 	            		<td style="text-align: center;">
 	            			<a href="javascript:void(0);" onclick="">Medicación</a>
 	            		</td>
 	            		<td style="text-align: center;">
 	            			<a href="javascript:void(0);" onclick="">Resultado Orden Médica</a>
+	            		</td>
+	            		<td style="text-align: center;">
+	            			<a href="javascript:void(0);" onclick="">Procedimiento</a>
 	            		</td>
 	            		<td style="text-align: center;">
 	            			<a href="javascript:void(0);" onclick="detalle(${AM.idAM});">Ver Detalle</a>

@@ -22,6 +22,8 @@ public class DatosClienteMascota implements Serializable{
     private int edad;
     private String observaciones;
     
+    private String edadActual;
+    
 	public int getIdHC() {
 		return idHC;
 	}
@@ -114,6 +116,12 @@ public class DatosClienteMascota implements Serializable{
 		this.fotoString = fotoString;
 	}
 	
+	public String getEdadActual() {
+		return edadActual;
+	}
+	public void setEdadActual(String edadActual) {
+		this.edadActual = edadActual;
+	}
 	@Override
 	public String toString() {
 		return "DatosClienteMascota [idHC=" + idHC + ", idCliente=" + idCliente + ", descDoc=" + descDoc + ", numDoc="
@@ -121,7 +129,7 @@ public class DatosClienteMascota implements Serializable{
 				+ datosMascota + ", fotoMascota=" + Arrays.toString(fotoMascota) + ", fotoString=" + fotoString
 				+ ", descripcionRaza=" + descripcionRaza + ", descripcionEspecie=" + descripcionEspecie
 				+ ", descripcionGenMascota=" + descripcionGenMascota + ", edad=" + edad + ", observaciones="
-				+ observaciones + "]";
+				+ observaciones + ", edadActual=" + edadActual + "]";
 	}
 	
 }

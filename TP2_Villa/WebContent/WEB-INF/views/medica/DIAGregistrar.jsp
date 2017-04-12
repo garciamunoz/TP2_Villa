@@ -91,7 +91,7 @@ function registrar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtDESC">DESCRIPCIÓN:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="txtDESC" name="txtDESC" class="form-control" value=""/>
+		            <input type="text" id="txtDESC" name="txtDESC" class="form-control" value="" maxlength="255"/>
 		        </div>
 		    </div>
     		<div class="form-group">
