@@ -5,8 +5,17 @@
 <mapper namespace="com.petcenter.dao.spec.EstadoMapper">
 
   <select id="listaEstados" resultType="EstadoDTO">
-    select idEstado, codigoEstado,nombreEstado,descripcionEstado
-    from estado
+    select idEstado, nombreEstado, descripcionEstado 
+      from tb_estado 
+      where indMante = 'X'
+  </select>
+  
+  <select id="listaEstados2" resultType="EstadoDTO">
+  <![CDATA[
+    select idEstado, nombreEstado, descripcionEstado 
+      from tb_estado 
+      where indMante <> 'X'
+  ]]>
   </select>
   
 </mapper>

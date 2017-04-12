@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petcenter.dao.spec.ColegiadoMapper">
+
+
+	<resultMap id="ColegiadoMap" type="ColegiadoDTO">
+	   <id property="numeroColegiatura" column="numeroColegiatura"/>
+	   <result property="nombre" column="nombre"/>
+	   <result property="apellidoPaterno" column="apellidoPaterno"/>
+	   <result property="apellidoMaterno" column="apellidoMaterno"/>
+	   <result property="fechaColegiatura" column="fechaColegiatura"/>
+	   <association property="estado" javaType="EstadoDTO">
+	   		<id property="idEstado" column="idEstado"/>
+	    	<result property="nombreEstado" column="nombreEstado"/>
+	   </association>
+	</resultMap>
+
+  <select id="consultarColegiados" resultMap="ColegiadoMap">
+	    select c.numeroColegiatura, c.nombre, c.apellidoPaterno, c.apellidoMaterno, c.fechaColegiatura, c.idEstado, es.nombreEstado
+		  from TB_COLEGIADO c, tb_estado es 
+		 where c.idEstado = es.idEstado		  
+		   and c.numeroColegiatura like '%${numeroColegiatura}%' 
+		   and c.nombre like '%${nombre}%' 
+		   and c.apellidoPaterno like '%${apellidoPaterno}%' 
+		   and c.apellidoMaterno like '%${apellidoMaterno}%' 
+  </select>
+  
+  <select id="recuperarColegiado" parameterType="String" resultType="ColegiadoDTO">
+	    select c.numeroColegiatura, c.nombre, c.apellidoPaterno, c.apellidoMaterno, c.fechaColegiatura, c.idEstado 
+		  from TB_COLEGIADO c 
+		 where c.numeroColegiatura = #{numeroColegiatura} 
+		   and c.idEstado = 'ACT' 
+  </select>
+  
+</mapper>

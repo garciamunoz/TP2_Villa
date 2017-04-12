@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/TP2_Villa/static/css/jquery-ui.min.css">
   <script src="/TP2_Villa/static/js/jquery-1.10.2.min.js"></script>
   <script src="/TP2_Villa/static/js/jquery-ui.min.js"></script>
+  <script src="/TP2_Villa/static/js/jquery.numeric.js"></script>
   <script src="/TP2_Villa/static/js/bootstrap.min.js"></script>
   <script src="/TP2_Villa/static/js/common.js"></script>
   <script src="/TP2_Villa/static/js/bootstrap-table.js"></script>

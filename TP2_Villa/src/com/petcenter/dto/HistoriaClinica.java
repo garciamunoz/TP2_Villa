@@ -19,6 +19,9 @@ public class HistoriaClinica implements Serializable{
     private String datosCliente;
     private String datosMascota;
     
+    private ClienteDTO cliente;
+    private MascotaDTO mascota;
+    
 	public String getDatosCliente() {
 		return datosCliente;
 	}
@@ -79,7 +82,20 @@ public class HistoriaClinica implements Serializable{
 	public void setActualizado(Date actualizado) {
 		this.actualizado = actualizado;
 	}
-
+	
+	public ClienteDTO getCliente() {
+		return cliente;
+	}
+	public void setCliente(ClienteDTO cliente) {
+		this.cliente = cliente;
+	}
+	
+	public MascotaDTO getMascota() {
+		return mascota;
+	}
+	public void setMascota(MascotaDTO mascota) {
+		this.mascota = mascota;
+	}
 	@Override
 	public String toString() {
 		return "HistoriaClinica [idHC=" + idHC + ", idCliente=" + idCliente + ", idMascota=" + idMascota + ", edad="

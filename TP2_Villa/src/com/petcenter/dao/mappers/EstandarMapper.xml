@@ -5,8 +5,8 @@
 <mapper namespace="com.petcenter.dao.spec.EstandarMapper">
 
   <select id="listaEstandares" resultType="EstandarDTO">
-		select idEstandar, codigoEstandar, nombreEstandar, descripcionEstandar
-		from estandar
+		select idEstandar, nombreEstandar, descripcionEstandar
+		from tb_estandares
   </select>
   
 </mapper>

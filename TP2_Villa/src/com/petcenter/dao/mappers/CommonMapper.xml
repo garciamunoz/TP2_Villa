@@ -11,4 +11,27 @@
 	FROM tb_tipodocumento
   </select>
   
+  <resultMap id="listaTodosAtributosMap" type="AtributoDTO">
+	   <id property="idAtributo" column="idAtributo"/>
+	   <result property="nombreAtributo" column="nombreAtributo"/>
+	   <result property="descripcionAtributo" column="descripcionAtributo"/>
+	   <association property="caracteristica" javaType="CaracteristicaDTO">
+	   		<id property="idCaracteristica" column="idCaracteristica"/>
+	    	<result property="descripcionCaracteristica" column="descripcionCaracteristica"/>
+	   </association>
+	</resultMap>
+  
+  <select id="listaTodosAtributos" resultMap="listaTodosAtributosMap">
+	  select a.idAtributo, a.nombreAtributo, a.descripcionAtributo, a.idCaracteristica, c.descripcionCaracteristica
+		 from TB_ATRIBUTOS a, TB_CARACTERISTICA c
+		 where a.idCaracteristica = c.idCaracteristica
+		   and a.idEstado = 'ACT'
+  </select>
+  
+  <select id="listaMonedas" resultType="MonedaDTO">
+  	select idMoneda, nombreMoneda, idEstado 
+	  from TB_MONEDA
+	 where idEstado = 'ACT'
+  </select>
+  
 </mapper>

@@ -4,11 +4,98 @@
 
 <mapper namespace="com.petcenter.dao.spec.TipoExamenMedicoMapper">
 
-  <select id="buscarTiposExamen" resultType="TipoExamenDTO">
-		select t.idTipoExamenMedico ,t.codigoTipoExamen,t.nombreTipoExamen,t.descripcionExamen,e.nombreEspecialidad,t.idEspecialidad
-		from tipoExamenmedico t,especialidad e
-		where t.idEspecialidad = e.idEspecialidad
-		and t.nombreTipoExamen like '%${nom}%' and t.descripcionExamen like '%${desc}%' and (t.idEstado = #{est} or 0= #{est})and (t.idEspecialidad = #{esp} or 0=#{esp})
+
+	<resultMap id="TipoExamenDTOMap" type="TipoExamenDTO">
+	   <id property="idExamenClinico" column="idExamenClinico"/>
+	   <result property="nombreExamenClinico" column="nombreExamenClinico"/>
+	   <result property="descripcionExamenClinico" column="descripcionExamenClinico"/>
+	   <result property="diasCultivo" column="diasCultivo"/>
+	   <association property="especialidad" javaType="EspecialidadDTO">
+	   		<id property="idEspecialidad" column="idEspecialidad"/>
+	    	<result property="nombreEspecialidad" column="nombreEspecialidad"/>
+	   </association>
+	   	   <association property="normativa" javaType="NormativaDTO">
+	   		<id property="idNormativa" column="idNormativa"/>
+	    	<result property="nombreNormativa" column="nombreNormativa"/>
+	   </association>
+	   <association property="estandar" javaType="EstandarDTO">
+	   		<id property="idEstandar" column="idEstandar"/>
+	    	<result property="nombreEstandar" column="nombreEstandar"/>
+	   </association>
+	   <association property="estado" javaType="EstadoDTO">
+	   		<id property="idEstado" column="idEstado"/>
+	    	<result property="nombreEstado" column="nombreEstado"/>
+	   </association>
+	</resultMap>
+
+  <select id="buscarTiposExamen" resultMap="TipoExamenDTOMap">
+	   select t.* , e.*, n.*, et.*, es.* 
+		 from tb_examenclinico t, tb_especialidad e, tb_normativas n, tb_estandares et, tb_estado es 
+		where t.idEspecialidad = e.idEspecialidad 
+          and t.idNormativa = n.idNormativa 
+          and t.idEstandar = et.idEstandar
+          and t.idEstado = es.idEstado
+		  and t.nombreExamenClinico like '%${nom}%' and t.descripcionExamenClinico like '%${desc}%' and (t.idEstado=#{est} or '0'=#{est}) and (t.idEspecialidad=#{esp} or '0'=#{esp})
   </select>
+  
+  <select id="recuperarTipoExamen" parameterType="String" resultMap="TipoExamenDTOMap">
+	   select t.* , e.*, n.*, et.*, es.* 
+		 from tb_examenclinico t, tb_especialidad e, tb_normativas n, tb_estandares et, tb_estado es 
+		where t.idEspecialidad = e.idEspecialidad 
+          and t.idNormativa = n.idNormativa 
+          and t.idEstandar = et.idEstandar
+          and t.idEstado = es.idEstado
+		  and t.idExamenClinico = #{idExamenClinico}
+  </select>
+  
+  <select id="recuperarTipoExamenDetalle" parameterType="String" resultType="AtributoExamenClinicoDTO">
+	  select aec.idExamenClinico, aec.observacionesAtributo, a.idAtributo, a.nombreAtributo 
+	  from TB_ATRIBUTOSXEXAMENCLINICO aec, tb_atributos a
+	 where aec.idAtributo = a.idAtributo
+	   and aec.idExamenClinico = #{idExamenClinico}
+  </select>
+  
+  <select id="generarNumero" resultType="int">
+  	SELECT CAST(MAX(idExamenClinico) AS SIGNED INTEGER)+1 AS nuevo FROM tb_examenclinico
+  </select>
+  
+  	<insert id="registrar" parameterType="TipoExamenDTO">
+			insert into tb_examenclinico(idExamenClinico, nombreExamenClinico, descripcionExamenClinico, 
+										 idEspecialidad, 
+										 idNormativa, 
+										 idEstandar, 
+										 diasCultivo, 
+										 idEstado)
+				      			  values(#{idExamenClinico}, #{nombreExamenClinico}, #{descripcionExamenClinico}, 
+				      			         #{especialidad.idEspecialidad}, 
+				      			         #{normativa.idNormativa}, 
+				      			         #{estandar.idEstandar}, 
+				      			         #{diasCultivo}, 
+				      			         'ACT')
+	</insert>
+	
+	<insert id="registrarDetalle" parameterType="AtributoExamenClinicoDTO">
+	    insert into TB_ATRIBUTOSXEXAMENCLINICO
+	    (idExamenClinico, idAtributo, observacionesAtributo)
+	    values   
+	    (#{idExamenClinico}, #{idAtributo}, #{observacionesAtributo})
+	</insert>
+	
+	<update id="actualizar" parameterType="TipoExamenDTO">
+		UPDATE tb_examenclinico
+			SET nombreExamenClinico = #{nombreExamenClinico}, 
+			    descripcionExamenClinico = #{descripcionExamenClinico}, 
+			    idEspecialidad = #{especialidad.idEspecialidad}, 
+			    idNormativa = #{normativa.idNormativa}, 
+			    idEstandar = #{estandar.idEstandar}, 
+			    diasCultivo = #{diasCultivo}, 
+			    idEstado = #{estado.idEstado} 
+			WHERE idExamenClinico = #{idExamenClinico} 
+	</update>
+	
+	<delete id="eliminarDetalle" parameterType="String">
+		DELETE FROM TB_ATRIBUTOSXEXAMENCLINICO
+			WHERE idExamenClinico = #{idExamenClinico}
+	</delete>
   
 </mapper>

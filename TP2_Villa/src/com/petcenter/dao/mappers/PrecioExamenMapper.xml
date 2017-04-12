@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- GIANMARCO MALEX TRILLO -->
+<mapper namespace="com.petcenter.dao.spec.PrecioExamenMapper">
+  
+  <resultMap id="PrecioExamenMap" type="PrecioExamenDTO">
+		<id property="idExamenClinico" column="idExamenClinico2" />
+		<id property="fechaInicial" column="fechaInicial" />
+		<id property="fechaFinal" column="fechaFinal" />
+		<result property="precio" column="precio"/>
+		<result property="idMoneda" column="idMoneda"/>
+		<result property="descuento" column="descuento"/>
+  </resultMap>
+
+  <resultMap id="TipoExamenMap" type="TipoExamenDTO">
+	   <id property="idExamenClinico" column="idExamenClinico1"/>
+	   <result property="nombreExamenClinico" column="nombreExamenClinico"/>
+	   <result property="descripcionExamenClinico" column="descripcionExamenClinico"/>
+	   <collection property="precios" ofType="PrecioExamenDTO" resultMap="PrecioExamenMap" />
+  </resultMap>
+
+  <select id="consultarPreciosExamenes" resultMap="TipoExamenMap">
+    select ec.idExamenClinico as idExamenClinico1 , ec.NombreExamenClinico, ec.descripcionExamenClinico, pec.idExamenClinico as idExamenClinico2, pec.fechaInicial, pec.fechaFinal, pec.precio, pec.idMoneda, pec.descuento  
+	  from TB_EXAMENCLINICO ec, TB_PRECIOXEXAMENCLINICO pec 
+	 where ec.IDEXAMENCLINICO = pec.IDEXAMENCLINICO 
+	   and ec.NOMBREEXAMENCLINICO LIKE '%${nombreExamenClinico}%' 
+	   <if test="idMoneda != null">
+       		and pec.idMoneda = #{idMoneda}
+  	   </if>
+	   <if test="fechaInicial != null and fechaFinal != null">
+	   		<![CDATA[
+    		and pec.FECHAINICIAL <= STR_TO_DATE(#{fechaFinal}, '%d-%m-%Y') 
+	  		and pec.FECHAFINAL >= STR_TO_DATE(#{fechaInicial}, '%d-%m-%Y') 
+	   		]]>
+  	   </if>
+  </select>
+  
+  <select id="recuperarPrecioExamen" resultType="PrecioExamenDTO"> 
+  	select pec.idExamenClinico, pec.fechaInicial, pec.fechaFinal, pec.idMoneda, pec.precio, pec.descuento, pec.indVigente 
+  	  from TB_PRECIOXEXAMENCLINICO pec 
+  	 where pec.idExamenClinico = #{idExamenClinico} 
+  	   and pec.fechaInicial = STR_TO_DATE(#{fechaInicial}, '%d-%m-%Y') 
+  	   and pec.fechaFinal = STR_TO_DATE(#{fechaFinal}, '%d-%m-%Y') 
+  </select>
+  
+  <select id="listarPreciosExamen" parameterType="String" resultType="PrecioExamenDTO"> 
+  	select pec.idExamenClinico, pec.fechaInicial, pec.fechaFinal, pec.idMoneda, pec.precio, pec.descuento, pec.indVigente 
+  	  from TB_PRECIOXEXAMENCLINICO pec 
+  	 where pec.idExamenClinico = #{idExamenClinico} 
+  </select>  
+  
+  <select id="cantidadPreciosExamenRango" resultType="int">
+  <![CDATA[
+  	select count(1) 
+  	  from TB_PRECIOXEXAMENCLINICO pec 
+  	 where pec.idExamenClinico = #{idExamenClinico} 
+  	   and pec.fechaInicial <= STR_TO_DATE(#{fechaFinal}, '%d-%m-%Y') 
+  	   and pec.fechaFinal >= STR_TO_DATE(#{fechaInicial}, '%d-%m-%Y') 
+  	   and pec.fechaFinal <> STR_TO_DATE('31-12-9999', '%d-%m-%Y') 
+  ]]>
+  </select>
+  
+  <select id="recuperarPrecioExamenPrevio" resultType="PrecioExamenDTO"> 
+  	select pec.idExamenClinico, pec.fechaInicial, pec.fechaFinal, pec.idMoneda, pec.precio, pec.descuento, pec.indVigente 
+  	  from TB_PRECIOXEXAMENCLINICO pec 
+  	 where pec.idExamenClinico = #{idExamenClinico} 
+  	   and pec.fechaFinal = STR_TO_DATE('31-12-9999', '%d-%m-%Y') 
+  </select>
+  
+  <update id="actualizarPrecioExamenPrevio" parameterType="TipoExamenDTO">
+		UPDATE TB_PRECIOXEXAMENCLINICO
+			SET fechaFinal = #{fechaFinal2}, 
+			      indVigente = '' 
+			WHERE idExamenClinico = #{idExamenClinico} 
+			  and fechaInicial = #{fechaInicial} 
+			  and fechaFinal = #{fechaFinal} 
+  </update>
+  
+  <insert id="registrarPrecioExamen" parameterType="TipoExamenDTO">
+	    insert into TB_PRECIOXEXAMENCLINICO
+	    (idExamenClinico, fechaInicial, fechaFinal, idMoneda, precio, descuento, indVigente)
+	    values   
+	    (#{idExamenClinico}, #{fechaInicial}, #{fechaFinal}, #{idMoneda}, #{precio}, #{descuento}, #{indVigente})
+   </insert>
+   
+   <update id="actualizarPrecioExamen" parameterType="TipoExamenDTO">
+		UPDATE TB_PRECIOXEXAMENCLINICO
+			SET idMoneda = #{idMoneda}, 
+				precio = #{precio}, 
+				descuento = #{descuento} 
+			WHERE idExamenClinico = #{idExamenClinico} 
+			  and fechaInicial = #{fechaInicial} 
+			  and fechaFinal = #{fechaFinal} 
+  </update>
+  
+  <select id="recuperarPrecioExamenVigente" resultType="PrecioExamenDTO"> 
+  	select pec.idExamenClinico, pec.fechaInicial, pec.fechaFinal, pec.idMoneda, pec.precio, pec.descuento, pec.indVigente 
+  	  from TB_PRECIOXEXAMENCLINICO pec 
+  	 where pec.idExamenClinico = #{idExamenClinico} 
+  	   and pec.INDVIGENTE = 'V' 
+  </select>
+  
+</mapper>

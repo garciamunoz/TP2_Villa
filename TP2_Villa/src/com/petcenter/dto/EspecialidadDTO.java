@@ -2,35 +2,27 @@ package com.petcenter.dto;
 
 public class EspecialidadDTO {
 	
-	private Integer idEspecialidad;
-	private String codigoEspecialidad;
+	private String idEspecialidad;
 	private String nombreEspecialidad;
 	private String descripcionEspecialidad;
 	private Integer idEstado;
 	
 	public EspecialidadDTO(){}
 	
-	public EspecialidadDTO(Integer idEspecialidad,String codigoEspecialidad,String nombreEspecialidad,
+	public EspecialidadDTO(String idEspecialidad,String nombreEspecialidad,
 			String descripcionEspecialidad,Integer idEstado){
 		super();
 		this.idEspecialidad = idEspecialidad;
-		this.codigoEspecialidad = codigoEspecialidad;
 		this.nombreEspecialidad = nombreEspecialidad;
 		this.descripcionEspecialidad = descripcionEspecialidad;
 		this.idEstado =  idEstado;
 	}
 	
-	public Integer getIdEspecialidad() {
+	public String getIdEspecialidad() {
 		return idEspecialidad;
 	}
-	public void setIdEspecialidad(Integer idEspecialidad) {
+	public void setIdEspecialidad(String idEspecialidad) {
 		this.idEspecialidad = idEspecialidad;
-	}
-	public String getCodigoEspecialidad() {
-		return codigoEspecialidad;
-	}
-	public void setCodigoEspecialidad(String codigoEspecialidad) {
-		this.codigoEspecialidad = codigoEspecialidad;
 	}
 	public String getNombreEspecialidad() {
 		return nombreEspecialidad;

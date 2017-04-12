@@ -2,42 +2,41 @@ package com.petcenter.dto;
 
 public class NormativaDTO {
 
-	private Integer idNormativa;
-	private String numeroNormativa; 
-	private String descripcionNormativa;
+	private String idNormativa;
+	private String nombreNormativa; 
+	private EstadoDTO estado;
 	
 	public NormativaDTO(){}
-	
-	public NormativaDTO(Integer idNormativa,String numeroNormativa,String descripcionNormativa){
+
+	public NormativaDTO(String idNormativa, String nombreNormativa, EstadoDTO estado) {
 		super();
 		this.idNormativa = idNormativa;
-		this.numeroNormativa = numeroNormativa;
-		this.descripcionNormativa = descripcionNormativa;
+		this.nombreNormativa = nombreNormativa;
+		this.estado = estado;
 	}
 
-	public Integer getIdNormativa() {
+	public String getIdNormativa() {
 		return idNormativa;
 	}
 
-	public void setIdNormativa(Integer idNormativa) {
+	public void setIdNormativa(String idNormativa) {
 		this.idNormativa = idNormativa;
 	}
 
-	public String getNumeroNormativa() {
-		return numeroNormativa;
+	public String getNombreNormativa() {
+		return nombreNormativa;
 	}
 
-	public void setNumeroNormativa(String numeroNormativa) {
-		this.numeroNormativa = numeroNormativa;
+	public void setNombreNormativa(String nombreNormativa) {
+		this.nombreNormativa = nombreNormativa;
 	}
 
-	public String getDescripcionNormativa() {
-		return descripcionNormativa;
+	public EstadoDTO getEstado() {
+		return estado;
 	}
 
-	public void setDescripcionNormativa(String descripcionNormativa) {
-		this.descripcionNormativa = descripcionNormativa;
+	public void setEstado(EstadoDTO estado) {
+		this.estado = estado;
 	}
-	
 	
 }
