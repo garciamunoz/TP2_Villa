@@ -78,6 +78,11 @@ function registrar(){
 		mensajeModal("Seleccione alguna Mascota.");return false;
 	}
 	
+	var edad = $('#txtEDAD').val();
+	if(edad == ''){
+		mensajeModal("Ingrese la edad de la Mascota.");return false;
+	}
+	
 	$('#formRHC').attr('action',"/TP2_Villa/HC/registrar");
 	$('#formRHC').submit();	
 }

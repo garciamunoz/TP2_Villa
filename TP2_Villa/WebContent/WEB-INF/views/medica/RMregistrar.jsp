@@ -45,15 +45,34 @@ function mascota(id){
 		if(element.idMascota == id){
 			$('#hdnIDHC').val(element.idHC);
 			$('#txtHC').val(element.idHC);
-			return;
+			return false;
 		}
 	});
 }
 
 function registrar(){
 	if(valido){
-		$('#formRRM').attr('action',"/TP2_Villa/RM/registrar");
-		$('#formRRM').submit();	
+		
+		var medicamentos = $("#tablaMedicamento :input[type=text]");
+		if(medicamentos.length < 1){
+			mensajeModal("Ingrese algun Medicamento");return false;
+		}
+		var exito = false;
+		medicamentos.each(function(){
+			var input = $(this);
+			exito = false
+			if(input.val() == ""){
+				var text = input.attr('title');
+				mensajeModal("Ingresar el Campo: "+text);
+				return false;
+			}
+			exito = true;
+		});
+		
+		if(exito){
+			$('#formRRM').attr('action',"/TP2_Villa/RM/registrar");
+			$('#formRRM').submit();
+		}
 	}else{
 		mensajeModal("Atención Médica no encontrada.");	
 	}
@@ -62,12 +81,12 @@ function registrar(){
 function agregar(){
 	var now = new Date().getTime();
 	$('#tablaMedicamento > tbody:last-child').append("<tr>"+
-			"<td style='text-align: center;'><input name='nombreMedicamento' value='' /></td>"+
-    		"<td style='text-align: center;'><input name='via' value='' /></td>"+
-    		"<td style='text-align: center;'><input name='dosis' value='' /></td>"+
-    		"<td style='text-align: center;'><input name='indicacion' value='' /></td>"+
-    		"<td style='text-align: center;'><input name='duracion' value='' /></td>"+
-    		"<td style='text-align: center;'><input name='cantidad' value='' onkeypress='return isNumeric(event);'/></td>"+
+			"<td style='text-align: center;'><input type='text' title='NOMBRE MEDICAMENTO' name='nombreMedicamento' value='' /></td>"+
+    		"<td style='text-align: center;'><input type='text' title='VIA' name='via' value='' /></td>"+
+    		"<td style='text-align: center;'><input type='text' title='DOSIS' name='dosis' value='' /></td>"+
+    		"<td style='text-align: center;'><input type='text' title='INDICACIÓN' name='indicacion' value='' /></td>"+
+    		"<td style='text-align: center;'><input type='text' title='DURACIÓN' name='duracion' value='' /></td>"+
+    		"<td style='text-align: center;'><input type='text' title='CANTIDAD' name='cantidad' value='' onkeypress='return isNumeric(event);'/></td>"+
     		"<td style='text-align: center;'><input type='button' id='"+now+"' value='ELIMINAR' onclick='eliminar("+now+");' /></td>"+
         "</tr>");
 }

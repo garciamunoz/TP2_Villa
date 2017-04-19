@@ -18,7 +18,7 @@ function registrar(){
 	var tp = $('#txtTP').val();
 	if(tp == "-1"){
 		mensajeModal("Seleccione un Tipo de Procedimiento.");
-		return;
+		return false;
 	}
 	if(valido){
 		$('#formRPM').attr('action',"/TP2_Villa/PM/registrar");

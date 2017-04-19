@@ -61,17 +61,17 @@ function mascota(id){
 		if(element.idMascota == id){
 			$('#hdnIDHC').val(element.idHC);
 			$('#txtHC').val(element.idHC);
-			return;
+			return false;
 		}
 	});
 }
 
 function registrar(){
-// 	var idMascota = $('#txtMASCOTA').val();
+	var desc = $('#txtDESC').val();
 	
-// 	if(idMascota == "-1"){
-// 		mensajeModal("Seleccione alguna Mascota.");return false;
-// 	}
+	if(desc == ''){
+		mensajeModal("Ingrese una Descripción.");return false;
+	}
 	
 	$('#formRDIAG').attr('action',"/TP2_Villa/DIAG/registrar");
 	$('#formRDIAG').submit();	

@@ -7,6 +7,7 @@
 <script type="text/javascript">
 
 var listaDatos;
+var valido = false;
 
 function regresar(){
 	$('#formRAM').attr('action',"/TP2_Villa/AM/inicio");
@@ -75,8 +76,27 @@ function registrar(){
 		mensajeModal("Seleccione alguna Mascota.");return false;
 	}
 	
-	$('#formRAM').attr('action',"/TP2_Villa/AM/registrar");
-	$('#formRAM').submit();	
+	obligatorio();
+	
+	if(valido){
+		$('#formRAM').attr('action',"/TP2_Villa/AM/registrar");
+		$('#formRAM').submit();
+	}
+}
+
+function obligatorio(){
+	$("form#formRAM :input[type=text]").each(function(){
+		var input = $(this);
+		valido = false
+		if(input.val() == ""){
+			var id = input.attr('id');
+			var label = $("label[for='"+id+"']");
+			var text = label.text();
+			mensajeModal("Ingresar el Campo: "+text.substring(0,text.length-1));
+			return false;
+		}
+		valido = true;
+	});
 }
 
 </script>
@@ -109,7 +129,7 @@ function registrar(){
     		<div class="form-group">
 		        <label class="control-label col-xs-3" for="txtNUMDOC">NÚMERO DOCUMENTO:</label>
 		        <div class="col-xs-5" align="right">
-		            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" value="" onblur="validar();" onkeypress="return isNumeric(event);"/>
+		            <input type="text" id="txtNUMDOC" name="txtNUMDOC" class="form-control" value="" onblur="validar();" onkeypress="return isNumeric(event);" />
 <!-- 		            <input type="button" id="btnVALIDAR" value="VALIDAR" class="btn btn-info" onclick="validar();"/> -->
 		        </div>
 		    </div>
