@@ -20,10 +20,11 @@ public class RazaService {
 		return razaMapper.registrarRaza(raza);
 	}
 	
-	public List<Raza> listaRaza(String idRAZA, String DESC) {
+	public List<Raza> listaRaza(String idRAZA, String DESC, String idESPECIE) {
 		Map<String, Object> mapa = new HashMap<>();
 		mapa.put("idRAZA", idRAZA);
 		mapa.put("DESC", DESC);
+		mapa.put("idESPECIE", idESPECIE);
 		return razaMapper.listaRaza(mapa);
 	}
 	

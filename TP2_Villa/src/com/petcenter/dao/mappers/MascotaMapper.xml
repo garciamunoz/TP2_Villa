@@ -94,9 +94,11 @@
 	    m.fechaNacMascota,
 	    m.actualizado,
 	    m.registrado,
+	    r.idEspecie,
 	    concat(c.nomCliente,' ',c.apePaternoCliente,' ',c.apeMaternoCliente) as datosCliente
 	FROM tb_mascota m inner join tb_cliente c
-			on m.idCliente=c.idCliente 
+			on m.idCliente=c.idCliente left join tb_raza r
+			on m.idRaza=r.idRaza
 	WHERE m.idMascota=#{idMascota}
   </select>
   

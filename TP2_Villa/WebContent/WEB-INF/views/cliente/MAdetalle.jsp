@@ -31,11 +31,11 @@ function actualizar(){
 
 $(document).ready(function(){
 	$('#idRelClienteMascota').val('${MA.idRelClienteMascota}');
+	$('#txtESPE').val('${MA.idEspecie}');
+	cargarRaza('${MA.idEspecie}');
 	$('#idRaza').val('${MA.idRaza}');
 	$('#idGeneroMascota').val('${MA.idGeneroMascota}');
 	$('#estadoMascota').val('${MA.estadoMascota}');
-	
-// 	$('#txtTIPODOC').attr('disabled', 'disabled');
 });
 
 function obligatorio(){
@@ -53,6 +53,41 @@ function obligatorio(){
 	});
 }
 
+function cargarRaza(idEspecie){
+	$('#idRaza').empty().append($('<option>', { 
+        value: "-1",
+        text : "Seleccione" 
+    }));
+	
+	if(idEspecie == '-1'){
+		return false;
+	}
+	
+	$.ajax({
+		type:'GET',
+		url: '/TP2_Villa/MA/buscarRaza',
+		async: false,
+		data: {
+			idEspecie: idEspecie
+		},
+		success: function(data){
+			listaDatos = data;
+			if(data.length > 0){
+				$.each(data,function( index, element ) {
+					$('#idRaza').append($('<option>', { 
+				        value: element.idRaza,
+				        text : element.descripcionRaza 
+				    }));
+				});
+			}else{
+				mensajeModal("Razas no encontradas.");
+			}
+		},
+		error: function(e){
+			console.log("error: " + e);
+		}
+	});
+}
 </script>
 
 <div class="container">
@@ -94,23 +129,21 @@ function obligatorio(){
 		        </div>
 		    </div>
 		    <div class="form-group">
+		        <label class="control-label col-xs-3" for="txtESPE">ESPECIE:</label>
+		        <div class="col-xs-5">
+		            <select id="txtESPE" name="txtESPE" class="form-control" onchange="cargarRaza(this.value);">
+			            <option value="-1">Seleccione</option>
+			            <c:forEach items="${listaESPE}" var="ESPE">
+				            <option value="${ESPE.idEspecie}">${ESPE.descripcionEspecie}</option>		            
+			            </c:forEach>		            	
+		            </select>
+		        </div>
+		    </div>
+		    <div class="form-group">
 		        <label class="control-label col-xs-3" for="idRaza">Raza:</label>
 		        <div class="col-xs-5">
 		            <select id="idRaza" name="idRaza" class="form-control">
-			            <option value="1">PITBUL</option>
-						<option value="2">SIBERIANO</option>
-						<option value="3">BOXER</option>
-						<option value="4">CHOW CHOW</option>
-						<option value="5">CAIRN TERRIER</option>
-						<option value="6">SAN BERNARDO</option>
-						<option value="7">SHIH TZU</option>
-						<option value="8">PEKINES</option>
-						<option value="9">PASTOR ALEMAN</option>
-						<option value="10">SCHNAUZER</option>
-						<option value="11">PERSA</option>
-						<option value="12">COON MAINE</option>
-						<option value="13">SIAMESES</option>
-						<option value="14">RAGDOLL</option>		            
+			            <option value="-1">Seleccione</option>	            
 		            </select>
 		        </div>
 		    </div>

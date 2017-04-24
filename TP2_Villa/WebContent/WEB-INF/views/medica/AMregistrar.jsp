@@ -168,7 +168,7 @@ function obligatorio(){
 	        <div class="form-group">
 		        <label class="control-label col-xs-3" for="txtPESO">PESO KG:</label>
 		        <div class="col-xs-5">
-		            <input type="text" id="txtPESO" name="txtPESO" class="form-control" onkeypress="return isNumeric(event);"/>
+		            <input type="text" id="txtPESO" name="txtPESO" class="form-control" onkeypress="return isNumericDecimal(event);"/>
 		        </div>
 	        </div>
     		<div class="form-group">

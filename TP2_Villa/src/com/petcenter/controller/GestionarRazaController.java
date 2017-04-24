@@ -70,7 +70,7 @@ public class GestionarRazaController {
 			
 			razaService.registrarRaza(obj);
 			
-			List<Raza> listaRAZA = razaService.listaRaza(String.valueOf(obj.getIdRaza()), "");
+			List<Raza> listaRAZA = razaService.listaRaza(String.valueOf(obj.getIdRaza()), "", "");
 			
 			request.getSession().setAttribute("listaRAZA", listaRAZA);
 			request.getSession().setAttribute("txtRAZA", obj.getIdRaza());
@@ -97,7 +97,7 @@ public class GestionarRazaController {
 			
 			int resultado = razaService.actualizarRaza(Integer.parseInt(idRAZA), observacion, idEspecie);
 			if(resultado > 0){
-				List<Raza> listaRAZA = razaService.listaRaza(idRAZA, "");
+				List<Raza> listaRAZA = razaService.listaRaza(idRAZA, "", "");
 				
 				request.getSession().setAttribute("listaRAZA", listaRAZA);
 				request.getSession().setAttribute("txtRAZA", idRAZA);
@@ -122,7 +122,7 @@ public class GestionarRazaController {
 			String txtRAZA = request.getParameter("txtRAZA");
 			String txtDESC = request.getParameter("txtDESC");
 			
-			List<Raza> listaRAZA = razaService.listaRaza(txtRAZA, txtDESC);
+			List<Raza> listaRAZA = razaService.listaRaza(txtRAZA, txtDESC, "");
 			
 			request.getSession().setAttribute("listaRAZA", listaRAZA);
 			request.getSession().setAttribute("txtRAZA", txtRAZA);
@@ -170,7 +170,7 @@ public class GestionarRazaController {
 				String txtRAZA = (String) request.getSession().getAttribute("txtRAZA");
 				String txtDESC = (String) request.getSession().getAttribute("txtDESC");
 				
-				List<Raza> listaRAZA = razaService.listaRaza(txtRAZA, txtDESC);
+				List<Raza> listaRAZA = razaService.listaRaza(txtRAZA, txtDESC, "");
 				
 				request.getSession().setAttribute("listaRAZA", listaRAZA);
 				

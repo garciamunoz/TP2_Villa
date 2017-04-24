@@ -18,9 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.petcenter.dto.Cliente;
 import com.petcenter.dto.Mascota;
+import com.petcenter.dto.Raza;
 import com.petcenter.service.ClienteService;
 import com.petcenter.service.CommonService;
+import com.petcenter.service.EspecieService;
 import com.petcenter.service.MascotaService;
+import com.petcenter.service.RazaService;
 
 @Controller
 @RequestMapping("/MA")
@@ -37,6 +40,12 @@ public class GestionarMascotaController {
 	@Autowired
 	private ClienteService clienteService;
 	
+	@Autowired
+	private EspecieService especieService;
+
+	@Autowired
+	private RazaService razaService;
+	
 	@RequestMapping("/inicio")
 	public ModelAndView listar(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("cliente/MAlistar");
@@ -48,7 +57,7 @@ public class GestionarMascotaController {
 	public ModelAndView cargarRegistrar(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("cliente/MAregistrar");
 		try {
-			
+			request.getSession().setAttribute("listaESPE", especieService.listaEspecie("", ""));
 		} catch (Exception e) {
 			log.error(e);
 			mav.addObject("mensaje", "Ocurrrio un error en el Sistema");
@@ -209,11 +218,12 @@ public class GestionarMascotaController {
 	}
 	
 	@RequestMapping("/detalle")
-	public ModelAndView detalle(@RequestParam int idMA){
+	public ModelAndView detalle(@RequestParam int idMA, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("cliente/MAdetalle");
 		try {
 			Mascota MA = mascotaService.verMascota(idMA);
 			mav.addObject("MA", MA);
+			request.getSession().setAttribute("listaESPE", especieService.listaEspecie("", ""));
 		} catch (Exception e) {
 			log.error(e);
 			mav.addObject("mensaje", "Ocurrrio un error en el Sistema");
@@ -275,4 +285,9 @@ public class GestionarMascotaController {
 		return datos;
 	}
 	
+	@RequestMapping(value = "/buscarRaza", method = RequestMethod.GET)
+	public @ResponseBody List<Raza> buscarRaza(@RequestParam String idEspecie){
+		List<Raza> datos = razaService.listaRaza("", "", idEspecie);
+		return datos;
+	}
 }

@@ -14,6 +14,7 @@ public class Mascota implements Serializable{
 	private int idCliente;
 	private int idRelClienteMascota;
 	private int idRaza;
+	private int idEspecie;
 	private String fotoMascota;
 	private int estadoMascota;
 	private String descMascota;
@@ -144,6 +145,12 @@ public class Mascota implements Serializable{
 				+ ", fechaNacMascotaFormateada=" + fechaNacMascotaFormateada + ", actualizado=" + actualizado
 				+ ", datosMascota=" + datosMascota + ", datosClientes=" + datosCliente
 				+ ", descripcionRelClienteMascota=" + descripcionRelClienteMascota + "]";
+	}
+	public int getIdEspecie() {
+		return idEspecie;
+	}
+	public void setIdEspecie(int idEspecie) {
+		this.idEspecie = idEspecie;
 	}
 	
 }

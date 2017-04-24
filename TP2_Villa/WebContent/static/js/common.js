@@ -12,3 +12,19 @@ function isNumeric(event){
     }    
     return isNumber;
 }
+
+function isNumericDecimal(event){
+	var key = (event.keyCode || event.which);
+	var value = String.fromCharCode(key); 
+    var isNumber = false;
+    if(!isNaN(value) || key == '8' || key == '46'){
+    	isNumber = true;
+    }    
+    return isNumber;
+}
+
+$(document).ready(function () {
+    $('input').bind('copy paste', function (e) {
+       e.preventDefault();
+    });
+});

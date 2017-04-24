@@ -32,7 +32,10 @@
 	</if>	  	
 	<if test="DESC != ''">
 	   	AND r.descripcionRaza like '%${DESC}%'
-	</if>	  	
+	</if>
+	<if test="idESPECIE != ''">
+		AND e.idEspecie=#{idESPECIE}
+	</if>  	
   </select>  
   
   <select id="verRaza" parameterType="int" resultType="Raza">
